@@ -8,16 +8,15 @@
     <meta name="author" content="Orson Routt"/>
     <title>MP3 Intro Page</title>
   </head>
-  <body class="indexBody"> <!-- Will have the background as a 'background-image'. -->
+  <body>
     <header id="header"></header> <!-- Site header. -->
-    <h1 class="indexTitle">MP3 Format</h1>
-    <div class="indexTextBox"> <!-- Styled to stack items horizontally. -->
-      <div class="indexLine"></div> <!-- Styled as a vertical line (with the color from the Intro Page). -->
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tortor est, interdum at lectus id, mattis posuere dolor. Maecenas at lacus justo. Phasellus vel porttitor risus. Sed sed orci id sapien faucibus fermentum. Suspendisse semper nisi neque, ut convallis eros tempus at. Fusce condimentum efficitur mattis. Proin posuere lobortis commodo. Aliquam sodales aliquam nulla, at finibus velit lobortis finibus. Sed efficitur in nulla eget sagittis.</p>
-    </div>
-    <a href="topic.html">
-      <input type="button" id="bigButton" value="FIND OUT MORE"/>
-    </a>
+    <main class="indexMain"> <!-- Will have the background as a 'background-image'. -->
+      <h1 class="indexTitle">MP3 Format</h1>
+      <p class="indexText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tortor est, interdum at lectus id, mattis posuere dolor. Maecenas at lacus justo. Phasellus vel porttitor risus. Sed sed orci id sapien faucibus fermentum. Suspendisse semper nisi neque, ut convallis eros tempus at. Fusce condimentum efficitur mattis. Proin posuere lobortis commodo. Aliquam sodales aliquam nulla, at finibus velit lobortis finibus. Sed efficitur in nulla eget sagittis.</p> <!-- Styled to have a vertical line before it (with the color from the Intro Page). -->
+      <form>
+            <button id="bigButton" value="FIND OUT MORE" formaction="./topic.html">FIND OUT MORE</button>
+        </form>
+    </main>
     <footer id="footer"></footer> <!-- Site footer. -->
   </body>
 </html>
