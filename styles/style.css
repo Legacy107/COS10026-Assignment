@@ -1,0 +1,27 @@
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    --green-100: hsla(198, 41%, 96%, 1); /* for background color */
+    --green-300: hsla(91, 94%, 86%, 1);
+    --green-400: hsla(127, 67%, 76%, 1);
+    --green-500: hsla(171, 52%, 52%, 1);
+    --cyan-400: hsla(198, 76%, 31%, 1);
+    --black-400: hsla(200, 96%, 10%, 1);
+    --gray-300: hsla(0, 0%, 77%, 1);
+    --gray-400: hsla(200, 9%, 72%, 1);
+}
+
+h1 {
+    font: 400 2rem/1.2em 'Gelasio', serif;
+}
+
+h2 {
+    font: 500 1.625rem/1.26em 'Gravitas One', cursive;
+}
