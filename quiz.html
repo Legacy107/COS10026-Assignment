@@ -10,6 +10,76 @@
     <title>MP3 Format</title>
 </head>
 <body>
-    Quiz
+    <main>
+        <h2>MP3 Quiz</h2>
+    <form>
+        <fieldset><legend>Student Information</legend>
+            <!--individual information-->
+            <label for="fname">First Name</label>
+            <input type="text" name="fname" id="fname" class="info_text_input" />
+            <br />
+            <label for="lname">Last Name</label>
+            <input type="text" name="lname" id="lname" class="info_text_input" />
+            <br />
+            <label for="sid">Student ID</label>
+            <input type="text" name="sid" id="sid" class="info_text_input" />
+        </fieldset>
+        <fieldset><legend>Questions</legend>
+            <!--Question 1 - text answer-->
+            <div class="qarea"><h3 class="qheading">Question #1</h3>
+                <p class="qinformation">Type out the answer for the following, using a capital letter at the start off each word. What does MPEG stand for?</p>
+                <h4  class="qanswer_heading">Answer</h4>
+                <input type="text" name="ans1" id="ans1" />
+            </div>
+            <!--Question 2 - single choice-->
+            <div class="qarea"><h3 class="qheading">Question #2</h3>
+                <p class="qinformation">Select a single answer. Which of the following lists the two years that MPEG-2 Audio layer III was first published and the most recent update?</p>
+                <h4 class="qanswer_heading">Answer</h4>
+                <input type="radio" name="ans2" id="1993/1995" value="1993 / 1995" class="radio_button" /> <label for="1993/1995">1993 / 1995</label>
+                <input type="radio" name="ans2" id="1998/2008" value="1998 / 2008" class="radio_button" /> <label for="1998/2008">1998 / 2008</label>
+                <input type="radio" name="ans2" id="1995/1998" value="1995 / 1998" class="radio_button" /> <label for="1995/1998">1995 / 1998</label>
+                <input type="radio" name="ans2" id="1993/2008" value="1993 / 2008" class="radio_answer" /> <label for="1993/2008">1993 / 2008</label>
+            </div>
+            <!--Question 3 - Multi choice-->
+            <div class="qarea"><h3 class="qheading">Question #3</h3>
+                <p class="qinformation">Select Multiple answers. Which of the following are recognized official MPEG standards that dictate the proper usage of the MP3 format?</p>
+                <h4 class="qanswer_heading">Answer</h4>
+                <input type="checkbox" name="standards[]" id="MPEG1" value="MPEG 1 Audio layer III" class="checkbox_answer" /><label for="MPEG1">MPEG 1 Audio layer III</label>
+                <input type="checkbox" name="standards[]" id="MPEG2" value="MPEG 2 Audio Layer III" class="checkbox_answer" /><label for="MPEG2">MPEG 2 Audio Layer III</label>
+                <input type="checkbox" name="standards[]" id="MPEG2.5" value="MPEG 2.5 Audio Layer III" class="checkbox_answer" /><label for="MPEG2.5">MPEG 2.5 Audio Layer III</label>
+                <input type="checkbox" name="standards[]" id="MPEG3" value="MPEG 3 Audio Layer III" class="checkbox_answer" /><label for="MPEG3">MPEG 3 Audio Layer III</label>
+            </div>
+            <!--Question - Multi choice 4-->
+            <div class="qarea"><h3 class="qheading">Question #4</h3>
+                <p class="qinformation">Select multiple answers. What were the main causes that have caused a slow gradual decline in the MP3 format's popularity?</p>
+                <h4 class="qanswer_heading">Answer</h4>
+                <input type="checkbox" name="decline[]" id="variety_of_devices" value="variety of devices" class="checkbox_answer" /><label for="variety_of_devices">A wider variety of devices</label>
+                <input type="checkbox" name="decline[]" id="legal_concerns" value="legal issues" class="checkbox_answer" /><label for="legal_concerns">Legal concerns</label>
+                <input type="checkbox" name="decline[]" id="alternative_audio_formats" value="alternative audio formats" class="checkbox_answer" /><label for="alternative_audio_formats">increasing number of alternative audio formats</label>
+                <input type="checkbox" name="decline[]" id="MPEG_changes" value="MPEG changes" class="checkbox_answer" /><label for="MPEG_changes">Changes in MPEG standards</label>
+            </div>
+            <!--Question 5 - Drop down list single answer-->
+            <div class="qarea"><h3 class="qheading">Question #5</h3>
+                <p class="qinformation">
+                    Select an answer from the drop down list. Who was the primary inventor for the format?
+                </p>
+                <h4 class="qanswer_heading">Answer</h4>
+                <select name="creator" id="potential_creators" class="quiz_dropdown">
+                    <option value="Fraunhofer Society">Fraunhofer Society</option>
+                    <option value="Karlheinz Brandenburg">Karlheinz Brandenburg</option>
+                    <option value="MPEG">MPEG</option>
+                    <option value="ISO">The international Standards Organisation (ISO)</option>
+                </select>
+            </div>
+            <!--Question 6 - True/False answer-->
+            <div class="qarea"><h3 class="qheading">Question #6</h3>
+                <p class="qinformation">True or False. MP3 uses lossless compression.</p>
+                <h4 class="qanswer_heading">Answer</h4>
+                <input type="radio" name="compression" id="True" value="True" /><label for="True">True</label>
+                <input type="radio" name="compression" id="False" value="False" /><label for="False">False</label>
+            </div>
+        </fieldset>
+    </form>
+    </main>
 </body>
 </html>
