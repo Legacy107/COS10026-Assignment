@@ -1,0 +1,26 @@
+#footer_stuff {
+    display: flex;
+    width: 100%;
+}
+
+.team {
+    background-color: #13678A;
+    width: 20%;
+    color: teal
+}
+
+.flex-container {
+    display: flex;
+}
+
+footer {
+   background-color: #13678A;
+   color: white; 
+   font-size: medium;
+   padding: 10px;
+}
+
+h2 {
+    color: #9AEBA3;
+}
+
