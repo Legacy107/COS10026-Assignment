@@ -1,0 +1,131 @@
+body {
+    background-color: #EDF5F8;
+}
+
+/*---Navigation---*/
+nav {
+    width: 100%; /*full length nav bar*/
+    display: flex;
+    background: #13678A;
+}
+
+nav h1 {
+    width: 20%; /*area*/
+    margin-left: 10%; /*empty space in left*/
+    color: #DAFDBA;
+}
+
+nav ul {
+    width: 60%; /*area*/
+    margin-right: 10%; /*empty space in right*/
+    text-align: right; /*nav item to right*/
+    font-size: 20px;
+}
+
+nav ul li {
+    display: inline; /*erase bullet point and horizontal*/
+    margin: 3%; /*spread out the nav items*/
+}
+
+ul li a:link { /*nav and topic-aside*/
+    text-decoration: none; /*remove nav item decor*/
+    color: white;
+}
+ul li a:visited { /*nav and topic-aside*/
+    color: white;
+}
+ul li a:hover { /*nav and topic-aside*/
+    color: #DAFDBA;
+}
+ul li a:active { /*nav and topic-aside*/
+    color: white;
+}
+
+/*---Topic HTML---*/
+#topic-article {
+    overflow: none;
+    width: 90%;
+    margin: 2em 5%; /*not final - adjusting layout (top-bottom, left-right)*/
+    display: grid;
+    row-gap: 0.5%; /*top-bottom gaps*/
+    grid-template-areas:
+        'graphic'
+        'history'
+        'owner'
+        'image'
+        'compare'
+        'software'
+        'table'
+        'term'
+        'aside'
+        'quiz';
+}
+
+#topic-graphic {
+    grid-area: graphic;
+    margin: 0 auto;
+    width: 100%;
+    height: 0.5em;
+    border-radius: 2em;
+    background: #45C4B0 0 0 no-repeat padding-box;
+    box-shadow: 0 0 20px rgb(0 0 0 / 10%);
+}
+#topic-history { grid-area: history; }
+#topic-owner { grid-area: owner; }
+#topic-image {
+    grid-area: image; 
+    width: 100%;
+}
+#topic-compare { grid-area: compare; }
+#topic-software { grid-area: software; }
+#topic-table { grid-area: table; }
+#topic-term { grid-area: term; }
+#topic-aside {
+    grid-area: aside;
+    color: white;
+    background-color: #45C4B0;
+    border-radius: 10px 10px 0 10px; /*top-left, top-right, bottom-right, bottom-left*/
+    padding: 2% 8%;
+    box-shadow: 10px 10px 10px rgb(0 0 0 / 30%); /*left-right, top-bottom, density, size, color*/
+}
+#topic-quiz { grid-area: quiz; }
+
+/* .graphic2 {
+    position: absolute;
+    width: 20em;
+    height: 3em;
+    border-radius: 3em;
+    background: linear-gradient(90deg,#5fb5db,#4be6d5) 0 0 no-repeat padding-box;
+    transform: rotate(135deg);
+    box-shadow: 0 0 20px rgb(200 120 200 / 90%);
+    z-index: -1;
+    bottom: 0;
+    right: 1;
+} */
+
+@media screen and (min-width: 481px) { /*minimum needs to have n-size, then apply (tablet)*/
+}
+
+@media screen and (min-width: 961px) { /*minimum needs to have n-size, then apply (pc)*/
+    #topic-graphic {
+        grid-area: graphic;
+        margin: 0%;
+        width: 32em;
+    }
+
+    #topic-article {
+        row-gap: 1.5%;
+        column-gap: 10%; /*left-right gaps*/
+        grid-template-columns: 70% 20%;
+        grid-template-areas: 
+            'graphic aside'
+            'history aside'
+            'owner aside'
+            'image image'
+            'compare compare'
+            'software software'
+            'table table'
+            'term term'
+            'quiz quiz';
+    }
+}
