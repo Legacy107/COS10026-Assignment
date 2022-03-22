@@ -1,10 +1,10 @@
-/* *, */
-/* *:after, */
-/* *:before {
+*,
+*:after,
+*:before {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-} */
+}
 
 body {
     font-family: 'Poppins', sans-serif;
@@ -17,26 +17,27 @@ body {
     --gray-300: hsla(0, 0%, 77%, 1);
     --gray-400: hsla(200, 9%, 72%, 1);
 }
-/* 
+
 h1 {
     font: 400 2rem/1.2em 'Gelasio', serif;
 }
 
 h2 {
     font: 500 1.625rem/1.26em 'Gravitas One', cursive;
-} */
+}
 
 /*---Navigation---*/
 nav {
     width: 100%; /*full length nav bar*/
+    padding: 16px; /*make space for items*/
     display: flex;
-    background: #13678A;
+    background: var(--cyan-400);
 }
 
 nav h1 {
     width: 20%; /*area*/
     margin-left: 10%; /*empty space in left*/
-    color: #DAFDBA;
+    color: var(--green-300);
 }
 
 nav ul {
@@ -59,20 +60,19 @@ ul li a:visited { /*nav and topic-aside*/
     color: white;
 }
 ul li a:hover { /*nav and topic-aside*/
-    color: #DAFDBA;
+    color: var(--green-300);
 }
 ul li a:active { /*nav and topic-aside*/
     color: white;
 }
+/*---Navigation---*/
 
 /*---Topic HTML---*/
 #topic-article {
-    overflow: none;
-    width: 90%;
-    margin: 2em 5%; /*not final - adjusting layout (top-bottom, left-right)*/
+    width: 94%; /*main area*/
+    margin: 0 3%; /*top-bottom, left-right*/
     display: grid;
-    row-gap: 0.5%; /*top-bottom gaps*/
-    grid-template-areas:
+    grid-template-areas: /*how the stuff is arranged*/
         'graphic'
         'history'
         'owner'
@@ -87,61 +87,83 @@ ul li a:active { /*nav and topic-aside*/
 
 #topic-graphic {
     grid-area: graphic;
-    margin: 0 auto;
-    width: 100%;
+    margin-top: 2em;
+    width: 100%; /*full length*/
     height: 0.5em;
-    border-radius: 2em;
-    background: #45C4B0 0 0 no-repeat padding-box;
-    box-shadow: 0 0 20px rgb(0 0 0 / 10%);
+    border-radius: 1em; /*edges*/
+    background-color: var(--green-500); /*color*/
 }
-#topic-history { grid-area: history; }
-#topic-owner { grid-area: owner; }
+
+#topic-history {
+    grid-area: history;
+    margin-top: 2em;
+}
+
+#topic-owner {
+    grid-area: owner;
+    margin-top: 2em;
+}
+
 #topic-image {
-    grid-area: image; 
-    width: 100%;
+    grid-area: image;
+    margin-top: 2em;
 }
-#topic-compare { grid-area: compare; }
-#topic-software { grid-area: software; }
-#topic-table { grid-area: table; }
-#topic-term { grid-area: term; }
+#topic-image img {
+    width: 100%; /*full length*/
+}
+
+#topic-compare {
+    grid-area: compare;
+    margin-top: 2em;
+}
+
+#topic-software {
+    grid-area: software;
+    margin-top: 2em;
+}
+#topic-software ol {
+    padding-left: 1.5em; /*make the numbers move to the right*/
+}
+
+#topic-table {
+    grid-area: table;
+    margin-top: 2em;
+}
+
+#topic-term {
+    grid-area: term;
+    margin-top: 2em;
+}
+
 #topic-aside {
     grid-area: aside;
+    margin-top: 2em;
     color: white;
-    background-color: #45C4B0;
+    background-color: var(--green-500);
     border-radius: 10px 10px 0 10px; /*top-left, top-right, bottom-right, bottom-left*/
-    padding: 2% 8%;
+    padding: 8%; /*content placement*/
     box-shadow: 10px 10px 10px rgb(0 0 0 / 30%); /*left-right, top-bottom, density, size, color*/
 }
-#topic-quiz { grid-area: quiz; }
+#topic-aside ul {
+    padding-left: 10%; /*make the bullet points move to the right*/
+}
 
-/* .graphic2 {
-    position: absolute;
-    width: 20em;
-    height: 3em;
-    border-radius: 3em;
-    background: linear-gradient(90deg,#5fb5db,#4be6d5) 0 0 no-repeat padding-box;
-    transform: rotate(135deg);
-    box-shadow: 0 0 20px rgb(200 120 200 / 90%);
-    z-index: -1;
-    bottom: 0;
-    right: 1;
-} */
+#topic-quiz {
+    grid-area: quiz;
+    margin-top: 2em;
+}
+/*---Topic HTML---*/
 
 @media screen and (min-width: 481px) { /*minimum needs to have n-size, then apply (tablet)*/
 }
 
 @media screen and (min-width: 961px) { /*minimum needs to have n-size, then apply (pc)*/
-    #topic-graphic {
-        grid-area: graphic;
-        margin: 0%;
-        width: 32em;
-    }
-
     #topic-article {
-        row-gap: 1.5%;
+        width: 90%; /*main area*/
+        margin: 0 5%; /*top-bottom, left-right*/
         column-gap: 10%; /*left-right gaps*/
-        grid-template-columns: 70% 20%;
-        grid-template-areas: 
+        grid-template-columns: 70% 20%; /*width of 2 columns*/
+        grid-template-areas: /*how the stuff is arranged*/
             'graphic aside'
             'history aside'
             'owner aside'
@@ -151,5 +173,9 @@ ul li a:active { /*nav and topic-aside*/
             'table table'
             'term term'
             'quiz quiz';
+    }
+
+    #topic-graphic {
+        width: 32em; /*length of line*/
     }
 }
