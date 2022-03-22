@@ -118,7 +118,7 @@ ul li a:active { /*nav and topic-aside*/
     width: 100%; /*full length*/
 }
 #topic-image figcaption {
-    padding-left: 5%; /*make caption move to the right*/
+    padding: 0 5%; /*make caption move to the right*/
 }
 
 #topic-compare {
@@ -240,6 +240,6 @@ ul li a:active { /*nav and topic-aside*/
     }
 
     #topic-image figcaption {
-        padding-left: 0; /*make caption move back from the right*/
+        padding: 0; /*make caption move back from the right*/
     }
 }
