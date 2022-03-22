@@ -13,6 +13,7 @@ body {
     --green-400: hsla(127, 67%, 76%, 1);
     --green-500: hsla(171, 52%, 52%, 1);
     --cyan-400: hsla(198, 76%, 31%, 1);
+    --cyan-500: hsla(198, 71%, 26%, 1); /* button active */
     --black-400: hsla(200, 96%, 10%, 1);
     --gray-300: hsla(0, 0%, 77%, 1);
     --gray-400: hsla(200, 9%, 72%, 1);
@@ -29,7 +30,7 @@ h2 {
 /*---Navigation---*/
 nav {
     width: 100%; /*full length nav bar*/
-    padding: 16px; /*make space for items*/
+    padding: 1em; /*make space for nav*/
     display: flex;
     background: var(--cyan-400);
 }
@@ -44,7 +45,7 @@ nav ul {
     width: 60%; /*area*/
     margin-right: 10%; /*empty space in right*/
     text-align: right; /*nav item to right*/
-    font-size: 20px;
+    font-size: 1.2em;
 }
 
 nav ul li {
@@ -68,21 +69,26 @@ ul li a:active { /*nav and topic-aside*/
 /*---Navigation---*/
 
 /*---Topic HTML---*/
+#topic-main {
+    background-color: var(--green-100);
+}
+
 #topic-article {
-    width: 94%; /*main area*/
-    margin: 0 3%; /*top-bottom, left-right*/
+    width: 100%; /*main area*/
     display: grid;
+    column-gap: 5%; /*left-right gaps*/
+    grid-template-columns: 0% 90% 0%; /*width of 2 columns*/
     grid-template-areas: /*how the stuff is arranged*/
-        'graphic'
-        'history'
-        'owner'
-        'image'
-        'compare'
-        'software'
-        'table'
-        'term'
-        'aside'
-        'quiz';
+        '. graphic .'
+        '. history .'
+        '. owner .'
+        'image image image'
+        '. compare .'
+        '. software .'
+        '. table .'
+        '. term .'
+        '. aside .'
+        '. quiz .';
 }
 
 #topic-graphic {
@@ -111,6 +117,9 @@ ul li a:active { /*nav and topic-aside*/
 #topic-image img {
     width: 100%; /*full length*/
 }
+#topic-image figcaption {
+    padding-left: 5%; /*make caption move to the right*/
+}
 
 #topic-compare {
     grid-area: compare;
@@ -128,21 +137,55 @@ ul li a:active { /*nav and topic-aside*/
 #topic-table {
     grid-area: table;
     margin-top: 2em;
+    overflow: auto; /*when table cant fit into screen, make table scrollable*/
+}
+#topic-table table {
+    border-collapse: collapse;
+}
+#topic-table table tr th  {
+    color: white;
+    padding: 1em; /*give space for items*/
+}
+#topic-table table tr td  {
+    padding: 1em; /*give space for items*/
+}
+#topic-table table tr td:first-child { /*all tr's first td*/
+    font-weight: bold;
+    text-align: center;
+}
+#topic-table table tr:nth-child(even) { /*all even tr*/
+    background-color: var(--green-400);
+}
+#topic-table table tr:nth-child(odd) { /*all odd tr*/
+    background-color: var(--green-300);
+}
+#topic-table table tr:first-child { /*first tr*/
+    background-color: var(--cyan-400);
+}
+#topic-table table tr:last-child td:first-child { /*first column, last row*/
+    border-radius: 0 0 0 0.8em; /*top-left, top-right, bottom-right, bottom-left*/
+}
+#topic-table table tr:first-child th:last-child { /*first row, last column*/
+    border-radius: 0 0.8em 0 0; /*top-left, top-right, bottom-right, bottom-left*/
 }
 
 #topic-term {
     grid-area: term;
     margin-top: 2em;
 }
+#topic-term dl dt {
+    font-weight: bold;
+    margin-top: 1em;
+}
 
 #topic-aside {
     grid-area: aside;
     margin-top: 2em;
+    padding: 8%; /*content placement*/
     color: white;
     background-color: var(--green-500);
-    border-radius: 10px 10px 0 10px; /*top-left, top-right, bottom-right, bottom-left*/
-    padding: 8%; /*content placement*/
-    box-shadow: 10px 10px 10px rgb(0 0 0 / 30%); /*left-right, top-bottom, density, size, color*/
+    border-radius: 1em 1em 0 1em; /*top-left, top-right, bottom-right, bottom-left*/
+    box-shadow: 0.5em 0.5em 1em rgb(0 0 0 / 30%); /*left-right, top-bottom, density, size, color*/
 }
 #topic-aside ul {
     padding-left: 10%; /*make the bullet points move to the right*/
@@ -151,31 +194,52 @@ ul li a:active { /*nav and topic-aside*/
 #topic-quiz {
     grid-area: quiz;
     margin-top: 2em;
+    margin-bottom: 2em;
+    background-color: var(--cyan-400);
+    border-radius: 0 0.8em 0 0.8em; /*top-left, top-right, bottom-right, bottom-left*/
+    box-shadow: 0 0.3em 1em rgb(0 0 0 / 30%); /*left-right, top-bottom, density, size, color*/
+}
+#topic-quiz button {
+    width: 100%; /*setup for text align center*/
+    margin: 0 auto; /*text align center*/
+    padding: 0.5em 0 0.5em; /*top left-right bottom*/
+    color: var(--green-300);
+    background: none; /*remove button background style*/
+    border: none; /*remove button border style*/
+    cursor: pointer; /*set cursor to pointer when hovering*/
+    font: inherit; /*inherit font instead of using button font*/
+}
+#topic-quiz:active { /*when button is being clicked*/
+    background-color: var(--cyan-500);
 }
 /*---Topic HTML---*/
 
 @media screen and (min-width: 481px) { /*minimum needs to have n-size, then apply (tablet)*/
+    #topic-graphic {
+        width: 26em; /*length of line*/
+    }
+
+    #topic-quiz {
+        width: 26em; /*length of button*/
+    }
 }
 
 @media screen and (min-width: 961px) { /*minimum needs to have n-size, then apply (pc)*/
     #topic-article {
-        width: 90%; /*main area*/
-        margin: 0 5%; /*top-bottom, left-right*/
-        column-gap: 10%; /*left-right gaps*/
-        grid-template-columns: 70% 20%; /*width of 2 columns*/
+        grid-template-columns: 0% 63% 22% 0%; /*width of 2 columns*/
         grid-template-areas: /*how the stuff is arranged*/
-            'graphic aside'
-            'history aside'
-            'owner aside'
-            'image image'
-            'compare compare'
-            'software software'
-            'table table'
-            'term term'
-            'quiz quiz';
+            '. graphic aside .'
+            '. history aside .'
+            '. owner aside .'
+            '. image image .'
+            '. compare compare .'
+            '. software software .'
+            '. table table .'
+            '. term term .'
+            '. quiz quiz .';
     }
 
-    #topic-graphic {
-        width: 32em; /*length of line*/
+    #topic-image figcaption {
+        padding-left: 0; /*make caption move back from the right*/
     }
 }
