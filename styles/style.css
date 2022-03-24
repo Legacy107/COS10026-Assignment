@@ -16,6 +16,8 @@ body {
     --black-400: hsla(200, 96%, 10%, 1);
     --gray-300: hsla(0, 0%, 77%, 1);
     --gray-400: hsla(200, 9%, 72%, 1);
+
+    --cyan-400h: hsla(198, 43%, 46%, 1);
 }
 
 h1 {
@@ -24,4 +26,64 @@ h1 {
 
 h2 {
     font: 500 1.625rem/1.26em 'Gravitas One', cursive;
+}
+
+.intro-h1__large {
+    font-family: 'Gravitas One', sans-serif;
+    font-weight: 400;
+    font-size: 60px;
+    letter-spacing: 5px;
+    color: var(--green-300);
+}
+
+.intro-main {
+    position: relative;
+    background-color: hsla(0,0%,0%,0.5);
+    background-blend-mode: darken;
+    background-image: url("../images/intro_background.jpeg");
+    background-size: cover;
+    padding-left: 2em;
+    padding-top: 7em;
+    padding-bottom: 7em;
+}
+
+.intro-p__line {
+    color: white;
+    font-family: 'Gelasio';
+    font-weight: 500;
+    font-size: 26px;
+    position: relative;
+    left: 25px;
+    width: 50%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 1.25em 0em 1.75em 0em;
+}
+
+.intro-p__line::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    bottom: 0;
+    left: -25px;
+    width: 8px;
+    background-color: var(--green-300);
+    border-radius: 4px;
+}
+
+.intro-button__next {
+    font-weight: 700;
+    font-size: 26px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    color: var(--green-300);
+    background-color: var(--cyan-400);
+    border: none;
+    border-radius: 0px 16px 0px 16px;
+    padding: 0.75em 1.5em 0.75em 1.5em;
+}
+
+.intro-button__next:hover {
+    background-color: var(--cyan-400h);
 }
