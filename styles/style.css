@@ -28,41 +28,72 @@ h2 {
 }
 
 /*---Navigation---*/
+header {
+    position: sticky;
+    top: 0;
+    box-shadow: 0 5px 15px 0 var(--black-400);
+}
+
 nav {
     width: 100%; /*full length nav bar*/
-    padding: 1em; /*make space for nav*/
+    padding: 1em 3em; /*make space for nav*/
     display: flex;
+    justify-content: space-between;
     background: var(--cyan-400);
 }
 
 nav h1 {
-    width: 20%; /*area*/
-    margin-left: 10%; /*empty space in left*/
     color: var(--green-300);
 }
 
 nav ul {
-    width: 60%; /*area*/
-    margin-right: 10%; /*empty space in right*/
-    text-align: right; /*nav item to right*/
     font-size: 1.2em;
+    display: flex;
+    gap: 1em;
 }
 
 nav ul li {
     display: inline; /*erase bullet point and horizontal*/
-    margin: 3%; /*spread out the nav items*/
+    position: relative;
 }
 
 ul li a:link { /*nav and topic-aside*/
     text-decoration: none; /*remove nav item decor*/
     color: white;
 }
+
 ul li a:visited { /*nav and topic-aside*/
     color: white;
 }
+
 ul li a:hover { /*nav and topic-aside*/
     color: var(--green-300);
 }
+
+ul li a::before {
+    content: "";
+    width: 0;
+    height: 5px;
+    transition: width 0.5s ease;
+    background-color: var(--green-300);
+    position: absolute;
+    border-radius: 200px;
+    bottom: 0px;
+    left: 0;
+}
+
+ul li a:hover::before {
+    width: 30px;
+}
+
+ul li a:target::before {
+    width: 100%;
+}
+
+ul li a:focus {
+    outline: none;
+}
+
 ul li a:active { /*nav and topic-aside*/
     color: white;
 }
