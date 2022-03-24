@@ -40,37 +40,42 @@ nav {
     display: flex;
     justify-content: space-between;
     background: var(--cyan-400);
+    pointer-events: none;
+}
+
+nav > * {
+    pointer-events: all;
 }
 
 nav h1 {
     color: var(--green-300);
 }
 
-nav ul {
+.menu__list {
     font-size: 1.2em;
     display: flex;
     gap: 1em;
 }
 
-nav ul li {
+.menu__list li {
     display: inline; /*erase bullet point and horizontal*/
     position: relative;
 }
 
-ul li a:link { /*nav and topic-aside*/
+.menu__list li a:link { /*nav and topic-aside*/
     text-decoration: none; /*remove nav item decor*/
     color: white;
 }
 
-ul li a:visited { /*nav and topic-aside*/
+.menu__list li a:visited { /*nav and topic-aside*/
     color: white;
 }
 
-ul li a:hover { /*nav and topic-aside*/
+.menu__list li a:hover { /*nav and topic-aside*/
     color: var(--green-300);
 }
 
-ul li a::before {
+.menu__list li a::before {
     content: "";
     width: 0;
     height: 5px;
@@ -78,24 +83,71 @@ ul li a::before {
     background-color: var(--green-300);
     position: absolute;
     border-radius: 200px;
-    bottom: 0px;
+    bottom: -5px;
     left: 0;
 }
 
-ul li a:hover::before {
+.menu__list li a:hover::before {
     width: 30px;
 }
 
-ul li a:target::before {
+.menu__list li a:target::before,
+.menu__list li a:focus {
     width: 100%;
 }
 
-ul li a:focus {
+.menu__list li a:focus {
     outline: none;
 }
 
-ul li a:active { /*nav and topic-aside*/
+.menu__list li a:active {
     color: white;
+}
+
+.menu {
+    align-self: center;
+}
+
+.menu__hamburger {
+    display: none;
+    aspect-ratio: 1.2 / 1;
+    height: 1.7em;
+}
+
+.menu__hamburger div {
+    border-radius: 200px;
+    background-color: var(--green-300);
+    height: 0.2em;
+}
+
+@media screen and (max-width: 650px) {
+    .menu__hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    .menu:hover .menu__list {
+        z-index: -1;
+        display: flex;
+        flex-direction: column;
+        gap: 1.2em;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 50%;
+        height: 100vh;
+        padding: 4em 1.8em;
+        background-color: var(--cyan-400);
+    }
+    
+    .menu__list {
+        display: none;
+    }
+
+    .menu__list li {
+        width: fit-content;
+    }
 }
 /*---Navigation---*/
 
