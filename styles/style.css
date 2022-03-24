@@ -28,6 +28,20 @@ h2 {
     font: 500 1.625rem/1.26em 'Gravitas One', cursive;
 }
 
+button {
+    font-weight: 700; /* unfinished style - merge with actual button style */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    color: var(--green-300);
+    background-color: var(--cyan-400);
+    border: none;
+}
+
+button:hover {
+    background-color: var(--cyan-400h);
+}
+
 .intro-h1__large {
     font-family: 'Gravitas One', sans-serif;
     font-weight: 400;
@@ -72,18 +86,7 @@ h2 {
 }
 
 .intro-button__next {
-    font-weight: 700;
     font-size: 26px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    color: var(--green-300);
-    background-color: var(--cyan-400);
-    border: none;
     border-radius: 0px 16px 0px 16px;
     padding: 0.75em 1.5em 0.75em 1.5em;
-}
-
-.intro-button__next:hover {
-    background-color: var(--cyan-400h);
 }
