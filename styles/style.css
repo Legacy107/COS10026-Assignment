@@ -12,6 +12,7 @@ body {
     --green-300: hsla(91, 94%, 86%, 1);
     --green-400: hsla(127, 67%, 76%, 1);
     --green-500: hsla(171, 52%, 52%, 1);
+    --cyan-300: hsla(198, 81%, 36%, 1); /* button hover */
     --cyan-400: hsla(198, 76%, 31%, 1);
     --cyan-500: hsla(198, 71%, 26%, 1); /* button active */
     --black-400: hsla(200, 96%, 10%, 1);
@@ -79,7 +80,6 @@ ul li a:active { /*nav and topic-aside*/
     column-gap: 5%; /*left-right gaps*/
     grid-template-columns: 0% 90% 0%; /*width of 2 columns*/
     grid-template-areas: /*how the stuff is arranged*/
-        '. graphic .'
         '. history .'
         '. owner .'
         'image image image'
@@ -91,31 +91,30 @@ ul li a:active { /*nav and topic-aside*/
         '. quiz .';
 }
 
-#topic-graphic {
-    grid-area: graphic;
-    margin-top: 2em;
+#topic-history::before {
+    content: " ";
+    position: absolute;
     width: 100%; /*full length*/
     height: 0.5em;
+    top: -20px; /*placement*/
     border-radius: 1em; /*edges*/
     background-color: var(--green-500); /*color*/
 }
-
 #topic-history {
     grid-area: history;
-    margin-top: 2em;
+    position: relative;
 }
 
 #topic-owner {
     grid-area: owner;
-    margin-top: 2em;
 }
 
 #topic-image {
     grid-area: image;
-    margin-top: 2em;
 }
 #topic-image img {
     width: 100%; /*full length*/
+    border-radius: 0 0.8em 0 0.8em; /*top-left, top-right, bottom-right, bottom-left*/
 }
 #topic-image figcaption {
     padding: 0 5%; /*make caption move to the right*/
@@ -123,12 +122,10 @@ ul li a:active { /*nav and topic-aside*/
 
 #topic-compare {
     grid-area: compare;
-    margin-top: 2em;
 }
 
 #topic-software {
     grid-area: software;
-    margin-top: 2em;
 }
 #topic-software ol {
     padding-left: 1.5em; /*make the numbers move to the right*/
@@ -136,7 +133,6 @@ ul li a:active { /*nav and topic-aside*/
 
 #topic-table {
     grid-area: table;
-    margin-top: 2em;
     overflow: auto; /*when table cant fit into screen, make table scrollable*/
 }
 #topic-table table {
@@ -171,7 +167,6 @@ ul li a:active { /*nav and topic-aside*/
 
 #topic-term {
     grid-area: term;
-    margin-top: 2em;
 }
 #topic-term dl dt {
     font-weight: bold;
@@ -180,21 +175,19 @@ ul li a:active { /*nav and topic-aside*/
 
 #topic-aside {
     grid-area: aside;
-    margin-top: 2em;
     padding: 8%; /*content placement*/
     color: white;
-    background-color: var(--green-500);
+    background-color: var(--cyan-400);
+    border: var(--green-500) solid 0.5em;
     border-radius: 1em 1em 0 1em; /*top-left, top-right, bottom-right, bottom-left*/
     box-shadow: 0.5em 0.5em 1em rgb(0 0 0 / 30%); /*left-right, top-bottom, density, size, color*/
 }
 #topic-aside ul {
-    padding-left: 10%; /*make the bullet points move to the right*/
+    padding-left: 2em; /*make the bullet points move to the right*/
 }
 
 #topic-quiz {
     grid-area: quiz;
-    margin-top: 2em;
-    margin-bottom: 2em;
     background-color: var(--cyan-400);
     border-radius: 0 0.8em 0 0.8em; /*top-left, top-right, bottom-right, bottom-left*/
     box-shadow: 0 0.3em 1em rgb(0 0 0 / 30%); /*left-right, top-bottom, density, size, color*/
@@ -202,41 +195,55 @@ ul li a:active { /*nav and topic-aside*/
 #topic-quiz button {
     width: 100%; /*setup for text align center*/
     margin: 0 auto; /*text align center*/
-    padding: 0.5em 0 0.5em; /*top left-right bottom*/
+    padding: 0.8em 0 0.8em; /*top left-right bottom*/
     color: var(--green-300);
     background: none; /*remove button background style*/
     border: none; /*remove button border style*/
     cursor: pointer; /*set cursor to pointer when hovering*/
     font: inherit; /*inherit font instead of using button font*/
 }
+#topic-quiz:hover { /*when button is being hovered*/
+    background-color: var(--cyan-300);
+}
 #topic-quiz:active { /*when button is being clicked*/
     background-color: var(--cyan-500);
+}
+
+#topic-history, #topic-owner, #topic-image,
+#topic-compare, #topic-software, #topic-table,
+#topic-term, #topic-aside, #topic-quiz {
+    margin: 2em 0;
 }
 /*---Topic HTML---*/
 
 @media screen and (min-width: 481px) { /*minimum needs to have n-size, then apply (tablet)*/
-    #topic-graphic {
-        width: 26em; /*length of line*/
+
+    #topic-history::before {
+        width: 26em;
     }
 
     #topic-quiz {
-        width: 26em; /*length of button*/
+        width: 22em; /*length of button*/
     }
 }
 
 @media screen and (min-width: 961px) { /*minimum needs to have n-size, then apply (pc)*/
     #topic-article {
-        grid-template-columns: 0% 63% 22% 0%; /*width of 2 columns*/
+        column-gap: 7.5%; /*left-right gaps*/
+        grid-template-columns: 0% 55% 22.5% 0%; /*width of 2 columns*/
         grid-template-areas: /*how the stuff is arranged*/
-            '. graphic aside .'
             '. history aside .'
             '. owner aside .'
             '. image image .'
-            '. compare compare .'
-            '. software software .'
-            '. table table .'
-            '. term term .'
-            '. quiz quiz .';
+            '. compare . .'
+            '. software . .'
+            '. table . .'
+            '. term . .'
+            '. quiz . .';
+    }
+
+    #topic-aside {
+        max-height: 24em; /*height of aside*/
     }
 
     #topic-image figcaption {
