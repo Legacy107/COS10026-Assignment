@@ -12,7 +12,9 @@ body {
     --green-300: hsla(91, 94%, 86%, 1);
     --green-400: hsla(127, 67%, 76%, 1);
     --green-500: hsla(171, 52%, 52%, 1);
+    --cyan-300: hsla(198, 81%, 36%, 1); /* button hover */
     --cyan-400: hsla(198, 76%, 31%, 1);
+    --cyan-500: hsla(198, 71%, 26%, 1); /* button active */
     --black-400: hsla(200, 96%, 10%, 1);
     --gray-300: hsla(0, 0%, 77%, 1);
     --gray-400: hsla(200, 9%, 72%, 1);
@@ -152,5 +154,331 @@ Specific styles for enhancements.html
 
     .enhancements-main article:not(article:first-of-type) {
         margin-top: 2em;
+    }
+}
+
+/*---Navigation---*/
+header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 5px 15px 0 var(--black-400);
+}
+
+nav {
+    width: 100%; /*full length nav bar*/
+    padding: 1em 3em; /*make space for nav*/
+    display: flex;
+    justify-content: space-between;
+    background: var(--cyan-400);
+    pointer-events: none;
+}
+
+nav > * {
+    pointer-events: all;
+}
+
+nav h1 {
+    color: var(--green-300);
+}
+
+.menu__list {
+    font-size: 1.2em;
+    display: flex;
+    gap: 1em;
+}
+
+.menu__list li {
+    display: inline; /*erase bullet point and horizontal*/
+    position: relative;
+}
+
+.menu__list li a:link {
+    text-decoration: none; /*remove nav item decor*/
+    color: white;
+}
+
+.menu__list li a:visited {
+    color: white;
+}
+
+.menu__list li a:hover {
+    color: var(--green-300);
+}
+
+.menu__list li a::before {
+    content: "";
+    width: 0;
+    height: 5px;
+    transition: width 0.5s ease;
+    background-color: var(--green-300);
+    position: absolute;
+    border-radius: 200px;
+    bottom: -5px;
+    left: 0;
+}
+
+.menu__list li a:hover::before {
+    width: 30px;
+}
+
+.menu__list li a:target::before,
+.menu__list li a:focus {
+    width: 100%;
+}
+
+.menu__list li a:focus {
+    outline: none;
+}
+
+.menu__list li a:active {
+    color: white;
+}
+
+.menu {
+    align-self: center;
+}
+
+.menu__hamburger {
+    display: none;
+    aspect-ratio: 1.2 / 1;
+    height: 1.7em;
+}
+
+.menu__hamburger div {
+    border-radius: 200px;
+    background-color: var(--green-300);
+    height: 0.2em;
+}
+
+@media screen and (max-width: 650px) {
+    .menu__hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    .menu:hover .menu__list {
+        z-index: -1;
+        display: flex;
+        flex-direction: column;
+        gap: 1.2em;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 50%;
+        height: 100vh;
+        padding: 4em 1.8em;
+        background-color: var(--cyan-400);
+    }
+    
+    .menu__list {
+        display: none;
+    }
+
+    .menu__list li {
+        width: fit-content;
+    }
+}
+/*---Navigation---*/
+
+/*---Topic HTML---*/
+#topic-main {
+    background-color: var(--green-100);
+}
+
+#topic-article {
+    width: 100%; /*main area*/
+    display: grid;
+    column-gap: 5%; /*left-right gaps*/
+    grid-template-columns: 0% 90% 0%; /*width of 2 columns*/
+    grid-template-areas: /*how the stuff is arranged*/
+        '. history .'
+        '. owner .'
+        'image image image'
+        '. compare .'
+        '. software .'
+        '. table .'
+        '. term .'
+        '. aside .'
+        '. quiz .';
+}
+
+#topic-article section h2 {
+    margin-bottom: 0.8em;
+}
+
+#topic-history, #topic-owner, #topic-image,
+#topic-compare, #topic-software, #topic-table,
+#topic-term, #topic-aside, #topic-quiz {
+    margin: 2em 0;
+}
+
+#topic-history::before {
+    content: " ";
+    position: absolute;
+    width: 100%; /*full length*/
+    height: 0.5em;
+    top: -3em; /*placement*/
+    border-radius: 1em; /*edges*/
+    background-color: var(--green-500); /*color*/
+}
+#topic-history {
+    margin-top: 3em;
+    grid-area: history;
+    position: relative;
+}
+
+#topic-owner {
+    grid-area: owner;
+}
+
+#topic-image {
+    grid-area: image;
+}
+#topic-image img {
+    width: 100%; /*full length*/
+    max-height: 35em;
+    border-radius: 0 0.8em 0 0.8em; /*top-left, top-right, bottom-right, bottom-left*/
+}
+#topic-image figcaption {
+    padding: 0 5%; /*make caption move to the right*/
+}
+
+#topic-compare {
+    grid-area: compare;
+}
+
+#topic-software {
+    grid-area: software;
+}
+#topic-software ol {
+    padding-left: 1.5em; /*make the numbers move to the right*/
+}
+
+#topic-table {
+    grid-area: table;
+    overflow: auto; /*when table cant fit into screen, make table scrollable*/
+}
+#topic-table table {
+    border-collapse: collapse;
+}
+#topic-table table tr th  {
+    color: white;
+    padding: 1em; /*give space for items*/
+}
+#topic-table table tr td  {
+    padding: 1em; /*give space for items*/
+}
+#topic-table table tr td:first-child { /*all tr's first td*/
+    font-weight: bold;
+    text-align: center;
+}
+#topic-table table tr:nth-child(even) { /*all even tr*/
+    background-color: var(--green-400);
+}
+#topic-table table tr:nth-child(odd) { /*all odd tr*/
+    background-color: var(--green-300);
+}
+#topic-table table tr:first-child { /*first tr*/
+    background-color: var(--cyan-400);
+}
+#topic-table table tr:last-child td:first-child { /*first column, last row*/
+    border-radius: 0 0 0 0.8em; /*top-left, top-right, bottom-right, bottom-left*/
+}
+#topic-table table tr:first-child th:last-child { /*first row, last column*/
+    border-radius: 0 0.8em 0 0; /*top-left, top-right, bottom-right, bottom-left*/
+}
+
+#topic-term {
+    grid-area: term;
+}
+#topic-term dl dt {
+    font-weight: bold;
+    margin-top: 1em;
+}
+
+#topic-aside {
+    grid-area: aside;
+    padding: 8%; /*content placement*/
+    color: white;
+    background-color: var(--cyan-400);
+    border: var(--green-500) solid 0.5em;
+    border-radius: 1em 1em 0 1em; /*top-left, top-right, bottom-right, bottom-left*/
+    box-shadow: 0.5em 0.5em 1em rgb(0 0 0 / 30%); /*left-right, top-bottom, density, size, color*/
+}
+#topic-aside ul {
+    padding-left: 2em; /*make the bullet points move to the right*/
+    
+}
+#topic-aside ul li a:link {
+    color: white;
+    text-decoration: none;
+}
+#topic-aside ul li a:hover {
+    color: white;
+}
+#topic-aside ul li a:visited {
+    color: white;
+}
+#topic-aside ul li a:active {
+    color: white;
+}
+
+#topic-quiz {
+    grid-area: quiz;
+    background-color: var(--cyan-400);
+    border-radius: 0 0.8em 0 0.8em; /*top-left, top-right, bottom-right, bottom-left*/
+    box-shadow: 0 0.3em 1em rgb(0 0 0 / 30%); /*left-right, top-bottom, density, size, color*/
+}
+#topic-quiz button {
+    width: 100%; /*setup for text align center*/
+    margin: 0 auto; /*text align center*/
+    padding: 0.8em 0 0.8em; /*top left-right bottom*/
+    color: var(--green-300);
+    background: none; /*remove button background style*/
+    border: none; /*remove button border style*/
+    cursor: pointer; /*set cursor to pointer when hovering*/
+    font: inherit; /*inherit font instead of using button font*/
+}
+#topic-quiz:hover { /*when button is being hovered*/
+    background-color: var(--cyan-300);
+}
+#topic-quiz:active { /*when button is being clicked*/
+    background-color: var(--cyan-500);
+}
+/*---Topic HTML---*/
+
+@media screen and (min-width: 550px) { /*minimum needs to have n-size, then apply (tablet)*/
+    #topic-history::before {
+        width: 26em;
+    }
+
+    #topic-quiz {
+        width: 22em; /*length of button*/
+    }
+}
+
+@media screen and (min-width: 850px) { /*minimum needs to have n-size, then apply (pc)*/
+    #topic-article {
+        padding: 1em 3em; /*padding follow nav*/
+        grid-template-columns: 65% 0% 25%; /*width of 2 columns*/
+        grid-template-areas: /*how the stuff is arranged*/
+            'history . aside'
+            'owner . aside'
+            'image image image'
+            'compare . .'
+            'software . .'
+            'table . .'
+            'term . .'
+            'quiz . .';
+    }
+
+    #topic-aside {
+        max-height: 24em; /*height of aside*/
+    }
+
+    #topic-image figcaption {
+        padding: 0; /*make caption move back from the right*/
     }
 }
