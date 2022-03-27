@@ -37,13 +37,13 @@
 
                 <!--individual information-->
                 <label for="fname" class="quiz-fieldset__label">First Name</label>
-                <input type="text" name="fname" id="fname" class="quiz-input__text--info" />
+                <input type="text" name="fname" id="fname" class="quiz-input__text--info" pattern="^[a-z A-Z]{,30}$" placeholder="Steve" title="Please enter upper or lower case letters only, spaces are allowed. Maximum 30 characters" required />
                 <br />
                 <label for="lname" class="quiz-fieldset__label">Last Name</label>
-                <input type="text" name="lname" id="lname" class="quiz-input__text--info" />
+                <input type="text" name="lname" id="lname" class="quiz-input__text--info" pattern="^[a-zA-Z\s]{,30}+$" placeholder="Johnson" title="Please enter upper or lower case letters only, spaces are allowed. Maximum 30 characters"  required />
                 <br />
                 <label for="sid" class="quiz-fieldset__label">Student ID</label>
-                <input type="text" name="sid" id="sid" class="quiz-input__text--info" />
+                <input type="text" name="sid" id="sid" class="quiz-input__text--info" pattern="^[0-9]{7,10}" placeholder="102654312" title="Please enter between 7 and 10 numbers only." required />
             </fieldset>
 
             <fieldset class="quiz-fieldset"><legend class="quiz-fieldset__legend quiz-fieldset__legend--questions">Questions</legend>
@@ -60,7 +60,7 @@
                     <!--Left Column-->
                     <div class="quiz-div__left">
                         <h4 class="quiz-h4">Answer</h4>
-                        <input type="text" name="ans1" id="ans1" class="quiz-input__text quiz-input__text--answer" />
+                        <input type="text" name="MPEG" id="MPEG" class="quiz-input__text quiz-input__text--answer" pattern="^[a-z A-Z \d \s]+$" placeholder="Answer Here" title="Please enter numbers, upper or lower case letters only, spaces are allowed. Maximum 30 characters required" />
                     </div>
 
                 </div>
@@ -79,19 +79,19 @@
                         <h4 class="quiz-h4">Answer</h4>
                         <section class="quiz-section__answers--grid">
                             <div class="quiz-div__answers">
-                                <input type="radio" name="ans2" id="1993/1995" value="1993 / 1995" class="quiz-radio" /> 
+                                <input type="radio" name="years" id="1993/1995" value="1993 / 1995" class="quiz-radio" required /> 
                                 <label for="1993/1995" class="quiz-label__answer">1993 / 1995</label>
                             </div>
                             <div class="quiz-div__answers">
-                                <input type="radio" name="ans2" id="1998/2008" value="1998 / 2008" class="quiz-radio" /> 
+                                <input type="radio" name="years" id="1998/2008" value="1998 / 2008" class="quiz-radio" /> 
                                 <label for="1998/2008" class="quiz-label__answer">1998 / 2008</label>
                             </div>
                             <div class="quiz-div__answers">
-                                <input type="radio" name="ans2" id="1995/1998" value="1995 / 1998" class="quiz-radio" /> 
+                                <input type="radio" name="years" id="1995/1998" value="1995 / 1998" class="quiz-radio" /> 
                                 <label for="1995/1998" class="quiz-label__answer">1995 / 1998</label>
                             </div>
                             <div class="quiz-div__answers quiz-div__checkbox--bottom">
-                                <input type="radio" name="ans2" id="1993/2008" value="1993 / 2008" class="quiz-radio" /> 
+                                <input type="radio" name="years" id="1993/2008" value="1993 / 2008" class="quiz-radio" /> 
                                 <label for="1993/2008" class="quiz-label__answer">1993 / 2008</label>
                             </div>
                         </section>
@@ -111,7 +111,7 @@
                         <h4 class="quiz-h4">Answer</h4>
                         <section class="quiz-section__answers--grid">
                             <div class="quiz-div__answers" >
-                                <input type="checkbox" name="standards[]" id="MPEG1" value="MPEG 1 Audio layer III" class="quiz-checkbox" />
+                                <input type="checkbox" name="standards[]" id="MPEG1" value="MPEG 1 Audio layer III" class="quiz-checkbox" checked="checked" />
                                 <label for="MPEG1" class="quiz-label__answer">MPEG 1 Audio layer III</label>
                             </div>
                             <div class="quiz-div__answers" >
@@ -143,7 +143,7 @@
                         <h4 class="quiz-h4">Answer</h4>
                         <section class="quiz-section__answers--grid">
                             <div class="quiz-div__answers">
-                                <input type="checkbox" name="decline[]" id="variety_of_devices" value="variety of devices" class="quiz-checkbox" />
+                                <input type="checkbox" name="decline[]" id="variety_of_devices" value="variety of devices" class="quiz-checkbox" checked="checked" />
                                 <label for="variety_of_devices" class="quiz-label__answer">A wider variety of devices</label>
                             </div>
                             <div class="quiz-div__answers" >
@@ -175,7 +175,8 @@
 
                     <div class="quiz-div__left">
                         <h4 class="quiz-h4">Answer</h4>
-                        <select name="creator" id="potential_creators" class="quiz-selector">
+                        <select name="creator" id="potential_creators" class="quiz-selector" required>
+                            <option value="Please Select an Answer">Please Select an Answer</option>
                             <option value="Fraunhofer Society">Fraunhofer Society</option>
                             <option value="Karlheinz Brandenburg">Karlheinz Brandenburg</option>
                             <option value="MPEG">MPEG</option>
@@ -197,7 +198,7 @@
                         <h4 class="quiz-h4">Answer</h4>
                         <section class="quiz-section__answers--grid">
                             <div class="quiz-div__answers">
-                                <input type="radio" name="compression" id="True" value="True" class="quiz-radio" />
+                                <input type="radio" name="compression" id="True" value="True" class="quiz-radio" required />
                                 <label for="True" class="quiz-label__answer">True</label>
                             </div>
                             <div class="quiz-div__answers quiz-div__checkbox--bottom">
@@ -208,7 +209,7 @@
                     </div>
 
                 </div> 
-                       
+
             </fieldset>
 
             <input type="submit" value="SUBMIT ANSWERS" class="quiz-submit"/>

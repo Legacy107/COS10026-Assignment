@@ -28,6 +28,7 @@ h2 {
 
 .quiz-h2 {
   padding-bottom: 3.5rem;
+  margin-left: 5%;
 }
 
 .quiz-main {
@@ -48,6 +49,7 @@ h2 {
   font: 500 1.325rem/1.26em "Gelasio", serif;
   color: var(--green-500);
   margin-bottom: 1rem;
+  margin-left: 5%;
 }
 
 .quiz-fieldset__legend::after {
@@ -68,6 +70,7 @@ h2 {
   font: 500 1rem/1.26em "Poppins", sans-serif;
   position: relative;
   padding-left: 0.5rem;
+  margin-left: 5%;
 }
 
 .quiz-input__text--info {
@@ -79,14 +82,17 @@ h2 {
   border-radius: 0.5rem 0.5rem 0em 0.5rem;
   padding: 0.4rem 0rem 0.4rem 0.4rem;
   top: 2px;
+  margin-left: 5%;
 }
 
 .quiz-fieldset__div {
   border: solid 0.2rem var(--green-500);
   border-radius: 0 15px 0 15px;
   padding: 1rem;
+  margin-right: auto;
+  margin-left: auto;
   margin-bottom: 3rem;
-  width: 100%;
+  width: 90%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -145,7 +151,7 @@ all to be lised in a column */
 .quiz-div__answers {
   border-left: solid var(--green-500) 5px;
   padding-left: 20px;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
 }
 
 /* makes it so the left border on the answers do not go underneath the final
@@ -257,8 +263,50 @@ answer */
   cursor: pointer;
   position: relative;
   bottom: 1rem;
+  margin-left: 5%;
 }
 
 .quiz-submit:hover {
   background-color: var(--green-500);
+}
+
+@media screen and (max-width: 850px) {
+  .quiz-fieldset__div {
+    flex-direction: column;
+  }
+
+  .quiz-div__right {
+    width: 100%;
+  }
+
+  .quiz-main {
+    border-width: 3rem 2rem;
+  }
+
+  .quiz-fieldset__div {
+    border: none;
+    margin-bottom: 1rem;
+    width: 95%;
+  }
+
+  .quiz-div__answer {
+    width: 100%;
+  }
+
+  .quiz-section__answers--grid {
+    grid-template-columns: 100%;
+  }
+
+  .quiz-h4 {
+    padding: 1rem 0;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .quiz-main {
+    border-width: 3rem 0px;
+  }
+  .quiz-input__text--info {
+    width: 90%;
+  }
 }
