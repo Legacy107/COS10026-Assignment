@@ -34,10 +34,6 @@ h2 {
   border-color: var(--green-100);
 }
 
-.quiz-h2 {
-  margin-bottom: 3rem;
-}
-
 .quiz-fieldset {
   border: none;
   margin-bottom: 2rem;
@@ -64,44 +60,6 @@ h2 {
   padding-left: 0.5rem;
 }
 
-.quiz-fieldset__div {
-  border: solid 0.15rem var(--green-500);
-  border-radius: 0 0.5rem 0 0.5rem;
-  padding-top: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  margin: 1.5rem 0;
-  width: 100%;
-}
-
-.quiz-h4 {
-  position: relative;
-  width: 50%;
-  left: 50%;
-  bottom: 1.5rem;
-}
-
-.quiz-div__para {
-  width: 40%;
-  margin-top: -1rem;
-}
-
-.quiz-input__text {
-  font: 500 1rem/1.26em "Poppins", sans-serif;
-  border: 1px solid var(--black-400);
-  background-color: var(--green-100);
-  position: relative;
-  border-radius: 0.5rem 0.5rem 0em 0.5rem;
-  padding: 0.4rem 0rem 0.4rem 0.4rem;
-  margin: 0.5rem 0 0.5rem 0em;
-  display: block;
-}
-
-.quiz-input__text--answer {
-  left: 49.4%;
-  width: 50%;
-}
-
 .quiz-input__text--info {
   display: block;
   position: relative;
@@ -113,67 +71,72 @@ h2 {
   top: 2px;
 }
 
+.quiz-fieldset__div {
+  border: solid 0.15rem var(--green-500);
+  border-radius: 0 0.5rem 0 0.5rem;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.quiz-h3__question {
+  flex-basis: 50%;
+}
+
+.quiz-h4 {
+  flex-basis: 50%;
+  padding-left: 0.5%;
+}
+
+.quiz-div__para {
+  align-self: stretch;
+  flex-basis: 45%;
+  margin-right: 5%;
+}
+
+.quiz-input__text {
+  font: 500 1rem/1.26em "Poppins", sans-serif;
+  border: 1px solid var(--black-400);
+  background-color: var(--green-100);
+  border-radius: 12.5px 12.5px 0 12.5px;
+  padding: 0.4rem 0 0.4rem 0.6rem;
+  flex-basis: 48%;
+}
+
 .quiz-selector {
   background-color: var(--gray-300);
   border: none;
-  position: relative;
   font: 500 1rem/1.26em "Poppins", sans-serif;
   padding: 0.4rem 0 0.4rem 0.6rem;
-  width: 25%;
-  left: 50%;
-  bottom: 50px;
   border-radius: 0 12.5px 0 12.5px;
 }
 
-.quiz-div__radio {
-  display: block;
-  position: relative;
-  width: 50%;
-  left: 50%;
-  bottom: 70px;
+/*changes the answers for radio/checkbox questions into a column to enable 
+all to be lised in a column */
+
+.quiz-section__answers--grid {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto auto auto;
+}
+
+.quiz-div__answers {
   border-left: solid var(--green-500) 5px;
   padding-left: 20px;
   padding-bottom: 10px;
 }
 
-.quiz-div__checkbox1 {
-  display: block;
-  position: relative;
-  width: 50%;
-  left: 50%;
-  bottom: 70px;
-  border-left: solid var(--green-500) 5px;
-  padding-left: 20px;
-  padding-bottom: 10px;
-}
-
-.quiz-div__checkbox2 {
-  display: block;
-  position: relative;
-  width: 50%;
-  left: 50%;
-  bottom: 45px;
-  border-left: solid var(--green-500) 5px;
-  padding-left: 20px;
-  padding-bottom: 10px;
-}
-
-.quiz-div__tf {
-  display: block;
-  position: relative;
-  width: 50%;
-  left: 50%;
-  bottom: 20px;
-  border-left: solid var(--green-500) 5px;
-  padding-left: 20px;
-  padding-bottom: 10px;
-}
+/* makes it so the left border on the answers do not go underneath the final
+answer */
 
 .quiz-div__checkbox--bottom {
   padding-bottom: 0px;
 }
 
-.quiz-div__checbox--radio .quiz-label__checkbox {
+.quiz-label__answer {
   font-family: "poppins";
   cursor: pointer;
 }
@@ -216,12 +179,6 @@ h2 {
 
 .quiz-checkbox:checked:hover {
   background-color: var(--green-400);
-}
-
-.quiz-input__text {
-  display: block;
-  position: relative;
-  top: -3rem;
 }
 
 .quiz-label__checkbox {
