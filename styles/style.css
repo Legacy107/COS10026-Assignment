@@ -82,7 +82,7 @@ h2 {
 }
 
 .quiz-div__para {
-  width: 45%;
+  width: 40%;
   margin-top: -1rem;
 }
 
@@ -99,7 +99,7 @@ h2 {
 
 .quiz-input__text--answer {
   left: 49.4%;
-  padding-right: 27rem;
+  width: 50%;
 }
 
 .quiz-input__text--info {
@@ -118,42 +118,64 @@ h2 {
   border: none;
   position: relative;
   font: 500 1rem/1.26em "Poppins", sans-serif;
-  padding: 0.4rem 0 0.4rem 0;
+  padding: 0.4rem 0 0.4rem 0.6rem;
   width: 25%;
   left: 50%;
   bottom: 50px;
   border-radius: 0 12.5px 0 12.5px;
 }
 
-.quiz-div__checkbox {
+.quiz-div__radio {
   display: block;
   position: relative;
   width: 50%;
   left: 50%;
-  top: -3rem;
+  bottom: 70px;
   border-left: solid var(--green-500) 5px;
   padding-left: 20px;
   padding-bottom: 10px;
 }
 
-.quiz-div__checkbox--tf {
+.quiz-div__checkbox1 {
   display: block;
   position: relative;
   width: 50%;
   left: 50%;
-  bottom: 25px;
+  bottom: 70px;
   border-left: solid var(--green-500) 5px;
   padding-left: 20px;
   padding-bottom: 10px;
 }
 
-.quiz-label__checkbox {
-  font-family: "poppins";
-  cursor: pointer;
+.quiz-div__checkbox2 {
+  display: block;
+  position: relative;
+  width: 50%;
+  left: 50%;
+  bottom: 45px;
+  border-left: solid var(--green-500) 5px;
+  padding-left: 20px;
+  padding-bottom: 10px;
+}
+
+.quiz-div__tf {
+  display: block;
+  position: relative;
+  width: 50%;
+  left: 50%;
+  bottom: 20px;
+  border-left: solid var(--green-500) 5px;
+  padding-left: 20px;
+  padding-bottom: 10px;
 }
 
 .quiz-div__checkbox--bottom {
   padding-bottom: 0px;
+}
+
+.quiz-div__checbox--radio .quiz-label__checkbox {
+  font-family: "poppins";
+  cursor: pointer;
 }
 
 .quiz-checkbox {
@@ -244,4 +266,21 @@ h2 {
 
 .quiz-radio:checked:hover {
   background-color: var(--green-400);
+}
+
+.quiz-submit {
+  padding: 0.5rem 1.2rem;
+  border: none;
+  font: 700 1.5rem "poppins", bold;
+  border-radius: 0 12.5px 0 12.5px;
+  background-color: var(--cyan-400);
+  color: var(--green-300);
+  box-shadow: 0px 5px 15px var(--gray-400);
+  cursor: pointer;
+  position: relative;
+  bottom: 1rem;
+}
+
+.quiz-submit:hover {
+  background-color: var(--green-500);
 }
