@@ -26,6 +26,10 @@ h2 {
   font: 500 1.625rem/1.26em "Gravitas One", cursive;
 }
 
+.quiz-h2 {
+  padding-bottom: 3.5rem;
+}
+
 .quiz-main {
   background: var(--green-100);
   margin: auto;
@@ -36,27 +40,33 @@ h2 {
 
 .quiz-fieldset {
   border: none;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 .quiz-fieldset__legend {
   margin: 2rem 0rem;
   font: 500 1.325rem/1.26em "Gelasio", serif;
   color: var(--green-500);
-  border-bottom: solid 0.25rem var(--green-500);
   margin-bottom: 1rem;
-  padding-bottom: 1rem;
-  padding-right: 7.5rem;
 }
 
-.quiz-fieldset__legend--questions {
-  padding-right: 14rem;
+.quiz-fieldset__legend::after {
+  content: "";
+  float: left;
+  background: var(--green-500);
+  width: 158%;
+  height: 5px;
+  border-radius: 3px;
+  margin-top: 5px;
+}
+
+.quiz-fieldset__legend--questions::after {
+  width: 326%;
 }
 
 .quiz-fieldset__label {
   font: 500 1rem/1.26em "Poppins", sans-serif;
   position: relative;
-  padding-bottom: 1rem;
   padding-left: 0.5rem;
 }
 
@@ -72,28 +82,37 @@ h2 {
 }
 
 .quiz-fieldset__div {
-  border: solid 0.15rem var(--green-500);
-  border-radius: 0 0.5rem 0 0.5rem;
+  border: solid 0.2rem var(--green-500);
+  border-radius: 0 15px 0 15px;
   padding: 1rem;
-  margin: 1.5rem 0;
+  margin-bottom: 3rem;
   width: 100%;
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
 }
 
-.quiz-h3__question {
-  flex-basis: 50%;
+.quiz-div__right {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.quiz-div__left {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
 }
 
 .quiz-h4 {
-  flex-basis: 50%;
+  align-self: flex-start;
+  margin-bottom: 1%;
   padding-left: 0.5%;
 }
 
 .quiz-div__para {
   align-self: stretch;
-  flex-basis: 45%;
   margin-right: 5%;
 }
 
@@ -103,7 +122,7 @@ h2 {
   background-color: var(--green-100);
   border-radius: 12.5px 12.5px 0 12.5px;
   padding: 0.4rem 0 0.4rem 0.6rem;
-  flex-basis: 48%;
+  margin-right: 2%;
 }
 
 .quiz-selector {
