@@ -45,8 +45,8 @@ button:hover {
 .intro-h1__large {
     font-family: 'Gravitas One', sans-serif;
     font-weight: 400;
-    font-size: 60px;
-    letter-spacing: 5px;
+    font-size: 3.75rem;
+    letter-spacing: 0.3rem;
     color: var(--green-300);
 }
 
@@ -65,13 +65,13 @@ button:hover {
     color: white;
     font-family: 'Gelasio';
     font-weight: 500;
-    font-size: 26px;
+    font-size: 1.5rem;
     position: relative;
-    left: 25px;
-    width: 50%;
+    left: 1.5em;
+    width: calc(50% - 2.5em);
     line-height: 1.4;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
     margin: 1.25em 0em 1.75em 0em;
 }
 
@@ -80,14 +80,49 @@ button:hover {
     content: "";
     top: 0;
     bottom: 0;
-    left: -25px;
-    width: 8px;
+    left: -1.5em;
+    width: 0.35em;
     background-color: var(--green-300);
-    border-radius: 4px;
+    border-radius: 0.25em;
 }
 
 .intro-button__next {
     font-size: 1.5rem;
     padding: 0.65em 1.25em 0.65em 1.25em;
-    border-radius: 0px 16px 0px 16px;
+    border-radius: 0em 1em 0em 1em;
+}
+
+/* tablet style changes */
+@media only screen and (max-width: 850px) {
+    .intro-main {
+        padding-left: 1em;
+    }
+
+    .intro-p__line {
+        width: calc(100% - 2.5em);
+    }
+}
+
+/* mobile style changes */
+@media only screen and (max-width: 600px) {
+    .intro-h1__large {
+        font-size: 3rem;
+        letter-spacing: 0.2rem;
+    }
+
+    .intro-p__line {
+        left: 0px;
+        font-size: 1.4rem;
+        width: calc(100% - 1em);
+    }
+
+    .intro-p__line::before {
+        visibility: hidden;
+    }
+
+    .intro-button__next {
+        width: calc(100% - 1em);
+        font-size: 1.4rem;
+        padding: 0.6em 1.15em 0.6em 1.15em;
+    }
 }
