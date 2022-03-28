@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Intro page for the HTML Boys' MP3 website."/>
     <meta name="keywords" content="MP3, Format, Intro"/>
-    <meta name="author" content="Orson Routt"/>
+<meta name="author" content="Orson Routt"/>
     <title>MP3 Intro Page</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,14 +17,21 @@
 <body class="body">
     <header id="header">
         <nav>
-            <h1 id="navHeading">HB</h1>
-
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html">Topic</a></li>
-                <li><a href="quiz.html">Quiz</a></li>
-                <li><a href="enhancement.html">Enhancement</a></li>
-            </ul>
+            <h1>HB</h1>
+    
+            <section class="menu">
+                <div class="menu__hamburger">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <ul class="menu__list">
+                    <li><a id="index-page" href="index.html#index-page">Home</a></li>
+                    <li><a id="topic-page" href="topic.html#topic-page">Topic</a></li>
+                    <li><a id="quiz-page" href="quiz.html#quiz-page">Quiz</a></li>
+                    <li><a id="enhancement-page" href="enhancements.html#enhancement-page">Enhancement</a></li>
+                </ul>
+            </section>
         </nav>
     </header>
     <main class="intro-main"> <!-- Will have the background as a 'background-image'. -->
