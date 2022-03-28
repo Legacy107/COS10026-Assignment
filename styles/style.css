@@ -14,7 +14,7 @@ body {
     --green-500: hsla(171, 52%, 52%, 1);
     --cyan-300: hsla(198, 81%, 36%, 1); /* button hover */
     --cyan-400: hsla(198, 76%, 31%, 1);
-    --cyan-500: hsla(198, 71%, 26%, 1); /* button active */
+    --cyan-300: hsla(198, 43%, 46%, 1);
     --black-400: hsla(200, 96%, 10%, 1);
     --gray-300: hsla(0, 0%, 77%, 1);
     --gray-400: hsla(200, 9%, 72%, 1);
@@ -29,10 +29,114 @@ h2 {
     font: 500 1.625rem/1.26em 'Gelasio', serif;
 }
 
+button {
+    font-weight: 700; /* unfinished style - merge with actual button style */
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    color: var(--green-300);
+    background-color: var(--cyan-400);
+    border: none;
+}
+
+button:hover {
+    background-color: var(--cyan-300);
+}
+
 main {
     min-width: 375px;
     min-height: 100vh;
     padding-bottom: 5rem;
+}
+
+/*
+Specific styles for topic.html
+*/
+
+.intro-h1__large {
+    font-family: 'Gravitas One', sans-serif;
+    font-weight: 400;
+    font-size: 3.75rem;
+    letter-spacing: 0.3rem;
+    color: var(--green-300);
+}
+
+.intro-main {
+    position: relative;
+    background-color: hsla(0,0%,0%,0.5);
+    background-blend-mode: darken;
+    background-image: url("../images/intro_background.jpeg");
+    background-size: cover;
+    padding-left: 2em;
+    padding-top: 7em;
+    padding-bottom: 7em;
+}
+
+.intro-p__line {
+    color: white;
+    font-family: 'Gelasio';
+    font-weight: 500;
+    font-size: 1.5rem;
+    position: relative;
+    left: 1.5em;
+    width: calc(50% - 2.5em);
+    line-height: 1.4;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+    margin: 1.25em 0em 1.75em 0em;
+}
+
+.intro-p__line::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    bottom: 0;
+    left: -1.5em;
+    width: 0.35em;
+    background-color: var(--green-300);
+    border-radius: 0.25em;
+}
+
+.intro-button__next {
+    font-size: 1.5rem;
+    padding: 0.65em 1.25em 0.65em 1.25em;
+    border-radius: 0em 1em 0em 1em;
+}
+
+/* tablet style changes */
+@media only screen and (max-width: 850px) {
+    .intro-main {
+        padding-left: 1em;
+    }
+
+    .intro-p__line {
+        width: calc(100% - 2.5em);
+    }
+}
+
+/* mobile style changes */
+@media only screen and (max-width: 600px) {
+    .intro-h1__large {
+        font-size: 3rem;
+        letter-spacing: 0.2rem;
+    }
+
+    .intro-p__line {
+        left: 0px;
+        font-size: 1.4rem;
+        width: calc(100% - 1em);
+    }
+
+    .intro-p__line::before {
+        visibility: hidden;
+    }
+
+    .intro-button__next {
+        width: calc(100% - 1em);
+        font-size: 1.4rem;
+        padding: 0.6em 1.15em 0.6em 1.15em;
+    }
 }
 
 /*
@@ -142,7 +246,7 @@ Specific styles for enhancements.html
         flex-direction: column;
     }
 
-    .nhancements-article__demo {
+    .enhancements-article__demo {
         min-height: 500px;
     }
 
@@ -445,7 +549,11 @@ nav h1 {
     background-color: var(--cyan-300);
 }
 #topic-quiz:active { /*when button is being clicked*/
-    background-color: var(--cyan-500);
+    background-color: var(--
+    
+    
+    
+    );
 }
 /*---Topic HTML---*/
 
