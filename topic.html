@@ -15,202 +15,205 @@
     <link rel="stylesheet" href="styles/style.css"/>
 </head>
 <body>
-    <header>
-        <nav>
-            <h1>HB</h1>
+    <!-- Wrapper for parallax effect -->
+    <div class="topic-wrapper">
+        <header>
+            <nav>
+                <h1>HB</h1>
+        
+                <section class="menu">
+                    <div class="menu__hamburger">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <ul class="menu__list">
+                        <li><a id="index-page" href="index.html#index-page">Home</a></li>
+                        <li><a id="topic-page" href="topic.html#topic-page">Topic</a></li>
+                        <li><a id="quiz-page" href="quiz.html#quiz-page">Quiz</a></li>
+                        <li><a id="enhancement-page" href="enhancements.html#enhancement-page">Enhancement</a></li>
+                    </ul>
+                </section>
+            </nav>
+        </header>
     
-            <section class="menu">
-                <div class="menu__hamburger">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <ul class="menu__list">
-                    <li><a id="index-page" href="index.html#index-page">Home</a></li>
-                    <li><a id="topic-page" href="topic.html#topic-page">Topic</a></li>
-                    <li><a id="quiz-page" href="quiz.html#quiz-page">Quiz</a></li>
-                    <li><a id="enhancement-page" href="enhancements.html#enhancement-page">Enhancement</a></li>
-                </ul>
-            </section>
-        </nav>
-    </header>
-
-    <main id="topic-main">
-        <section id="topic-hero-section">
-            <img src="./images/intro_background.jpeg" alt="image of an MP3 player">
-            <h1>MP3 FORMAT</h1>
+        <section class="topic-hero">
+            <div class="topic-hero__img"></div>
+            <h1 class="topic-hero__title">THE MP3 FORMAT</h1>
         </section>
 
-        <article id="topic-article"> <!--Grid-->
-            <div id="topic-graphic"></div>
-            <section id="topic-history">
-                <h2>What is MP3?</h2>
-                MP3 is essentially a coding format that is particularly used for digital audio. 
-                Formally, MP3 can also be named after the MPEG standards, MPEG-1 audio layer 3 OR MPEG-2 Audio Layer 3, which is why it is abbreviated to MP3. 
-                Another version that is not an official standard is MPEG 2.5. 
-                The key feature of MP3 is the way it goes about compressing digital audio which enables for smaller storage space requirements. 
-                The type of compression is called lossy data compresssion. 
-                Lossy data-compression essentially works by removing any small bits of data that isn't necessary for the audio to be retained, with a secondary goal for this to be done without causing any artifacts in the audio. 
-                This does mean that the original form of the data is irretrievable, however, can be stored at a much smaller file size than the original information. 
-                Depending on what the purpose of the audio is for, differing amounts of data loss and artifacts can be tolerated. 
-                As an example, a telephone call can risk losing more information than the information that would be loss in compressing the data for a compact disc. 
-                The technology has had a long history, and has been involved in many scandals, including plagiarism of popular music by parties that do not have the rights to the music. 
-            </section>
-
-            <section id="topic-owner">
-                <h2>Who is managing MP3?</h2>
-                MP3 was originally made primarily by the Fraunhofer Society which is located in germany, with various help from individuals and bodys all around the world. 
-                Later the MPEG group, which was established in 1988, created standards for MP3 to enable more consistent formats so that the technology is easier to share and use effectively.
-                There are two official standards and one unofficial standard. 
-                MPEG-1 Audio Layer III is udner the ISO/IEC 11172-3 standard which was published in 1993. 
-                MPEG-2 Audio Layer III was published in 1995 under the ISO/IEC 13818-3 standard, and updated once more in 1998. 
-                The unnoficial standard was termed MPEG-2.5 Audio Layer III, and was published in 2000 with an update in 2008. 
-                These standards can be found on the (Moving Picture Experts Group) MPEG website. MPEG continues to oversee the standards that organise MP3 and alternative audio technologies. 
-            </section>
-
-            <figure id="topic-image">
-                <img src="./images/intro_background.jpeg" alt="image of an MP3 player">
-                <figcaption>Picture</figcaption>
-            </figure>
-            
-            <section id="topic-compare">
-                <h2>Audio Compression compared to other formats</h2>
-                MP3 support remains at a near-universal level for various different uses. The main reason is because of its common usage, but also because data can be compressed by up to 10 times more than the storage for the same data on CD quality files.
-                A direct competitor of the MP3 technology that also uses lossy compression is Apple's Advanced Audio Coding (AAC).
-                AAC has results that ultimately make files sound better while being slightly more efficient, and is mainly used for Apple music streaming and youtube streaming. 
-                Besides lossy compression, another technique is Lossless compression which as it sounds, does not lose data in the compression process, which enables the original form of the data to be retrieved exactly. 
-                This is typically a type of compression that is used when there is a high chance of need to retreive the original form of the data eventually. 
-                Some lossless audio digital data formats are ALAC (Apple Lossless), FLAC (Free Lossless Audio Codec), WMA (Windows Media Audio). 
-            </section>
-
-            <section id="topic-software">
-                <h2>How do you open a MP3 file?</h2>
-                <ol>
-                    <li>Microsoft Groove Music</li>
-                    <li>Microsoft Windows Media Player</li>
-                    <li>VideoLAN VLC media player</li>
-                    <li>Audacity</li>
-                    <li>Nullsoft Winamp</li>
-                </ol>
-            </section>
-
-            <section id="topic-table">
-                <table>
-                    <tr>
-                        <th>Version</th>
-                        <th>International Standard</th>
-                        <th>First Edition Public Release Date</th>
-                        <th>Latest Edition Public Release Date</th>
-                    </tr>
-                    <tr>
-                        <td>MPEG-1 Audio Layer III</td>
-                        <td>ISO/IEC 11172-3 (MPEG-1 Part 3)	</td>
-                        <td>1993</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>MPEG-2 Audio Layer III</td>
-                        <td>ISO/IEC 13818-3 (MPEG-2 Part 3)</td>
-                        <td>1995</td>
-                        <td>1998</td>
-                    </tr>
-                    <tr>
-                        <td>MPEG-2.5 Audio Layer III</td>
-                        <td>nonstandard, proprietary</td>
-                        <td>2000</td>
-                        <td>2008</td>
-                    </tr>
-                </table>
-            </section>
-
-            <section id="topic-term">
-                <h2>List of Terms</h2>
-                <dl>
-                    <dt>MPEG</dt>
-                    <dd>Moving Picture Experts Group, a group established jointly by ISO and IEC that sets standards for media coding.s</dd>
-                    <dt>Open Standard</dt>
-                    <dd>Standards made available to the general public and are developed/approved and maintained via a collaborative and consensus driven process</dd>
-                    <dt>Artifacts</dt>
-                    <dd>Refers to sonic material that is accidental or unwanted, resulting from the editing or manipulation of a sound.</dd>
-                    <dt>Lossless Compression</dt>
-                    <dd>A method of data compression in which allows the original data to be perfectly reconstructed from the compressed data.</dd>
-                    <dt>Lossy Compression</dt>
-                    <dd>A method of data compression in which the size of the file is reduced by eliminating data in the file.</dd>
-                </dl>
-            </section>
-
-            <aside id="topic-aside">
-                <h2>Music Download Sites</h2>
-                <ul>
-                    <li><a href="https://music.youtube.com/">Youtube Music</a></li>
-                    <li><a href="https://bandcamp.com/">Bandcamp</a></li>
-                    <li><a href="https://www.jamendo.com/">Jamendo</a></li>
-                    <li><a href="https://audiomack.com/">Audiomack</a></li>
-                    <li><a href="https://www.mp3juices.cc/">MP3Juices</a></li>
-                </ul>
-            </aside>
-
-            <form id="topic-quiz">
-                <button formaction="./quiz.html">
-                    Ready for the quiz?
-                </button>
-            </form>
-        </article>
-    </main>
+        <main class="topic-main">
+            <article id="topic-article"> <!--Grid-->
+                <div id="topic-graphic"></div>
+                <section id="topic-history">
+                    <h2>What is MP3?</h2>
+                    MP3 is essentially a coding format that is particularly used for digital audio. 
+                    Formally, MP3 can also be named after the MPEG standards, MPEG-1 audio layer 3 OR MPEG-2 Audio Layer 3, which is why it is abbreviated to MP3. 
+                    Another version that is not an official standard is MPEG 2.5. 
+                    The key feature of MP3 is the way it goes about compressing digital audio which enables for smaller storage space requirements. 
+                    The type of compression is called lossy data compresssion. 
+                    Lossy data-compression essentially works by removing any small bits of data that isn't necessary for the audio to be retained, with a secondary goal for this to be done without causing any artifacts in the audio. 
+                    This does mean that the original form of the data is irretrievable, however, can be stored at a much smaller file size than the original information. 
+                    Depending on what the purpose of the audio is for, differing amounts of data loss and artifacts can be tolerated. 
+                    As an example, a telephone call can risk losing more information than the information that would be loss in compressing the data for a compact disc. 
+                    The technology has had a long history, and has been involved in many scandals, including plagiarism of popular music by parties that do not have the rights to the music. 
+                </section>
     
-    <footer id="footer">
-        <h2>HTML BOIS</h2>
-        <div>
+                <section id="topic-owner">
+                    <h2>Who is managing MP3?</h2>
+                    MP3 was originally made primarily by the Fraunhofer Society which is located in germany, with various help from individuals and bodys all around the world. 
+                    Later the MPEG group, which was established in 1988, created standards for MP3 to enable more consistent formats so that the technology is easier to share and use effectively.
+                    There are two official standards and one unofficial standard. 
+                    MPEG-1 Audio Layer III is udner the ISO/IEC 11172-3 standard which was published in 1993. 
+                    MPEG-2 Audio Layer III was published in 1995 under the ISO/IEC 13818-3 standard, and updated once more in 1998. 
+                    The unnoficial standard was termed MPEG-2.5 Audio Layer III, and was published in 2000 with an update in 2008. 
+                    These standards can be found on the (Moving Picture Experts Group) MPEG website. MPEG continues to oversee the standards that organise MP3 and alternative audio technologies. 
+                </section>
+    
+                <figure id="topic-image">
+                    <img src="./images/intro_background.jpeg" alt="image of an MP3 player">
+                    <figcaption>Picture</figcaption>
+                </figure>
+                
+                <section id="topic-compare">
+                    <h2>Audio Compression compared to other formats</h2>
+                    MP3 support remains at a near-universal level for various different uses. The main reason is because of its common usage, but also because data can be compressed by up to 10 times more than the storage for the same data on CD quality files.
+                    A direct competitor of the MP3 technology that also uses lossy compression is Apple's Advanced Audio Coding (AAC).
+                    AAC has results that ultimately make files sound better while being slightly more efficient, and is mainly used for Apple music streaming and youtube streaming. 
+                    Besides lossy compression, another technique is Lossless compression which as it sounds, does not lose data in the compression process, which enables the original form of the data to be retrieved exactly. 
+                    This is typically a type of compression that is used when there is a high chance of need to retreive the original form of the data eventually. 
+                    Some lossless audio digital data formats are ALAC (Apple Lossless), FLAC (Free Lossless Audio Codec), WMA (Windows Media Audio). 
+                </section>
+    
+                <section id="topic-software">
+                    <h2>How do you open a MP3 file?</h2>
+                    <ol>
+                        <li>Microsoft Groove Music</li>
+                        <li>Microsoft Windows Media Player</li>
+                        <li>VideoLAN VLC media player</li>
+                        <li>Audacity</li>
+                        <li>Nullsoft Winamp</li>
+                    </ol>
+                </section>
+    
+                <section id="topic-table">
+                    <table>
+                        <tr>
+                            <th>Version</th>
+                            <th>International Standard</th>
+                            <th>First Edition Public Release Date</th>
+                            <th>Latest Edition Public Release Date</th>
+                        </tr>
+                        <tr>
+                            <td>MPEG-1 Audio Layer III</td>
+                            <td>ISO/IEC 11172-3 (MPEG-1 Part 3)	</td>
+                            <td>1993</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>MPEG-2 Audio Layer III</td>
+                            <td>ISO/IEC 13818-3 (MPEG-2 Part 3)</td>
+                            <td>1995</td>
+                            <td>1998</td>
+                        </tr>
+                        <tr>
+                            <td>MPEG-2.5 Audio Layer III</td>
+                            <td>nonstandard, proprietary</td>
+                            <td>2000</td>
+                            <td>2008</td>
+                        </tr>
+                    </table>
+                </section>
+    
+                <section id="topic-term">
+                    <h2>List of Terms</h2>
+                    <dl>
+                        <dt>MPEG</dt>
+                        <dd>Moving Picture Experts Group, a group established jointly by ISO and IEC that sets standards for media coding.s</dd>
+                        <dt>Open Standard</dt>
+                        <dd>Standards made available to the general public and are developed/approved and maintained via a collaborative and consensus driven process</dd>
+                        <dt>Artifacts</dt>
+                        <dd>Refers to sonic material that is accidental or unwanted, resulting from the editing or manipulation of a sound.</dd>
+                        <dt>Lossless Compression</dt>
+                        <dd>A method of data compression in which allows the original data to be perfectly reconstructed from the compressed data.</dd>
+                        <dt>Lossy Compression</dt>
+                        <dd>A method of data compression in which the size of the file is reduced by eliminating data in the file.</dd>
+                    </dl>
+                </section>
+    
+                <aside id="topic-aside">
+                    <h2>Music Download Sites</h2>
+                    <ul>
+                        <li><a href="https://music.youtube.com/">Youtube Music</a></li>
+                        <li><a href="https://bandcamp.com/">Bandcamp</a></li>
+                        <li><a href="https://www.jamendo.com/">Jamendo</a></li>
+                        <li><a href="https://audiomack.com/">Audiomack</a></li>
+                        <li><a href="https://www.mp3juices.cc/">MP3Juices</a></li>
+                    </ul>
+                </aside>
+    
+                <form class="topic-form">
+                    <button class="topic-button" formaction="./quiz.html#quiz-page">
+                        Ready for the quiz?
+                    </button>
+                </form>
+            </article>
+        </main>
+        
+        <footer id="footer">
+            <h2>HTML BOIS</h2>
             <div>
-                <img src="" alt="">
+                <div>
+                    <img src="" alt="">
+                </div>
+                <div>
+                    <p> Name: </p>
+                    <p>Email: </p>
+                </div>
             </div>
             <div>
-                <p> Name: </p>
-                <p>Email: </p>
-            </div>
-        </div>
-        <div>
-            <div>
-                <img src="" alt="">
-            </div>
-            <div>
-                <p> Name: </p>
-                <p>Email: </p>
-            </div>
-        </div>
-        <div>
-            <div>
-                <img src="" alt="">
+                <div>
+                    <img src="" alt="">
+                </div>
+                <div>
+                    <p> Name: </p>
+                    <p>Email: </p>
+                </div>
             </div>
             <div>
-                <p> Name: </p>
-                <p>Email: </p>
-            </div>
-        </div>
-        <div>
-            <div>
-                <img src="" alt="">
-            </div>
-            <div>
-                <p> Name: </p>
-                <p>Email: </p>
-            </div>
-        </div>
-        <div>
-            <div>
-                <img src="" alt="">
+                <div>
+                    <img src="" alt="">
+                </div>
+                <div>
+                    <p> Name: </p>
+                    <p>Email: </p>
+                </div>
             </div>
             <div>
-                <p> Name: </p>
-                <p>Email: </p>
+                <div>
+                    <img src="" alt="">
+                </div>
+                <div>
+                    <p> Name: </p>
+                    <p>Email: </p>
+                </div>
             </div>
-        </div>
-        <div>
-            <br>
-            <br>
-                <a href="https://www.reddit.com/r/ProgrammerHumor/comments/l2hskc/my_html_bois_will_get_this/" target="blank">© HTML BOIS .INC</a>
-                <a href="https://outlook.office.com/mail/" target="blank"> EMAIL US!!</a>
-        </div>
-    </footer>
+            <div>
+                <div>
+                    <img src="" alt="">
+                </div>
+                <div>
+                    <p> Name: </p>
+                    <p>Email: </p>
+                </div>
+            </div>
+            <div>
+                <br>
+                <br>
+                    <a href="https://www.reddit.com/r/ProgrammerHumor/comments/l2hskc/my_html_bois_will_get_this/" target="blank">© HTML BOIS .INC</a>
+                    <a href="https://outlook.office.com/mail/" target="blank"> EMAIL US!!</a>
+            </div>
+        </footer>
+    </div>
 </body>
 </html>
