@@ -416,7 +416,7 @@ nav h1 {
     object-fit: cover;
     z-index: -1;
     transform: translateZ(-10px) scale(2); /* move back -10px behind the screen and scale back by 2 */
-    top: -65%;
+    top: -30vh;
 }
 
 .topic-hero__title {
@@ -609,7 +609,7 @@ nav h1 {
     }
     
     .topic-hero__img {
-        top: -55%;
+        top: -29vh;
     }
 
     .topic-hero__title {
@@ -632,7 +632,7 @@ nav h1 {
     }
     
     .topic-hero__img {
-        top: -40%;
+        top: -30vh;
     }
 
     .topic-hero__title {
