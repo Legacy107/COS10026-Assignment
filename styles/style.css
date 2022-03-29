@@ -386,8 +386,49 @@ nav h1 {
 /*---Navigation---*/
 
 /*---Topic HTML---*/
-#topic-main {
+.topic-wrapper {
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    perspective: 10px; /* length of z axis */
+}
+
+.topic-hero {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 18em;
+    transform-style: preserve-3d; /* enable 3D transition */
+    z-index: -1;
+}
+
+.topic-hero__img {
+    background-color: hsla(0,0%,0%,0.5);
+    background-blend-mode: darken;
+    background-image: url("../images/intro_background.jpeg");
+    background-size: cover;
+    background-position: center;
+
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    z-index: -1;
+    transform: translateZ(-10px) scale(2); /* move back -10px behind the screen and scale back by 2 */
+    top: -65%;
+}
+
+.topic-hero__title {
+    position: absolute;
+    bottom: 1.8em;
+    left: 0.8em;
+    color: var(--green-300);
+}
+
+.topic-main {
     background-color: var(--green-100);
+    padding-top: 3em;
 }
 
 #topic-article {
@@ -413,7 +454,7 @@ nav h1 {
 
 #topic-history, #topic-owner, #topic-image,
 #topic-compare, #topic-software, #topic-table,
-#topic-term, #topic-aside, #topic-quiz {
+#topic-term, #topic-aside, .topic-form {
     margin: 2em 0;
 }
 
@@ -426,6 +467,7 @@ nav h1 {
     border-radius: 1em; /*edges*/
     background-color: var(--green-500); /*color*/
 }
+
 #topic-history {
     margin-top: 3em;
     grid-area: history;
@@ -439,11 +481,13 @@ nav h1 {
 #topic-image {
     grid-area: image;
 }
+
 #topic-image img {
     width: 100%; /*full length*/
     max-height: 35em;
     border-radius: 0 0.8em 0 0.8em; /*top-left, top-right, bottom-right, bottom-left*/
 }
+
 #topic-image figcaption {
     padding: 0 5%; /*make caption move to the right*/
 }
@@ -455,6 +499,7 @@ nav h1 {
 #topic-software {
     grid-area: software;
 }
+
 #topic-software ol {
     padding-left: 1.5em; /*make the numbers move to the right*/
 }
@@ -463,32 +508,41 @@ nav h1 {
     grid-area: table;
     overflow: auto; /*when table cant fit into screen, make table scrollable*/
 }
+
 #topic-table table {
     border-collapse: collapse;
 }
+
 #topic-table table tr th  {
     color: white;
     padding: 1em; /*give space for items*/
 }
+
 #topic-table table tr td  {
     padding: 1em; /*give space for items*/
 }
+
 #topic-table table tr td:first-child { /*all tr's first td*/
     font-weight: bold;
     text-align: center;
 }
+
 #topic-table table tr:nth-child(even) { /*all even tr*/
     background-color: var(--green-400);
 }
+
 #topic-table table tr:nth-child(odd) { /*all odd tr*/
     background-color: var(--green-300);
 }
+
 #topic-table table tr:first-child { /*first tr*/
     background-color: var(--cyan-400);
 }
+
 #topic-table table tr:last-child td:first-child { /*first column, last row*/
     border-radius: 0 0 0 0.8em; /*top-left, top-right, bottom-right, bottom-left*/
 }
+
 #topic-table table tr:first-child th:last-child { /*first row, last column*/
     border-radius: 0 0.8em 0 0; /*top-left, top-right, bottom-right, bottom-left*/
 }
@@ -496,6 +550,7 @@ nav h1 {
 #topic-term {
     grid-area: term;
 }
+
 #topic-term dl dt {
     font-weight: bold;
     margin-top: 1em;
@@ -510,85 +565,104 @@ nav h1 {
     border-radius: 1em 1em 0 1em; /*top-left, top-right, bottom-right, bottom-left*/
     box-shadow: 0.5em 0.5em 1em rgb(0 0 0 / 30%); /*left-right, top-bottom, density, size, color*/
 }
+
 #topic-aside ul {
     padding-left: 2em; /*make the bullet points move to the right*/
-    
 }
+
 #topic-aside ul li a:link {
     color: white;
     text-decoration: none;
 }
+
 #topic-aside ul li a:hover {
     color: white;
 }
+
 #topic-aside ul li a:visited {
     color: white;
 }
+
 #topic-aside ul li a:active {
     color: white;
 }
 
-#topic-quiz {
+.topic-form {
     grid-area: quiz;
-    background-color: var(--cyan-400);
-    border-radius: 0 0.8em 0 0.8em; /*top-left, top-right, bottom-right, bottom-left*/
-    box-shadow: 0 0.3em 1em rgb(0 0 0 / 30%); /*left-right, top-bottom, density, size, color*/
 }
-#topic-quiz button {
+
+.topic-button {
     width: 100%; /*setup for text align center*/
     margin: 0 auto; /*text align center*/
     padding: 0.8em 0 0.8em; /*top left-right bottom*/
     color: var(--green-300);
-    background: none; /*remove button background style*/
-    border: none; /*remove button border style*/
     cursor: pointer; /*set cursor to pointer when hovering*/
     font: inherit; /*inherit font instead of using button font*/
+    background-color: var(--cyan-400);
+    border-radius: 0 0.8em 0 0.8em; /*top-left, top-right, bottom-right, bottom-left*/
+    box-shadow: 0 0.3em 1em rgb(0 0 0 / 30%); /*left-right, top-bottom, density, size, color*/
 }
-#topic-quiz:hover { /*when button is being hovered*/
-    background-color: var(--cyan-300);
-}
-#topic-quiz:active { /*when button is being clicked*/
-    background-color: var(--
-    
-    
-    
-    );
-}
-/*---Topic HTML---*/
 
 @media screen and (min-width: 550px) { /*minimum needs to have n-size, then apply (tablet)*/
+    .topic-hero {
+        height: 20em;
+    }
+    
+    .topic-hero__img {
+        top: -55%;
+    }
+
+    .topic-hero__title {
+        bottom: 2em;
+        left: 1.4em;
+    }
+
     #topic-history::before {
         width: 26em;
     }
-
-    #topic-quiz {
+    
+    .topic-button {
         width: 22em; /*length of button*/
     }
 }
 
 @media screen and (min-width: 850px) { /*minimum needs to have n-size, then apply (pc)*/
+    .topic-hero {
+        height: 25em;
+    }
+    
+    .topic-hero__img {
+        top: -40%;
+    }
+
+    .topic-hero__title {
+        bottom: 3em;
+        left: 1.4em;
+    }
+
     #topic-article {
         padding: 1em 3em; /*padding follow nav*/
         grid-template-columns: 65% 0% 25%; /*width of 2 columns*/
         grid-template-areas: /*how the stuff is arranged*/
-            'history . aside'
-            'owner . aside'
-            'image image image'
-            'compare . .'
-            'software . .'
-            'table . .'
-            'term . .'
-            'quiz . .';
+        'history . aside'
+        'owner . aside'
+        'image image image'
+        'compare . .'
+        'software . .'
+        'table . .'
+        'term . .'
+        'quiz . .';
     }
-
+        
     #topic-aside {
         max-height: 24em; /*height of aside*/
     }
-
+    
     #topic-image figcaption {
         padding: 0; /*make caption move back from the right*/
     }
 }
+/*---Topic HTML---*/
 
 /*
 Specific styles for quiz.html
@@ -896,4 +970,4 @@ answer */
   .quiz-input__text--info {
     width: 90%;
   }
-
+}
