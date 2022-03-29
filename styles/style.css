@@ -20,6 +20,21 @@ body {
     background-color: var(--green-100);
 }
 
+main > * {
+  animation: enter 1s ease-out;
+}
+
+@keyframes enter {
+  from {
+    transform: translateY(2rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 h1 {
     font: 400 2rem/1.2em 'Gravitas One', cursive;
 }
