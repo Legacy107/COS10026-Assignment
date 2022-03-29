@@ -42,6 +42,11 @@ h2 {
 .quiz-fieldset {
   border: none;
   margin-bottom: 3rem;
+  min-width: 300px;
+}
+
+.quiz-fieldset:not(:first-of-type) {
+  margin-bottom: 0rem;
 }
 
 .quiz-fieldset__legend {
@@ -60,6 +65,7 @@ h2 {
   height: 5px;
   border-radius: 3px;
   margin-top: 5px;
+  max-width: 250px;
 }
 
 .quiz-fieldset__legend--questions::after {
@@ -102,13 +108,13 @@ h2 {
   width: 50%;
   display: flex;
   flex-direction: column;
+  align-content: space-between;
 }
 
 .quiz-div__left {
   width: 50%;
   display: flex;
   flex-direction: column;
-  align-content: space-between;
 }
 
 .quiz-h4 {
@@ -142,7 +148,7 @@ h2 {
 /*changes the answers for radio/checkbox questions into a column to enable 
 all to be lised in a column */
 
-.quiz-section__answers--grid {
+.quiz-div__answers--grid {
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: auto auto auto auto;
@@ -222,6 +228,7 @@ answer */
   vertical-align: middle;
   position: relative;
   cursor: pointer;
+  margin-right: 1rem;
 }
 
 .quiz-radio:hover {
@@ -253,6 +260,7 @@ answer */
 }
 
 .quiz-submit {
+  margin-top: 1rem;
   padding: 0.5rem 1.2rem;
   border: none;
   font: 700 1.5rem "poppins", bold;
@@ -279,6 +287,14 @@ answer */
     width: 100%;
   }
 
+  .quiz-div__left {
+    width: 100%;
+  }
+
+  .quiz-div__para {
+    margin-right: 0%;
+  }
+
   .quiz-main {
     border-width: 3rem 2rem;
   }
@@ -293,12 +309,16 @@ answer */
     width: 100%;
   }
 
-  .quiz-section__answers--grid {
+  .quiz-div__answers--grid {
     grid-template-columns: 100%;
   }
 
   .quiz-h4 {
     padding: 1rem 0;
+  }
+
+  .quiz-submit {
+    margin-top: 2rem;
   }
 }
 

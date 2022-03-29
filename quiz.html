@@ -35,15 +35,15 @@
         <form method="post" action="https://mercury.swin.edu.au/it000000/formtest.php">
             <fieldset class="quiz-fieldset"><legend class="quiz-fieldset__legend">Student Information</legend>
 
-                <!--individual information-->
+                <!--user information-->
                 <label for="fname" class="quiz-fieldset__label">First Name</label>
-                <input type="text" name="fname" id="fname" class="quiz-input__text--info" pattern="^[a-z A-Z]{,30}$" placeholder="Steve" title="Please enter upper or lower case letters only, spaces are allowed. Maximum 30 characters" required />
+                <input type="text" name="fname" id="fname" class="quiz-input__text--info" pattern="^[a-zA-Z\s]{1,30}$" placeholder="Steve" title="Please enter upper or lower case letters only, spaces are allowed. Maximum 30 characters" required />
                 <br />
                 <label for="lname" class="quiz-fieldset__label">Last Name</label>
-                <input type="text" name="lname" id="lname" class="quiz-input__text--info" pattern="^[a-zA-Z\s]{,30}+$" placeholder="Johnson" title="Please enter upper or lower case letters only, spaces are allowed. Maximum 30 characters"  required />
+                <input type="text" name="lname" id="lname" class="quiz-input__text--info" pattern="^[a-zA-Z\s]{,30}$" placeholder="Johnson" title="Please enter upper or lower case letters only, spaces are allowed. Maximum 30 characters" required />
                 <br />
                 <label for="sid" class="quiz-fieldset__label">Student ID</label>
-                <input type="text" name="sid" id="sid" class="quiz-input__text--info" pattern="^[0-9]{7,10}" placeholder="102654312" title="Please enter between 7 and 10 numbers only." required />
+                <input type="text" name="sid" id="sid" class="quiz-input__text--info" pattern="^[0-9]{7,10}$" placeholder="102654312" title="Please enter between 7 and 10 numbers only." required />
             </fieldset>
 
             <fieldset class="quiz-fieldset"><legend class="quiz-fieldset__legend quiz-fieldset__legend--questions">Questions</legend>
@@ -51,16 +51,16 @@
                 <!--Question 1 - text answer-->
                 <div class="quiz-fieldset__div">
 
-                    <!--Right column-->
-                    <div class="quiz-div__right">
+                    <!--Right column in grid-->
+                    <div class="quiz-div__left">
                         <h3 class="quiz-h3__question">Question #1</h3>
                         <p class="quiz-div__para">Type out the answer for the following, using a capital letter at the start off each word. What does MPEG stand for?</p>
                     </div>
 
-                    <!--Left Column-->
-                    <div class="quiz-div__left">
+                    <!--Left Column in grid-->
+                    <div class="quiz-div__right">
                         <h4 class="quiz-h4">Answer</h4>
-                        <input type="text" name="MPEG" id="MPEG" class="quiz-input__text quiz-input__text--answer" pattern="^[a-z A-Z \d \s]+$" placeholder="Answer Here" title="Please enter numbers, upper or lower case letters only, spaces are allowed. Maximum 30 characters required" />
+                        <input type="text" name="MPEG" id="MPEG" class="quiz-input__text quiz-input__text--answer" pattern="^[a-zA-Z\d\s]{1,30}$" placeholder="Answer Here" title="Please enter numbers, upper or lower case letters only, spaces are allowed. Maximum 30 characters" required />
                     </div>
 
                 </div>
@@ -69,15 +69,15 @@
                 <div class="quiz-fieldset__div">
 
                     <!--Right Column-->
-                    <div class="quiz-div__right">
+                    <div class="quiz-div__left">
                         <h3 class="quiz-h3__question">Question #2</h3>
                         <p class="quiz-div__para">Select a single answer. Which of the following lists the two years that MPEG-2 Audio layer III was first published and the most recent update?</p>
                     </div>
 
                     <!--Left Column-->
-                    <div class="quiz-div__left">
+                    <div class="quiz-div__right">
                         <h4 class="quiz-h4">Answer</h4>
-                        <section class="quiz-section__answers--grid">
+                        <div class="quiz-div__answers--grid">
                             <div class="quiz-div__answers">
                                 <input type="radio" name="years" id="1993/1995" value="1993 / 1995" class="quiz-radio" required /> 
                                 <label for="1993/1995" class="quiz-label__answer">1993 / 1995</label>
@@ -94,7 +94,7 @@
                                 <input type="radio" name="years" id="1993/2008" value="1993 / 2008" class="quiz-radio" /> 
                                 <label for="1993/2008" class="quiz-label__answer">1993 / 2008</label>
                             </div>
-                        </section>
+                        </div>
                     </div>
 
                 </div>
@@ -102,14 +102,14 @@
                 <!--Question 3 - Multi choice-->
                 <div class="quiz-fieldset__div">
 
-                    <div class="quiz-div__right">
+                    <div class="quiz-div__left">
                         <h3 class="quiz-h3__question">Question #3</h3>
                         <p class="quiz-div__para">Select Multiple answers. Which of the following are recognized official MPEG standards that dictate the proper usage of the MP3 format?</p>
                     </div>
 
-                    <div class="quiz-div__left">
+                    <div class="quiz-div__right">
                         <h4 class="quiz-h4">Answer</h4>
-                        <section class="quiz-section__answers--grid">
+                        <div class="quiz-div__answers--grid">
                             <div class="quiz-div__answers" >
                                 <input type="checkbox" name="standards[]" id="MPEG1" value="MPEG 1 Audio layer III" class="quiz-checkbox" checked="checked" />
                                 <label for="MPEG1" class="quiz-label__answer">MPEG 1 Audio layer III</label>
@@ -126,7 +126,7 @@
                                 <input type="checkbox" name="standards[]" id="MPEG3" value="MPEG 3 Audio Layer III" class="quiz-checkbox" />
                                 <label for="MPEG3" class="quiz-label__answer">MPEG 3 Audio Layer III</label>
                             </div> 
-                        </section>
+                        </div>
                     </div>
 
                 </div>
@@ -134,14 +134,14 @@
                 <!--Question 4 - Multi choice -->
                 <div class="quiz-fieldset__div">
 
-                    <div class="quiz-div__right">
+                    <div class="quiz-div__left">
                         <h3 class="quiz-h3__question">Question #4</h3> 
                         <p class="quiz-div__para">Select multiple answers. What were the main causes that have caused a slow gradual decline in the MP3 format's popularity?</p>
                     </div>
 
-                    <div class="quiz-div__left">
+                    <div class="quiz-div__right">
                         <h4 class="quiz-h4">Answer</h4>
-                        <section class="quiz-section__answers--grid">
+                        <div class="quiz-div__answers--grid">
                             <div class="quiz-div__answers">
                                 <input type="checkbox" name="decline[]" id="variety_of_devices" value="variety of devices" class="quiz-checkbox" checked="checked" />
                                 <label for="variety_of_devices" class="quiz-label__answer">A wider variety of devices</label>
@@ -158,7 +158,7 @@
                                 <input type="checkbox" name="decline[]" id="MPEG_changes" value="MPEG changes" class="quiz-checkbox" />
                                 <label for="MPEG_changes" class="quiz-label__answer">Changes in MPEG standards</label>
                             </div>  
-                        </section> 
+                        </div> 
                     </div>
 
                 </div>
@@ -166,16 +166,16 @@
                 <!--Question 5 - Drop down list single answer-->
                 <div class="quiz-fieldset__div">
 
-                    <div class="quiz-div__right">
+                    <div class="quiz-div__left">
                         <h3 class="quiz-h3__question">Question #5</h3>
                         <p class="quiz-div__para">
                             Select an answer from the drop down list. Who was the primary inventor for the format?
                         </p>
                     </div>
 
-                    <div class="quiz-div__left">
+                    <div class="quiz-div__right">
                         <h4 class="quiz-h4">Answer</h4>
-                        <select name="creator" id="potential_creators" class="quiz-selector" required>
+                        <select name="creator" id="potential_creators" class="quiz-selector">
                             <option value="Please Select an Answer">Please Select an Answer</option>
                             <option value="Fraunhofer Society">Fraunhofer Society</option>
                             <option value="Karlheinz Brandenburg">Karlheinz Brandenburg</option>
@@ -189,14 +189,14 @@
                 <!--Question 6 - True/False answer-->
                 <div class="quiz-fieldset__div">
 
-                    <div class="quiz-div__right">
+                    <div class="quiz-div__left">
                         <h3 class="quiz-h3__question">Question #6</h3>
                         <p class="quiz-div__para">True or False. MP3 uses lossless compression.</p>
                     </div>   
                                      
-                    <div class="quiz-div__left">
+                    <div class="quiz-div__right">
                         <h4 class="quiz-h4">Answer</h4>
-                        <section class="quiz-section__answers--grid">
+                        <div class="quiz-div__answers--grid">
                             <div class="quiz-div__answers">
                                 <input type="radio" name="compression" id="True" value="True" class="quiz-radio" required />
                                 <label for="True" class="quiz-label__answer">True</label>
@@ -205,7 +205,7 @@
                                 <input type="radio" name="compression" id="False" value="False" class="quiz-radio" />
                                 <label for="False" class="quiz-label__answer">False</label>
                             </div>
-                        </section>
+                        </div>
                     </div>
 
                 </div> 
