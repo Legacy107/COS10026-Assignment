@@ -29,7 +29,7 @@ h2 {
 }
 
 button {
-    font-weight: 700; /* unfinished style - merge with actual button style */
+    font-weight: 700;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
@@ -44,7 +44,7 @@ button:hover {
 }
 
 main {
-    min-width: 375px;
+    min-width: 300px;
     min-height: 100vh;
     padding-bottom: 5rem;
 }
@@ -165,21 +165,21 @@ Specific styles for enhancements.html
     margin-top: 10em;
 }
 
-.nhancements-article__demo {
+.enhancements-article__demo {
     position: relative;
     align-self: stretch;
     display: grid;
     place-items: center;
 }
 
-.nhancements-article__demoImg {
+.enhancements-article__demoImg {
     border: 5px solid var(--green-500);
     transition: 
         transform 0.5s ease-in-out,
         box-shadow 0.5s ease-in-out;
 }
 
-.nhancements-article__demoImg:hover {
+.enhancements-article__demoImg:hover {
     transform: scale(1.25);
     z-index: 100;
     box-shadow: 0 0 5px 5px var(--gray-300);
@@ -355,6 +355,10 @@ nav h1 {
 }
 
 @media screen and (max-width: 650px) {
+    nav {
+        padding: 1em 1.8em;
+    }
+
     .menu__hamburger {
         display: flex;
         flex-direction: column;
@@ -371,7 +375,7 @@ nav h1 {
         top: 0;
         width: 50%;
         height: 100vh;
-        padding: 4em 1.8em;
+        padding: 4em 1.5em;
         background-color: var(--cyan-400);
     }
     
@@ -566,8 +570,16 @@ nav h1 {
     box-shadow: 0.5em 0.5em 1em rgb(0 0 0 / 30%); /*left-right, top-bottom, density, size, color*/
 }
 
+#topic-aside h2 {
+    margin-bottom: 0.8em;
+}
+
 #topic-aside ul {
-    padding-left: 2em; /*make the bullet points move to the right*/
+    padding-left: 1.4em; /*make the bullet points move to the right*/
+}
+
+#topic-aside ul li {
+    line-height: 2;
 }
 
 #topic-aside ul li a:link {
