@@ -11,7 +11,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,500;1,500&family=Gravitas+One&family=Luckiest+Guy&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"> <!--for the checkmark and inner circle for radios-->
+    
+    <!--for the checkmark and inner circle for radios-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"> 
     <link rel="stylesheet" href="styles/style.css"/>
 </head>
 <body>
@@ -43,11 +45,13 @@
             <fieldset class="quiz-fieldset"><legend class="quiz-fieldset__legend">Student Information</legend>
 
                 <!--user information-->
+                <!--letters + spaces only for first name and last name-->
+                <!--numbers only for student ID-->
                 <label for="fname" class="quiz-fieldset__label">First Name</label>
                 <input type="text" name="fname" id="fname" class="quiz-input__text--info" pattern="^[a-zA-Z\s]{1,30}$" placeholder="Steve" title="Please enter upper or lower case letters only, spaces are allowed. Maximum 30 characters" required />
                 <br />
                 <label for="lname" class="quiz-fieldset__label">Last Name</label>
-                <input type="text" name="lname" id="lname" class="quiz-input__text--info" pattern="^[a-zA-Z\s]{,30}$" placeholder="Johnson" title="Please enter upper or lower case letters only, spaces are allowed. Maximum 30 characters" required />
+                <input type="text" name="lname" id="lname" class="quiz-input__text--info" pattern="^[a-zA-Z\s]{1,30}$" placeholder="Johnson" title="Please enter upper or lower case letters only, spaces are allowed. Maximum 30 characters" required />
                 <br />
                 <label for="sid" class="quiz-fieldset__label">Student ID</label>
                 <input type="text" name="sid" id="sid" class="quiz-input__text--info" pattern="^[0-9]{7,10}$" placeholder="102654312" title="Please enter between 7 and 10 numbers only." required />
@@ -69,16 +73,19 @@
                 <!--Question 1 - text answer-->
                 <div class="quiz-fieldset__div">
 
-                    <!--Right column in grid-->
+                    <!--Left column in question section for large screens-->
+                    <!--Top of question section in smaller screens-->
                     <div class="quiz-div__left">
                         <h3 class="quiz-h3__question">Question #1</h3>
                         <p class="quiz-div__para">Type out the answer for the following, using a capital letter at the start off each word. What does MPEG stand for?</p>
                     </div>
 
-                    <!--Left Column in grid-->
+                    <!--Left Column in question section for large screens-->
+                    <!--Bottom of question section in smaller screens-->
                     <div class="quiz-div__right">
                         <h4 class="quiz-h4">Answer</h4>
-                        <input type="text" name="MPEG" id="MPEG" class="quiz-input__text quiz-input__text--answer" pattern="^[a-zA-Z\d\s]{1,30}$" placeholder="Answer Here" title="Please enter numbers, upper or lower case letters only, spaces are allowed. Maximum 30 characters" required />
+                        <!--Accepts letters, numbers, spaces.-->
+                        <input type="text" name="MPEG" id="MPEG" class="quiz-input__text" pattern="^[a-zA-Z\d\s]{1,30}$" placeholder="Answer Here" title="Please enter numbers, upper or lower case letters only, spaces are allowed. Maximum 30 characters" required />
                     </div>
 
                 </div>
@@ -86,13 +93,13 @@
                 <!--Question 2 - single choice-->
                 <div class="quiz-fieldset__div">
 
-                    <!--Right Column-->
+                    <!--Left for Large/ Top for small-->
                     <div class="quiz-div__left">
                         <h3 class="quiz-h3__question">Question #2</h3>
                         <p class="quiz-div__para">Select a single answer. Which of the following lists the two years that MPEG-2 Audio layer III was first published and the most recent update?</p>
                     </div>
 
-                    <!--Left Column-->
+                    <!--Right for Large/ Bottom for small-->
                     <div class="quiz-div__right">
                         <h4 class="quiz-h4">Answer</h4>
                         <div class="quiz-div__answers--grid">
@@ -120,11 +127,13 @@
                 <!--Question 3 - Multi choice-->
                 <div class="quiz-fieldset__div">
 
+                    <!--Left for Large/ Top for small-->
                     <div class="quiz-div__left">
                         <h3 class="quiz-h3__question">Question #3</h3>
                         <p class="quiz-div__para">Select Multiple answers. Which of the following are recognized official MPEG standards that dictate the proper usage of the MP3 format?</p>
                     </div>
 
+                    <!--Right for Large/ Bottom for small-->
                     <div class="quiz-div__right">
                         <h4 class="quiz-h4">Answer</h4>
                         <div class="quiz-div__answers--grid">
@@ -152,11 +161,13 @@
                 <!--Question 4 - Multi choice -->
                 <div class="quiz-fieldset__div">
 
+                    <!--Left for Large/ Top for small-->
                     <div class="quiz-div__left">
                         <h3 class="quiz-h3__question">Question #4</h3> 
                         <p class="quiz-div__para">Select multiple answers. What were the main causes that have caused a slow gradual decline in the MP3 format's popularity?</p>
                     </div>
 
+                    <!--Right for Large/ Bottom for small-->
                     <div class="quiz-div__right">
                         <h4 class="quiz-h4">Answer</h4>
                         <div class="quiz-div__answers--grid">
@@ -184,6 +195,7 @@
                 <!--Question 5 - Drop down list single answer-->
                 <div class="quiz-fieldset__div">
 
+                    <!--Left for Large/ Top for small-->
                     <div class="quiz-div__left">
                         <h3 class="quiz-h3__question">Question #5</h3>
                         <p class="quiz-div__para">
@@ -191,6 +203,7 @@
                         </p>
                     </div>
 
+                    <!--Right for Large/ Bottom for small-->
                     <div class="quiz-div__right">
                         <h4 class="quiz-h4">Answer</h4>
                         <select name="creator" id="potential_creators" class="quiz-selector">
@@ -207,11 +220,13 @@
                 <!--Question 6 - True/False answer-->
                 <div class="quiz-fieldset__div">
 
+                    <!--Left for Large/ Top for small-->
                     <div class="quiz-div__left">
                         <h3 class="quiz-h3__question">Question #6</h3>
                         <p class="quiz-div__para">True or False. MP3 uses lossless compression.</p>
                     </div>   
-                                     
+                             
+                    <!--Right for Large/ Bottom for small-->
                     <div class="quiz-div__right">
                         <h4 class="quiz-h4">Answer</h4>
                         <div class="quiz-div__answers--grid">
@@ -230,7 +245,9 @@
 
             </fieldset>
 
+            <!--Posts to specified form location -->
             <input type="submit" value="SUBMIT ANSWERS" class="quiz-submit"/>
+
         </form>
         
     </main>
