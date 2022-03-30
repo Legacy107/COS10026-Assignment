@@ -7,7 +7,7 @@
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     --green-100: hsla(198, 41%, 96%, 1); /* for background color */
     --green-300: hsla(91, 94%, 86%, 1);
     --green-400: hsla(127, 67%, 76%, 1);
@@ -21,7 +21,7 @@ body {
 }
 
 main > * {
-  animation: enter 1s ease-out;
+    animation: enter 1s ease-out;
 }
 
 @keyframes enter {
@@ -37,11 +37,11 @@ main > * {
 }
 
 h1 {
-    font: 400 2rem/1.2em 'Gravitas One', cursive;
+    font: 400 2rem/1.2em "Gravitas One", cursive;
 }
 
 h2 {
-    font: 500 1.625rem/1.26em 'Gelasio', serif;
+    font: 500 1.625rem/1.26em "Gelasio", serif;
 }
 
 button {
@@ -70,7 +70,7 @@ Specific styles for topic.html
 */
 
 .intro-h1__large {
-    font-family: 'Gravitas One', sans-serif;
+    font-family: "Gravitas One", sans-serif;
     font-weight: 400;
     font-size: 3.75rem;
     letter-spacing: 0.3rem;
@@ -90,7 +90,7 @@ Specific styles for topic.html
 
 .intro-p__line {
     color: white;
-    font-family: 'Gelasio';
+    font-family: "Gelasio";
     font-weight: 500;
     font-size: 1.5rem;
     position: relative;
@@ -190,9 +190,7 @@ Specific styles for enhancements.html
 
 .nhancements-article__demoImg {
     border: 5px solid var(--green-500);
-    transition:
-        transform 0.5s ease-in-out,
-        box-shadow 0.5s ease-in-out;
+    transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
 }
 
 .nhancements-article__demoImg:hover {
@@ -206,7 +204,7 @@ Specific styles for enhancements.html
     min-width: 15em;
     max-width: 25em;
     position: absolute;
-    transform: translate(-40%, -15%)
+    transform: translate(-40%, -15%);
 }
 
 #enhancements-tabletDemo {
@@ -454,15 +452,15 @@ nav h1 {
     column-gap: 5%; /*left-right gaps*/
     grid-template-columns: 0% 90% 0%; /*width of 2 columns*/
     grid-template-areas: /*how the stuff is arranged*/
-        '. history .'
-        '. owner .'
-        'image image image'
-        '. compare .'
-        '. software .'
-        '. table .'
-        '. term .'
-        '. aside .'
-        '. quiz .';
+        ". history ."
+        ". owner ."
+        "image image image"
+        ". compare ."
+        ". software ."
+        ". table ."
+        ". term ."
+        ". aside ."
+        ". quiz .";
 }
 
 #topic-article section h2 {
@@ -536,37 +534,43 @@ nav h1 {
     border-collapse: collapse;
 }
 
-#topic-table table tr th  {
+#topic-table table tr th {
     color: white;
     padding: 1em; /*give space for items*/
 }
 
-#topic-table table tr td  {
+#topic-table table tr td {
     padding: 1em; /*give space for items*/
 }
 
-#topic-table table tr td:first-child { /*all tr's first td*/
+#topic-table table tr td:first-child {
+    /*all tr's first td*/
     font-weight: bold;
     text-align: center;
 }
 
-#topic-table table tr:nth-child(even) { /*all even tr*/
+#topic-table table tr:nth-child(even) {
+    /*all even tr*/
     background-color: var(--green-400);
 }
 
-#topic-table table tr:nth-child(odd) { /*all odd tr*/
+#topic-table table tr:nth-child(odd) {
+    /*all odd tr*/
     background-color: var(--green-300);
 }
 
-#topic-table table tr:first-child { /*first tr*/
+#topic-table table tr:first-child {
+    /*first tr*/
     background-color: var(--cyan-400);
 }
 
-#topic-table table tr:last-child td:first-child { /*first column, last row*/
+#topic-table table tr:last-child td:first-child {
+    /*first column, last row*/
     border-radius: 0 0 0 0.8em; /*top-left, top-right, bottom-right, bottom-left*/
 }
 
-#topic-table table tr:first-child th:last-child { /*first row, last column*/
+#topic-table table tr:first-child th:last-child {
+    /*first row, last column*/
     border-radius: 0 0.8em 0 0; /*top-left, top-right, bottom-right, bottom-left*/
 }
 
@@ -626,7 +630,8 @@ nav h1 {
     box-shadow: 0 0.3em 1em rgb(0 0 0 / 30%); /*left-right, top-bottom, density, size, color*/
 }
 
-@media screen and (min-width: 550px) { /*minimum needs to have n-size, then apply (tablet)*/
+@media screen and (min-width: 550px) {
+    /*minimum needs to have n-size, then apply (tablet)*/
     .topic-hero {
         height: 20em;
     }
@@ -649,7 +654,8 @@ nav h1 {
     }
 }
 
-@media screen and (min-width: 850px) { /*minimum needs to have n-size, then apply (pc)*/
+@media screen and (min-width: 850px) {
+    /*minimum needs to have n-size, then apply (pc)*/
     .topic-hero {
         height: 25em;
     }
@@ -667,14 +673,14 @@ nav h1 {
         padding: 1em 3em; /*padding follow nav*/
         grid-template-columns: 65% 0% 25%; /*width of 2 columns*/
         grid-template-areas: /*how the stuff is arranged*/
-        'history . aside'
-        'owner . aside'
-        'image image image'
-        'compare . .'
-        'software . .'
-        'table . .'
-        'term . .'
-        'quiz . .';
+            "history . aside"
+            "owner . aside"
+            "image image image"
+            "compare . ."
+            "software . ."
+            "table . ."
+            "term . ."
+            "quiz . .";
     }
 
     #topic-aside {
@@ -712,7 +718,7 @@ Specific styles for quiz.html
     position: absolute;
     right: 10vw;
     top: 6rem;
-    font: 400 clamp(3rem, 5vw, 4rem)/2em 'Luckiest Guy', cursive;;
+    font: 400 clamp(3rem, 5vw, 4rem) / 2em "Luckiest Guy", cursive;
 }
 
 /* animation from https://css-tricks.com/making-css-animations-feel-natural/ */
@@ -722,15 +728,15 @@ Specific styles for quiz.html
     }
 
     10% {
-        transform: scale(1.1, .9) translateY(0);
+        transform: scale(1.1, 0.9) translateY(0);
     }
 
     30% {
-        transform: scale(.9, 1.1) translateY(-50px);
+        transform: scale(0.9, 1.1) translateY(-50px);
     }
 
     50% {
-        transform: scale(1.05, .95) translateY(0);
+        transform: scale(1.05, 0.95) translateY(0);
     }
 
     57% {
@@ -749,7 +755,7 @@ Specific styles for quiz.html
 .quiz-graphic span {
     display: inline-block;
     animation-name: bouncing;
-    animation-timing-function: cubic-bezier(0.280, 0.840, 0.420, 1);
+    animation-timing-function: cubic-bezier(0.28, 0.84, 0.42, 1);
     animation-duration: 2s;
     animation-iteration-count: infinite;
     transform-origin: bottom;
@@ -797,13 +803,12 @@ Specific styles for quiz.html
 }
 
 .quiz-fieldset__legend {
-    margin: 2rem 0rem;
     font: 500 1.325rem/1.26em "Gelasio", serif;
     color: var(--green-500);
-    margin-bottom: 1rem;
-    margin-left: 5%;
+    margin: 2rem 0 1rem 5%;
 }
 
+/*creates underlines for student information and questions*/
 .quiz-fieldset__legend::after {
     content: "";
     float: left;
@@ -815,6 +820,7 @@ Specific styles for quiz.html
     max-width: 250px;
 }
 
+/*Stretches out questions underline to match Student information underline*/
 .quiz-fieldset__legend--questions::after {
     width: 326%;
 }
@@ -826,6 +832,7 @@ Specific styles for quiz.html
     margin-left: 5%;
 }
 
+/*text boxes for student infor */
 .quiz-input__text--info {
     display: block;
     position: relative;
@@ -838,6 +845,7 @@ Specific styles for quiz.html
     margin-left: 5%;
 }
 
+/*creates divisions for question fields */
 .quiz-fieldset__div {
     border: solid 0.2rem var(--green-500);
     border-radius: 0 15px 0 15px;
@@ -851,6 +859,7 @@ Specific styles for quiz.html
     flex-wrap: wrap;
 }
 
+/*following creates the left side and right side of questions */
 .quiz-div__right {
     width: 50%;
     display: flex;
@@ -875,6 +884,7 @@ Specific styles for quiz.html
     margin-right: 5%;
 }
 
+/*textbox for students to answer Q1*/
 .quiz-input__text {
     font: 500 1rem/1.26em "Poppins", sans-serif;
     border: 1px solid var(--black-400);
@@ -884,6 +894,7 @@ Specific styles for quiz.html
     margin-right: 2%;
 }
 
+/*Selector Dropdown for students to answer Q5*/
 .quiz-selector {
     background-color: var(--gray-300);
     border: none;
@@ -893,8 +904,7 @@ Specific styles for quiz.html
 }
 
 /*changes the answers for radio/checkbox questions into a column to enable 
-all to be lised in a column */
-
+all to be listed in a column */
 .quiz-div__answers--grid {
     display: grid;
     grid-template-columns: auto;
@@ -909,21 +919,19 @@ all to be lised in a column */
 
 /* makes it so the left border on the answers do not go underneath the final
 answer */
-
 .quiz-div__checkbox--bottom {
     padding-bottom: 0px;
 }
 
 /*following concerns button redressing and usability */
-
 .quiz-label__answer {
     font-family: "poppins";
     cursor: pointer;
 }
 
+/*creates modified checkbox and modifies responsiveness*/
 .quiz-checkbox {
-    appearance: none;
-    -webkit-appearance: none;
+    appearance: none; /*hides default appearance */
     height: 25px;
     width: 25px;
     background-color: var(--gray-300);
@@ -933,6 +941,8 @@ answer */
     margin-right: 1rem;
 }
 
+/*creates checkmark using a symbol from Font Awesome */
+/*method heavily follows https://www.youtube.com/watch?v=y93M3RoKQUE&t */
 .quiz-checkbox:after {
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
@@ -942,7 +952,7 @@ answer */
     position: relative;
     left: 10%;
     top: 10%;
-    display: none;
+    display: none; /*hides the checkmark so it only shows when its been clicked*/
 }
 
 .quiz-checkbox:hover {
@@ -953,6 +963,7 @@ answer */
     background-color: var(--green-500);
 }
 
+/*shows checkmark */
 .quiz-checkbox:checked:after {
     display: block;
 }
@@ -961,11 +972,7 @@ answer */
     background-color: var(--green-400);
 }
 
-.quiz-label__checkbox {
-    position: relative;
-    top: 3.5px;
-}
-
+/*creates modified radio button and modifies responsiveness*/
 .quiz-radio {
     appearance: none;
     border-radius: 50% 50% 0 50%;
@@ -982,6 +989,8 @@ answer */
     background-color: var(--gray-400);
 }
 
+/*reveals an inner circle when the button is clicked*/
+/*method adapted from https://www.youtube.com/watch?v=y93M3RoKQUE&t */
 .quiz-radio:after {
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
@@ -991,13 +1000,14 @@ answer */
     position: relative;
     left: 29.5%;
     top: 29.5%;
-    display: none;
+    display: none; /*hides inner circle*/
 }
 
 .quiz-radio:checked {
     background-color: var(--green-500);
 }
 
+/*shows inner circle*/
 .quiz-radio:checked:after {
     display: block;
 }
@@ -1006,19 +1016,18 @@ answer */
     background-color: var(--green-400);
 }
 
+/*following modifies the submit button appearance and responsiveness*/
 .quiz-submit {
-    margin-top: 1rem;
-    padding: 0.5rem 1.2rem;
+    position: relative;
     border: none;
+    margin: 1rem 0 0 5%;
+    padding: 0.5rem 1.2rem;
     font: 700 1.5rem "poppins", bold;
     border-radius: 0 12.5px 0 12.5px;
     background-color: var(--cyan-400);
     color: var(--green-300);
     box-shadow: 0px 5px 15px var(--gray-400);
     cursor: pointer;
-    position: relative;
-    bottom: 1rem;
-    margin-left: 5%;
 }
 
 .quiz-submit:hover {
@@ -1031,6 +1040,7 @@ answer */
         margin: 4rem 0 2rem 5%;
     }
 
+    /*changes quiz sections from left/right to top/bottom*/
     .quiz-fieldset__div {
         flex-direction: column;
     }
