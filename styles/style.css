@@ -67,7 +67,7 @@ Specific styles for topic.html
     background-blend-mode: darken;
     background-image: url("../images/intro_background.jpeg");
     background-size: cover;
-    padding-left: 2em;
+    padding-left: 3em;
     padding-top: 7em;
     padding-bottom: 7em;
 }
@@ -524,11 +524,11 @@ nav h1 {
 
 #topic-table table tr td  {
     padding: 1em; /*give space for items*/
+    text-align: center;
 }
 
 #topic-table table tr td:first-child { /*all tr's first td*/
     font-weight: bold;
-    text-align: center;
 }
 
 #topic-table table tr:nth-child(even) { /*all even tr*/
