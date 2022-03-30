@@ -67,6 +67,7 @@ Specific styles for topic.html
     background-blend-mode: darken;
     background-image: url("../images/intro_background.jpeg");
     background-size: cover;
+    background-position: center center;
     padding-left: 3em;
     padding-top: 7em;
     padding-bottom: 7em;
@@ -490,9 +491,13 @@ nav h1 {
     width: 100%; /*full length*/
     max-height: 35em;
     border-radius: 0 0.8em 0 0.8em; /*top-left, top-right, bottom-right, bottom-left*/
+    border: 5px solid var(--green-500);
+    padding: 0.8em;
 }
 
 #topic-image figcaption {
+    font: italic 300 0.9rem/1rem 'Poppins', sans-serif;
+    margin-top: 1em;
     padding: 0 5%; /*make caption move to the right*/
 }
 
@@ -654,7 +659,7 @@ nav h1 {
 
     #topic-article {
         padding: 1em 3em; /*padding follow nav*/
-        grid-template-columns: 65% 0% 25%; /*width of 2 columns*/
+        grid-template-columns: 60% 0% 30%; /*width of 2 columns*/
         grid-template-areas: /*how the stuff is arranged*/
         'history . aside'
         'owner . aside'
