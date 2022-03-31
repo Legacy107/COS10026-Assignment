@@ -288,11 +288,12 @@ footer {
    background-color: #13678A;
    color: white; 
    font-size: medium;
-   padding: 0.5em 1.5em 3em 1.5em;
+   padding: 2.5em 2em 3em 2em;
 }
 
 .footer__header {
     color: var(--green-300);
+    margin-bottom: 0.8em;
 }
 
 .footer__card{
