@@ -182,7 +182,7 @@ Specific styles for enhancements.html
 
 .enhancements-article__demoImg:hover {
     transform: scale(1.25);
-    z-index: 100;
+    z-index: 5;
     box-shadow: 0 0 5px 5px var(--gray-300);
 }
 
@@ -365,7 +365,7 @@ nav h1 {
         flex-direction: column;
         justify-content: space-between;
     }
-    
+
     .menu:hover .menu__list {
         z-index: -1;
         display: flex;
@@ -378,10 +378,21 @@ nav h1 {
         height: 100vh;
         padding: 4em 1.5em;
         background-color: var(--cyan-400);
+        animation: slide-from-right 0.5s ease-out;
     }
     
     .menu__list {
         display: none;
+    }
+
+    @keyframes slide-from-right {
+        from {
+            transform: translateX(100%);
+        }
+
+        to {
+            transform: translateX(0);
+        }
     }
 
     .menu__list li {
