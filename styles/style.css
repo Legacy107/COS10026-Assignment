@@ -1,13 +1,13 @@
 *,
 *:after,
 *:before {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     --green-100: hsla(198, 41%, 96%, 1); /* for background color */
     --green-300: hsla(91, 94%, 86%, 1);
     --green-400: hsla(127, 67%, 76%, 1);
@@ -20,12 +20,28 @@ body {
     background-color: var(--green-100);
 }
 
+main > * {
+    animation: enter 1s ease-out;
+}
+
+@keyframes enter {
+    from {
+        transform: translateY(2rem);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 h1 {
-    font: 400 2rem/1.2em 'Gravitas One', cursive;
+    font: 400 2rem/1.2em "Gravitas One", cursive;
 }
 
 h2 {
-    font: 500 1.625rem/1.26em 'Gelasio', serif;
+    font: 500 1.625rem/1.26em "Gelasio", serif;
 }
 
 button {
@@ -54,7 +70,7 @@ Specific styles for topic.html
 */
 
 .intro-h1__large {
-    font-family: 'Gravitas One', sans-serif;
+    font-family: "Gravitas One", sans-serif;
     font-weight: 400;
     font-size: 3.75rem;
     letter-spacing: 0.3rem;
@@ -63,7 +79,7 @@ Specific styles for topic.html
 
 .intro-main {
     position: relative;
-    background-color: hsla(0,0%,0%,0.5);
+    background-color: hsla(0, 0%, 0%, 0.5);
     background-blend-mode: darken;
     background-image: url("../images/intro_background.jpeg");
     background-size: cover;
@@ -75,7 +91,7 @@ Specific styles for topic.html
 
 .intro-p__line {
     color: white;
-    font-family: 'Gelasio';
+    font-family: "Gelasio";
     font-weight: 500;
     font-size: 1.5rem;
     position: relative;
@@ -175,9 +191,7 @@ Specific styles for enhancements.html
 
 .enhancements-article__demoImg {
     border: 5px solid var(--green-500);
-    transition: 
-        transform 0.5s ease-in-out,
-        box-shadow 0.5s ease-in-out;
+    transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
 }
 
 .enhancements-article__demoImg:hover {
@@ -191,7 +205,7 @@ Specific styles for enhancements.html
     min-width: 15em;
     max-width: 25em;
     position: absolute;
-    transform: translate(-40%, -15%)
+    transform: translate(-40%, -15%);
 }
 
 #enhancements-tabletDemo {
@@ -259,6 +273,51 @@ Specific styles for enhancements.html
     .enhancements-main article:not(article:first-of-type) {
         margin-top: 2em;
     }
+}
+
+/*
+Styles for footer
+*/
+
+.footer__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(11em, 1fr));
+    gap: 1em;
+}
+
+footer {
+   background-color: #13678A;
+   color: white; 
+   font-size: medium;
+   padding: 2.5em 2em 3em 2em;
+}
+
+.footer__header {
+    color: var(--green-300);
+    margin-bottom: 0.8em;
+}
+
+.footer__card{
+    display: flex;
+    align-items: center;
+    gap: 0.8em;
+}
+
+.footer__card a:visited,
+.footer__card a:link {
+    text-decoration: none;
+    color: white;
+}
+
+.footer__card a:hover{
+    color: var(--green-300);
+}
+
+.footer__card img {
+    border-radius: 100%;
+    border-bottom-right-radius: 0%;
+    width: 2.5rem;
+    height: 2.5rem;
 }
 
 /*---Navigation---*/
@@ -380,7 +439,7 @@ nav h1 {
         background-color: var(--cyan-400);
         animation: slide-from-right 0.5s ease-out;
     }
-    
+
     .menu__list {
         display: none;
     }
@@ -399,6 +458,7 @@ nav h1 {
         width: fit-content;
     }
 }
+
 /*---Navigation---*/
 
 /*---Topic HTML---*/
@@ -420,7 +480,7 @@ nav h1 {
 }
 
 .topic-hero__img {
-    background-color: hsla(0,0%,0%,0.5);
+    background-color: hsla(0, 0%, 0%, 0.5);
     background-blend-mode: darken;
     background-image: url("../images/intro_background.jpeg");
     background-size: cover;
@@ -453,24 +513,30 @@ nav h1 {
     column-gap: 5%; /*left-right gaps*/
     grid-template-columns: 0% 90% 0%; /*width of 2 columns*/
     grid-template-areas: /*how the stuff is arranged*/
-        '. history .'
-        '. owner .'
-        'image image image'
-        '. compare .'
-        '. software .'
-        '. table .'
-        '. term .'
-        '. aside .'
-        '. quiz .';
+        ". history ."
+        ". owner ."
+        "image image image"
+        ". compare ."
+        ". software ."
+        ". table ."
+        ". term ."
+        ". aside ."
+        ". quiz .";
 }
 
 #topic-article section h2 {
     margin-bottom: 0.8em;
 }
 
-#topic-history, #topic-owner, #topic-image,
-#topic-compare, #topic-software, #topic-table,
-#topic-term, #topic-aside, .topic-form {
+#topic-history,
+#topic-owner,
+#topic-image,
+#topic-compare,
+#topic-software,
+#topic-table,
+#topic-term,
+#topic-aside,
+.topic-form {
     margin: 2em 0;
 }
 
@@ -533,37 +599,43 @@ nav h1 {
     border-collapse: collapse;
 }
 
-#topic-table table tr th  {
+#topic-table table tr th {
     color: white;
     padding: 1em; /*give space for items*/
 }
 
-#topic-table table tr td  {
+#topic-table table tr td {
     padding: 1em; /*give space for items*/
     text-align: center;
 }
 
-#topic-table table tr td:first-child { /*all tr's first td*/
+#topic-table table tr td:first-child {
+    /*all tr's first td*/
     font-weight: bold;
 }
 
-#topic-table table tr:nth-child(even) { /*all even tr*/
+#topic-table table tr:nth-child(even) {
+    /*all even tr*/
     background-color: var(--green-400);
 }
 
-#topic-table table tr:nth-child(odd) { /*all odd tr*/
+#topic-table table tr:nth-child(odd) {
+    /*all odd tr*/
     background-color: var(--green-300);
 }
 
-#topic-table table tr:first-child { /*first tr*/
+#topic-table table tr:first-child {
+    /*first tr*/
     background-color: var(--cyan-400);
 }
 
-#topic-table table tr:last-child td:first-child { /*first column, last row*/
+#topic-table table tr:last-child td:first-child {
+    /*first column, last row*/
     border-radius: 0 0 0 0.8em; /*top-left, top-right, bottom-right, bottom-left*/
 }
 
-#topic-table table tr:first-child th:last-child { /*first row, last column*/
+#topic-table table tr:first-child th:last-child {
+    /*first row, last column*/
     border-radius: 0 0.8em 0 0; /*top-left, top-right, bottom-right, bottom-left*/
 }
 
@@ -631,11 +703,12 @@ nav h1 {
     box-shadow: 0 0.3em 1em rgb(0 0 0 / 30%); /*left-right, top-bottom, density, size, color*/
 }
 
-@media screen and (min-width: 550px) { /*minimum needs to have n-size, then apply (tablet)*/
+@media screen and (min-width: 550px) {
+    /*minimum needs to have n-size, then apply (tablet)*/
     .topic-hero {
         height: 20em;
     }
-    
+
     .topic-hero__img {
         top: -29vh;
     }
@@ -648,17 +721,18 @@ nav h1 {
     #topic-history::before {
         width: 26em;
     }
-    
+
     .topic-button {
         width: 22em; /*length of button*/
     }
 }
 
-@media screen and (min-width: 850px) { /*minimum needs to have n-size, then apply (pc)*/
+@media screen and (min-width: 850px) {
+    /*minimum needs to have n-size, then apply (pc)*/
     .topic-hero {
         height: 25em;
     }
-    
+
     .topic-hero__img {
         top: -30vh;
     }
@@ -672,330 +746,423 @@ nav h1 {
         padding: 1em 3em; /*padding follow nav*/
         grid-template-columns: 60% 0% 30%; /*width of 2 columns*/
         grid-template-areas: /*how the stuff is arranged*/
-        'history . aside'
-        'owner . aside'
-        'image image image'
-        'compare . .'
-        'software . .'
-        'table . .'
-        'term . .'
-        'quiz . .';
+            "history . aside"
+            "owner . aside"
+            "image image image"
+            "compare . ."
+            "software . ."
+            "table . ."
+            "term . ."
+            "quiz . .";
     }
-        
+
     #topic-aside {
         max-height: 24em; /*height of aside*/
     }
-    
+
     #topic-image figcaption {
         padding: 0; /*make caption move back from the right*/
     }
 }
+
 /*---Topic HTML---*/
 
 /*
 Specific styles for quiz.html
 */
 .quiz-h2 {
-  padding-bottom: 3.5rem;
-  margin-left: 5%;
+    padding-bottom: 3.5rem;
+    margin-left: 5%;
 }
 
 .quiz-main {
-  background: var(--green-100);
-  margin: auto;
-  border-style: solid;
-  border-width: 3rem 4rem;
-  border-color: var(--green-100);
+    background: var(--green-100);
+    margin: auto;
+    border-style: solid;
+    border-width: 3rem 4rem;
+    border-color: var(--green-100);
 }
 
+.quiz-main form {
+    position: relative;
+}
+
+.quiz-graphic {
+    position: absolute;
+    right: 10vw;
+    top: 6rem;
+    font: 400 clamp(3rem, 5vw, 4rem) / 2em "Luckiest Guy", cursive;
+}
+
+/* animation from https://css-tricks.com/making-css-animations-feel-natural/ */
+@keyframes bouncing {
+    0% {
+        transform: scale(1, 1) translateY(0);
+    }
+
+    10% {
+        transform: scale(1.1, 0.9) translateY(0);
+    }
+
+    30% {
+        transform: scale(0.9, 1.1) translateY(-50px);
+    }
+
+    50% {
+        transform: scale(1.05, 0.95) translateY(0);
+    }
+
+    57% {
+        transform: scale(1, 1) translateY(-7px);
+    }
+
+    64% {
+        transform: scale(1, 1) translateY(0);
+    }
+
+    100% {
+        transform: scale(1, 1) translateY(0);
+    }
+}
+
+.quiz-graphic span {
+    display: inline-block;
+    animation-name: bouncing;
+    animation-timing-function: cubic-bezier(0.28, 0.84, 0.42, 1);
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    transform-origin: bottom;
+}
+
+.quiz-graphic span:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.quiz-graphic span:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.quiz-graphic span:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+.quiz-graphic span:nth-child(5) {
+    margin-left: 0.5em;
+    animation-delay: 0.4s;
+}
+
+.quiz-graphic span:nth-child(6) {
+    animation-delay: 0.5s;
+}
+
+.quiz-graphic span:nth-child(7) {
+    animation-delay: 0.6s;
+}
+
+.quiz-graphic span:nth-child(8) {
+    animation-delay: 0.7s;
+}
+
+/* end of bouncing animation */
+
 .quiz-fieldset {
-  border: none;
-  margin-bottom: 3rem;
-  min-width: 300px;
+    border: none;
+    margin-bottom: 3rem;
+    min-width: 300px;
 }
 
 .quiz-fieldset:not(:first-of-type) {
-  margin-bottom: 0rem;
+    margin-bottom: 0rem;
 }
 
 .quiz-fieldset__legend {
-  margin: 2rem 0rem;
-  font: 500 1.325rem/1.26em "Gelasio", serif;
-  color: var(--green-500);
-  margin-bottom: 1rem;
-  margin-left: 5%;
+    font: 500 1.325rem/1.26em "Gelasio", serif;
+    color: var(--green-500);
+    margin: 2rem 0 1rem 5%;
 }
 
+/*creates underlines for student information and questions*/
 .quiz-fieldset__legend::after {
-  content: "";
-  float: left;
-  background: var(--green-500);
-  width: 158%;
-  height: 5px;
-  border-radius: 3px;
-  margin-top: 5px;
-  max-width: 250px;
+    content: "";
+    float: left;
+    background: var(--green-500);
+    width: 158%;
+    height: 5px;
+    border-radius: 3px;
+    margin-top: 5px;
+    max-width: 250px;
 }
 
+/*Stretches out questions underline to match Student information underline*/
 .quiz-fieldset__legend--questions::after {
-  width: 326%;
+    width: 326%;
 }
 
 .quiz-fieldset__label {
-  font: 500 1rem/1.26em "Poppins", sans-serif;
-  position: relative;
-  padding-left: 0.5rem;
-  margin-left: 5%;
+    font: 500 1rem/1.26em "Poppins", sans-serif;
+    position: relative;
+    padding-left: 0.5rem;
+    margin-left: 5%;
 }
 
+/*text boxes for student infor */
 .quiz-input__text--info {
-  display: block;
-  position: relative;
-  font: 500 1rem/1.26em "Poppins", sans-serif;
-  border: 1px solid var(--black-400);
-  background-color: var(--green-100);
-  border-radius: 0.5rem 0.5rem 0em 0.5rem;
-  padding: 0.4rem 0rem 0.4rem 0.4rem;
-  top: 2px;
-  margin-left: 5%;
+    display: block;
+    position: relative;
+    font: 500 1rem/1.26em "Poppins", sans-serif;
+    border: 1px solid var(--black-400);
+    background-color: var(--green-100);
+    border-radius: 0.5rem 0.5rem 0em 0.5rem;
+    padding: 0.4rem 0rem 0.4rem 0.4rem;
+    top: 2px;
+    margin-left: 5%;
 }
 
+/*creates divisions for question fields */
 .quiz-fieldset__div {
-  border: solid 0.2rem var(--green-500);
-  border-radius: 0 15px 0 15px;
-  padding: 1rem;
-  margin-right: auto;
-  margin-left: auto;
-  margin-bottom: 3rem;
-  width: 90%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+    border: solid 0.2rem var(--green-500);
+    border-radius: 0 15px 0 15px;
+    padding: 1rem;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 3rem;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
+/*following creates the left side and right side of questions */
 .quiz-div__right {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  align-content: space-between;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
 }
 
 .quiz-div__left {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
 }
 
 .quiz-h4 {
-  align-self: flex-start;
-  margin-bottom: 1%;
-  padding-left: 0.5%;
+    align-self: flex-start;
+    margin-bottom: 1%;
+    padding-left: 0.5%;
 }
 
 .quiz-div__para {
-  align-self: stretch;
-  margin-right: 5%;
+    align-self: stretch;
+    margin-right: 5%;
 }
 
+/*textbox for students to answer Q1*/
 .quiz-input__text {
-  font: 500 1rem/1.26em "Poppins", sans-serif;
-  border: 1px solid var(--black-400);
-  background-color: var(--green-100);
-  border-radius: 12.5px 12.5px 0 12.5px;
-  padding: 0.4rem 0 0.4rem 0.6rem;
-  margin-right: 2%;
+    font: 500 1rem/1.26em "Poppins", sans-serif;
+    border: 1px solid var(--black-400);
+    background-color: var(--green-100);
+    border-radius: 12.5px 12.5px 0 12.5px;
+    padding: 0.4rem 0 0.4rem 0.6rem;
+    margin-right: 2%;
 }
 
+/*Selector Dropdown for students to answer Q5*/
 .quiz-selector {
-  background-color: var(--gray-300);
-  border: none;
-  font: 500 1rem/1.26em "Poppins", sans-serif;
-  padding: 0.4rem 0 0.4rem 0.6rem;
-  border-radius: 0 12.5px 0 12.5px;
+    background-color: var(--gray-300);
+    border: none;
+    font: 500 1rem/1.26em "Poppins", sans-serif;
+    padding: 0.4rem 0 0.4rem 0.6rem;
+    border-radius: 0 12.5px 0 12.5px;
 }
 
 /*changes the answers for radio/checkbox questions into a column to enable 
-all to be lised in a column */
-
+all to be listed in a column */
 .quiz-div__answers--grid {
-  display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: auto auto auto auto;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto auto;
 }
 
 .quiz-div__answers {
-  border-left: solid var(--green-500) 5px;
-  padding-left: 20px;
-  padding-bottom: 15px;
+    border-left: solid var(--green-500) 5px;
+    padding-left: 20px;
+    padding-bottom: 15px;
 }
 
 /* makes it so the left border on the answers do not go underneath the final
 answer */
-
 .quiz-div__checkbox--bottom {
-  padding-bottom: 0px;
+    padding-bottom: 0px;
 }
 
 /*following concerns button redressing and usability */
-
 .quiz-label__answer {
-  font-family: "poppins";
-  cursor: pointer;
+    font-family: "poppins";
+    cursor: pointer;
 }
 
+/*creates modified checkbox and modifies responsiveness*/
 .quiz-checkbox {
-  appearance: none;
-  -webkit-appearance: none;
-  height: 25px;
-  width: 25px;
-  background-color: var(--gray-300);
-  vertical-align: middle;
-  border-radius: 0 7.5px 0 7.5px;
-  cursor: pointer;
-  margin-right: 1rem;
+    appearance: none; /*hides default appearance */
+    height: 25px;
+    width: 25px;
+    background-color: var(--gray-300);
+    vertical-align: middle;
+    border-radius: 0 7.5px 0 7.5px;
+    cursor: pointer;
+    margin-right: 1rem;
 }
 
+/*creates checkmark using a symbol from Font Awesome */
+/*method heavily follows https://www.youtube.com/watch?v=y93M3RoKQUE&t */
 .quiz-checkbox:after {
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  font-size: 20px;
-  content: "\f00c";
-  color: white;
-  position: relative;
-  left: 10%;
-  top: 10%;
-  display: none;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 20px;
+    content: "\f00c";
+    color: white;
+    position: relative;
+    left: 10%;
+    top: 10%;
+    display: none; /*hides the checkmark so it only shows when its been clicked*/
 }
 
 .quiz-checkbox:hover {
-  background-color: var(--gray-400);
+    background-color: var(--gray-400);
 }
 
 .quiz-checkbox:checked {
-  background-color: var(--green-500);
+    background-color: var(--green-500);
 }
 
+/*shows checkmark */
 .quiz-checkbox:checked:after {
-  display: block;
+    display: block;
 }
 
 .quiz-checkbox:checked:hover {
-  background-color: var(--green-400);
+    background-color: var(--green-400);
 }
 
-.quiz-label__checkbox {
-  position: relative;
-  top: 3.5px;
-}
-
+/*creates modified radio button and modifies responsiveness*/
 .quiz-radio {
-  appearance: none;
-  border-radius: 50% 50% 0 50%;
-  height: 25px;
-  width: 25px;
-  background-color: var(--gray-300);
-  vertical-align: middle;
-  position: relative;
-  cursor: pointer;
-  margin-right: 1rem;
+    appearance: none;
+    border-radius: 50% 50% 0 50%;
+    height: 25px;
+    width: 25px;
+    background-color: var(--gray-300);
+    vertical-align: middle;
+    position: relative;
+    cursor: pointer;
+    margin-right: 1rem;
 }
 
 .quiz-radio:hover {
-  background-color: var(--gray-400);
+    background-color: var(--gray-400);
 }
 
+/*reveals an inner circle when the button is clicked*/
+/*method adapted from https://www.youtube.com/watch?v=y93M3RoKQUE&t */
 .quiz-radio:after {
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  font-size: 10px;
-  content: "\f111";
-  color: white;
-  position: relative;
-  left: 29.5%;
-  top: 29.5%;
-  display: none;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 10px;
+    content: "\f111";
+    color: white;
+    position: relative;
+    left: 29.5%;
+    top: 29.5%;
+    display: none; /*hides inner circle*/
 }
 
 .quiz-radio:checked {
-  background-color: var(--green-500);
+    background-color: var(--green-500);
 }
 
+/*shows inner circle*/
 .quiz-radio:checked:after {
-  display: block;
+    display: block;
 }
 
 .quiz-radio:checked:hover {
-  background-color: var(--green-400);
+    background-color: var(--green-400);
 }
 
+/*following modifies the submit button appearance and responsiveness*/
 .quiz-submit {
-  margin-top: 1rem;
-  padding: 0.5rem 1.2rem;
-  border: none;
-  font: 700 1.5rem "poppins", bold;
-  border-radius: 0 12.5px 0 12.5px;
-  background-color: var(--cyan-400);
-  color: var(--green-300);
-  box-shadow: 0px 5px 15px var(--gray-400);
-  cursor: pointer;
-  position: relative;
-  bottom: 1rem;
-  margin-left: 5%;
+    position: relative;
+    border: none;
+    margin: 1rem 0 0 5%;
+    padding: 0.5rem 1.2rem;
+    font: 700 1.5rem "poppins", bold;
+    border-radius: 0 12.5px 0 12.5px;
+    background-color: var(--cyan-400);
+    color: var(--green-300);
+    box-shadow: 0px 5px 15px var(--gray-400);
+    cursor: pointer;
 }
 
 .quiz-submit:hover {
-  background-color: var(--green-500);
+    background-color: var(--green-500);
 }
 
 @media screen and (max-width: 850px) {
-  .quiz-fieldset__div {
-    flex-direction: column;
-  }
+    .quiz-graphic {
+        position: static;
+        margin: 4rem 0 2rem 5%;
+    }
 
-  .quiz-div__right {
-    width: 100%;
-  }
+    /*changes quiz sections from left/right to top/bottom*/
+    .quiz-fieldset__div {
+        flex-direction: column;
+    }
 
-  .quiz-div__left {
-    width: 100%;
-  }
+    .quiz-div__right {
+        width: 100%;
+    }
 
-  .quiz-div__para {
-    margin-right: 0%;
-  }
+    .quiz-div__left {
+        width: 100%;
+    }
 
-  .quiz-main {
-    border-width: 3rem 2rem;
-  }
+    .quiz-div__para {
+        margin-right: 0%;
+    }
 
-  .quiz-fieldset__div {
-    border: none;
-    margin-bottom: 1rem;
-    width: 95%;
-  }
+    .quiz-main {
+        border-width: 3rem 2rem;
+    }
 
-  .quiz-div__answer {
-    width: 100%;
-  }
+    .quiz-fieldset__div {
+        border: none;
+        margin-bottom: 1rem;
+        width: 95%;
+    }
 
-  .quiz-div__answers--grid {
-    grid-template-columns: 100%;
-  }
+    .quiz-div__answer {
+        width: 100%;
+    }
 
-  .quiz-h4 {
-    padding: 1rem 0;
-  }
+    .quiz-div__answers--grid {
+        grid-template-columns: 100%;
+    }
 
-  .quiz-submit {
-    margin-top: 2rem;
-  }
+    .quiz-h4 {
+        padding: 1rem 0;
+    }
+
+    .quiz-submit {
+        margin-top: 2rem;
+    }
 }
 
 @media screen and (max-width: 600px) {
-  .quiz-main {
-    border-width: 3rem 0px;
-  }
-  .quiz-input__text--info {
-    width: 90%;
-  }
+    .quiz-main {
+        border-width: 3rem 0px;
+    }
+
+    .quiz-input__text--info {
+        width: 90%;
+    }
 }
