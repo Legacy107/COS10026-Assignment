@@ -5,12 +5,14 @@
 
 .team {
     background-color: #13678A;
-    width: 20%;
-    color: teal
+    min-width: 15em;
+    color: teal;
 }
 
 .flex-container {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: stretch;
 }
 
 footer {
@@ -24,4 +26,26 @@ h2 {
     text-align: justify left;
     color: #9AEBA3;
 }
+a:visited,
+a:link {
+    text-decoration: none;
+    color: white;
+}
+a:hover{ 
+    color: var(--green-300);
+}
 
+section { 
+    color: white;
+}
+img {
+    margin-right: 10px;
+    border-radius: 50%;
+    border-bottom-right-radius: 0%;
+    width: 3rem;
+    height: 3rem;
+}
+.flex-section{
+    display: flex;
+    align-items: center;
+}
