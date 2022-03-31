@@ -1,51 +1,39 @@
-#footer_stuff {
-    display: flex;
-    width: 100%;
-}
-
-.team {
-    background-color: #13678A;
-    min-width: 15em;
-    color: teal;
-}
-
-.flex-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: stretch;
+.footer__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(11em, 1fr));
+    gap: 1em;
 }
 
 footer {
    background-color: #13678A;
    color: white; 
    font-size: medium;
-   padding: 10px;
+   padding: 0.5em 1.5em 3em 1.5em;
 }
 
-h2 {
-    text-align: justify left;
-    color: #9AEBA3;
-}
-a:visited,
-a:link {
-    text-decoration: none;
-    color: white;
-}
-a:hover{ 
+.footer__header {
     color: var(--green-300);
 }
 
-section { 
-    color: white;
-}
-img {
-    margin-right: 10px;
-    border-radius: 50%;
-    border-bottom-right-radius: 0%;
-    width: 3rem;
-    height: 3rem;
-}
-.flex-section{
+.footer__card{
     display: flex;
     align-items: center;
+    gap: 0.8em;
+}
+
+.footer__card a:visited,
+.footer__card a:link {
+    text-decoration: none;
+    color: white;
+}
+
+.footer__card a:hover{
+    color: var(--green-300);
+}
+
+.footer__card img {
+    border-radius: 100%;
+    border-bottom-right-radius: 0%;
+    width: 2.5rem;
+    height: 2.5rem;
 }
