@@ -505,7 +505,8 @@ nav h1 {
         ". table ."
         ". term ."
         ". aside ."
-        ". quiz .";
+        ". quiz ."
+        ". references .";
 }
 
 #topic-article section h2 {
@@ -520,6 +521,7 @@ nav h1 {
 #topic-table,
 #topic-term,
 #topic-aside,
+#topic-references,
 .topic-form {
     margin: 2em 0;
 }
@@ -675,6 +677,28 @@ nav h1 {
     box-shadow: 0 0.3em 1em rgb(0 0 0 / 30%); /*left-right, top-bottom, density, size, color*/
 }
 
+#topic-references {
+    grid-area: references;
+    margin-top: 5em;
+    font-style: italic;
+}
+
+#topic-references ol {
+    padding-left: 0.9em;
+    line-height: 2;
+}
+
+#topic-references a:link,
+#topic-references a:visited {
+    color: var(--black-400);
+    text-decoration: none;
+}
+
+#topic-references a:hover {
+    color: var(--cyan-400);
+    text-decoration: underline;
+}
+
 @media screen and (min-width: 550px) {
     /*minimum needs to have n-size, then apply (tablet)*/
     .topic-hero {
@@ -725,7 +749,8 @@ nav h1 {
             "software . ."
             "table . ."
             "term . ."
-            "quiz . .";
+            "quiz . ."
+            "references references references";
     }
 
     #topic-aside {
