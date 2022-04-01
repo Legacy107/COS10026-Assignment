@@ -571,7 +571,7 @@ nav h1 {
 
 #topic-image img {
     width: 100%; /*full length*/
-    max-height: 35em;
+    max-height: 40em;
     border-radius: 0 0.8em 0 0.8em; /*top-left, top-right, bottom-right, bottom-left*/
     border: 5px solid var(--green-500);
     padding: 0.8em;
@@ -771,14 +771,14 @@ nav h1 {
 
     #topic-article {
         padding: 1em 3em; /*padding follow nav*/
-        grid-template-columns: 60% 0% 30%; /*width of 2 columns*/
+        grid-template-columns: 55% 0% 35%; /*width of 2 columns*/
         grid-template-areas: /*how the stuff is arranged*/
             "history . aside"
             "owner . aside"
             "image image image"
             "compare . ."
             "software . ."
-            "table . ."
+            "table table table"
             "term . ."
             "quiz . ."
             "references references references";
