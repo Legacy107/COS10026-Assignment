@@ -1,3 +1,11 @@
+/*
+filename: style.css
+author: Peter Farmer, Orson Routt, Kien Quoc Mai, Yong Yuan Chong, Keath Kor
+created: 03/03/2022
+last modified: 02/04/2022
+description: CSS styling for all 4 pages including navbar and footer
+*/
+
 *,
 *:after,
 *:before {
@@ -123,7 +131,7 @@ Specific styles for index.html
     position: relative;
     background-color: hsla(0, 0%, 0%, 0.7);
     background-blend-mode: darken;
-    background-image: url("../images/intro_background.jpeg");
+    background-image: url("./images/intro_background.jpeg");
     background-size: cover;
     background-position: center center;
     padding-left: 3em;
@@ -398,15 +406,18 @@ Styles for footer
 }
 
 footer {
-   background-color: #13678A;
-   color: white; 
-   font-size: medium;
-   padding: 2.5em 2em 3em 2em;
+    font-style: italic;
+    background-color: #13678A;
+    color: white;
+    font-size: medium;
+    padding: 2.5em 2em 3em 2em;
 }
 
 .footer__header {
     color: var(--green-300);
     margin-bottom: 0.8em;
+    text-align: center;
+    font-style: italic;
 }
 
 .footer__card{
@@ -605,7 +616,7 @@ Styles for topic.html
 .topic-hero__img {
     background-color: hsla(0, 0%, 0%, 0.5);
     background-blend-mode: darken;
-    background-image: url("../images/intro_background.jpeg");
+    background-image: url("./images/intro_background.jpeg");
     background-size: cover;
     background-position: center;
 
@@ -828,12 +839,13 @@ Styles for topic.html
 }
 
 .topic-button {
+    text-transform: uppercase;
+    font: 700 1.2rem "Poppins", bold;
     width: 100%; /*setup for text align center*/
     margin: 0 auto; /*text align center*/
     padding: 0.8em 0 0.8em; /*top left-right bottom*/
     color: var(--green-300);
     cursor: pointer; /*set cursor to pointer when hovering*/
-    font: inherit; /*inherit font instead of using button font*/
     background-color: var(--cyan-400);
     border-radius: 0 0.8em 0 0.8em; /*top-left, top-right, bottom-right, bottom-left*/
     box-shadow: 0 0.3em 1em rgb(0 0 0 / 30%); /*left-right, top-bottom, density, size, color*/
@@ -1194,7 +1206,7 @@ answer */
 
 /*following concerns button redressing and usability */
 .quiz-label__answer {
-    font-family: "poppins";
+    font-family: "Poppins", sans-serif;
     cursor: pointer;
 }
 
@@ -1221,6 +1233,7 @@ answer */
     left: 10%;
     top: 10%;
     display: none; /*hides the checkmark so it only shows when its been clicked*/
+    vertical-align: middle;
 }
 
 .quiz-checkbox:hover {
@@ -1250,6 +1263,7 @@ answer */
     position: relative;
     cursor: pointer;
     margin-right: 1rem;
+    vertical-align: middle;
 }
 
 .quiz-radio:hover {
@@ -1288,8 +1302,8 @@ answer */
     position: relative;
     border: none;
     margin: 1rem 0 0 5%;
-    padding: 0.5rem 1.2rem;
-    font: 700 1.5rem "poppins", bold;
+    padding: 0.6em 1.2em;
+    font: 700 1.2rem "Poppins", sans-serif, bold;
     border-radius: 0 12.5px 0 12.5px;
     background-color: var(--cyan-400);
     color: var(--green-300);
@@ -1298,7 +1312,7 @@ answer */
 }
 
 .quiz-submit:hover {
-    background-color: var(--green-500);
+    background-color: var(--cyan-300);
 }
 
 @media screen and (max-width: 850px) {
