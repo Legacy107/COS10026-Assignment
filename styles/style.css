@@ -79,7 +79,7 @@ Specific styles for topic.html
 
 .intro-main {
     position: relative;
-    background-color: hsla(0, 0%, 0%, 0.5);
+    background-color: hsla(0, 0%, 0%, 0.7);
     background-blend-mode: darken;
     background-image: url("../images/intro_background.jpeg");
     background-size: cover;
@@ -97,7 +97,7 @@ Specific styles for topic.html
     position: relative;
     left: 1.5em;
     width: calc(50% - 2.5em);
-    line-height: 1.4;
+    line-height: 1.7;
     padding-top: 0.25em;
     padding-bottom: 0.25em;
     margin: 1.25em 0em 1.75em 0em;
@@ -164,21 +164,21 @@ Specific styles for enhancements.html
     margin-block: 1.5em;
 }
 
-.enhancements-main article {
+.enhancements-main section {
     display: flex;
     flex-direction: row;
     align-items: stretch;
 }
 
-.enhancements-main section {
+.enhancements-main section > div {
     flex: 1 1 50%;
 }
 
-.enhancements-main article:nth-child(2n + 1) {
+.enhancements-main section:nth-child(2n + 1) {
     flex-direction: row-reverse;
 }
 
-.enhancements-main article:not(article:first-of-type) {
+.enhancements-main section:not(section:first-of-type) {
     margin-top: 10em;
 }
 
@@ -203,7 +203,7 @@ Specific styles for enhancements.html
 #enhancements-desktopDemo {
     width: 30%;
     min-width: 15em;
-    max-width: 25em;
+    max-width: 22.5em;
     position: absolute;
     transform: translate(-40%, -15%);
 }
@@ -211,7 +211,7 @@ Specific styles for enhancements.html
 #enhancements-tabletDemo {
     width: 23%;
     min-width: 11em;
-    max-width: 20em;
+    max-width: 18em;
     position: absolute;
     transform: translate(0, 35%);
 }
@@ -219,7 +219,7 @@ Specific styles for enhancements.html
 #enhancements-mobileDemo {
     width: 15%;
     min-width: 7em;
-    max-width: 13em;
+    max-width: 11em;
     position: absolute;
     transform: translate(80%, -5%);
 }
@@ -238,7 +238,6 @@ Specific styles for enhancements.html
 
 .enhancements-article__description > p {
     color: white;
-    font-weight: 300;
 }
 
 @media screen and (min-width: 650px) and (max-width: 850px) {
@@ -252,11 +251,11 @@ Specific styles for enhancements.html
         font-size: 1.5rem;
     }
 
-    .enhancements-main article {
+    .enhancements-main section {
         flex-direction: column;
     }
 
-    .enhancements-main article:nth-child(2n + 1) {
+    .enhancements-main section:nth-child(2n + 1) {
         flex-direction: column;
     }
 
@@ -270,7 +269,7 @@ Specific styles for enhancements.html
         padding-inline: 2.5em;
     }
 
-    .enhancements-main article:not(article:first-of-type) {
+    .enhancements-main section:not(section:first-of-type) {
         margin-top: 2em;
     }
 }
@@ -347,6 +346,7 @@ nav .logo {
 
 .menu__list {
     font-size: 1.2em;
+    font-weight: 500;
     display: flex;
     gap: 1em;
 }
@@ -950,7 +950,7 @@ Specific styles for quiz.html
 
 .quiz-fieldset__legend {
     font: 500 1.325rem/1.26em "Gelasio", serif;
-    color: var(--green-500);
+    color: var(--cyan-400);
     margin: 2rem 0 1rem 5%;
 }
 
@@ -958,7 +958,7 @@ Specific styles for quiz.html
 .quiz-fieldset__legend::after {
     content: "";
     float: left;
-    background: var(--green-500);
+    background: var(--cyan-400);
     width: 158%;
     height: 5px;
     border-radius: 3px;
@@ -1081,7 +1081,6 @@ answer */
     height: 25px;
     width: 25px;
     background-color: var(--gray-300);
-    vertical-align: middle;
     border-radius: 0 7.5px 0 7.5px;
     cursor: pointer;
     margin-right: 1rem;
@@ -1125,7 +1124,6 @@ answer */
     height: 25px;
     width: 25px;
     background-color: var(--gray-300);
-    vertical-align: middle;
     position: relative;
     cursor: pointer;
     margin-right: 1rem;
