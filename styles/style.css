@@ -17,6 +17,8 @@ body {
     --black-400: hsla(200, 96%, 10%, 1);
     --gray-300: hsla(0, 0%, 77%, 1);
     --gray-400: hsla(200, 9%, 72%, 1);
+    --red-200: hsla(0, 67%, 76%, 1);
+    --lime-300: rgb(172, 220, 127);
     background-color: var(--green-100);
 }
 
@@ -65,6 +67,22 @@ main {
     padding-bottom: 5rem;
 }
 
+/* animation applied on enhancements when being targeted */
+.enhancement:target {
+    border: 0.5em dashed var(--red-200);
+    animation: borderColorCycle 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes borderColorCycle {
+    from {
+        border-color: var(--lime-300);
+    }
+
+    to {
+        border-color: var(--red-200);
+    }
+}
+
 /*
 Specific styles for topic.html
 */
@@ -96,7 +114,8 @@ Specific styles for topic.html
     font-size: 1.5rem;
     position: relative;
     left: 1.5em;
-    width: calc(50% - 2.5em);
+    width: calc(70% - 2.5em);
+    max-width: 60ch;
     line-height: 1.7;
     padding-top: 0.25em;
     padding-bottom: 0.25em;
@@ -123,7 +142,7 @@ Specific styles for topic.html
 /* tablet style changes */
 @media only screen and (max-width: 850px) {
     .intro-main {
-        padding-left: 1em;
+        padding-left: 2em;
     }
 
     .intro-p__line {
@@ -200,7 +219,7 @@ Specific styles for enhancements.html
     box-shadow: 0 0 5px 5px var(--gray-300);
 }
 
-#enhancements-desktopDemo {
+#enhancements-desktopLayoutDemo {
     width: 30%;
     min-width: 15em;
     max-width: 22.5em;
@@ -208,20 +227,32 @@ Specific styles for enhancements.html
     transform: translate(-40%, -15%);
 }
 
-#enhancements-tabletDemo {
-    width: 23%;
+#enhancements-desktopLayoutDemo:hover {
+    transform: translate(-40%, -15%) scale(1.25);
+}
+
+#enhancements-tabletLayoutDemo {
+    width: 21%;
     min-width: 11em;
-    max-width: 18em;
+    max-width: 17em;
     position: absolute;
     transform: translate(0, 35%);
 }
 
-#enhancements-mobileDemo {
-    width: 15%;
-    min-width: 7em;
-    max-width: 11em;
+#enhancements-tabletLayoutDemo:hover {
+    transform: translate(0, 35%) scale(1.25);
+}
+
+#enhancements-mobileLayoutDemo {
+    width: 13%;
+    min-width: 6.5em;
+    max-width: 10em;
     position: absolute;
     transform: translate(80%, -5%);
+}
+
+#enhancements-mobileLayoutDemo:hover {
+    transform: translate(80%, -5%) scale(1.25);
 }
 
 .enhancements-article__description {
@@ -462,7 +493,6 @@ nav .logo {
 /*---Navigation---*/
 
 /*---Topic HTML---*/
-
 /* parallax effect adapated from https://www.youtube.com/watch?v=mxHoPYFsTuk&t */
 .topic-wrapper {
     height: 100vh;
