@@ -69,7 +69,8 @@ main {
 
 /* animation applied on enhancements when being targeted */
 .enhancement:target {
-    border: 0.5em dashed var(--red-200);
+    padding: 1rem;
+    border: 0.5rem dashed var(--red-200);
     animation: borderColorCycle 0.5s ease-in-out infinite alternate;
 }
 
@@ -84,9 +85,8 @@ main {
 }
 
 /*
-Specific styles for topic.html
+Specific styles for index.html
 */
-
 .intro-h1__large {
     font-family: "Gravitas One", sans-serif;
     font-weight: 400;
@@ -177,7 +177,6 @@ Specific styles for topic.html
 /*
 Specific styles for enhancements.html
 */
-
 .enhancements-main__title {
     padding-left: clamp(5px, 2vw, 2em);
     margin-block: 1.5em;
@@ -219,6 +218,10 @@ Specific styles for enhancements.html
     box-shadow: 0 0 5px 5px var(--gray-300);
 }
 
+.enhancements-article__demo > a:hover {
+    z-index: 5;
+}
+
 #enhancements-desktopLayoutDemo {
     width: 30%;
     min-width: 15em;
@@ -252,6 +255,48 @@ Specific styles for enhancements.html
 }
 
 #enhancements-mobileLayoutDemo:hover {
+    transform: translate(80%, -5%) scale(1.25);
+}
+
+.enhancements-article__demo > a {
+    position: absolute;
+    width: 40%;
+    min-width: 15em;
+    max-width: 22.5em;
+}
+
+.enhancements-article__demo > a:nth-child(2) {
+    width: 20%;
+    min-width: 7em;
+    max-width: 10em;
+}
+
+.enhancements-article__demo img[id*="AnimationDemo"],
+#parallaxDemoparallaxDemo {
+    width: 100%;
+}
+
+#enhancements-bouncingAnimationDemo {
+    transform: translate(-40%, -15%);
+}
+
+#enhancements-bouncingAnimationDemo:hover {
+    transform: translate(-40%, -15%) scale(1.25);
+}
+
+#enhancements-enteringAnimationDemo {
+    transform: translate(0, 30%);
+}
+
+#enhancements-enteringAnimationDemo:hover {
+    transform: translate(0, 30%) scale(1.25);
+}
+
+#enhancements-navbarAnimationDemo {
+    transform: translate(80%, 0);
+}
+
+#enhancements-navbarAnimationDemo:hover {
     transform: translate(80%, -5%) scale(1.25);
 }
 
@@ -308,7 +353,6 @@ Specific styles for enhancements.html
 /*
 Styles for footer
 */
-
 .footer__container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(11em, 1fr));
@@ -350,7 +394,9 @@ footer {
     height: 2.5rem;
 }
 
-/*---Navigation---*/
+/*
+Styles for navbar
+*/
 header {
     position: sticky;
     top: 0;
@@ -475,6 +521,13 @@ nav .logo {
         display: none;
     }
 
+    #intro-menu:target:hover .menu__list {
+        top: 4.5em;
+        padding: 1rem;
+        border: 0.5rem dashed var(--red-200);
+        animation: borderColorCycle 0.5s ease-in-out infinite alternate;
+    }
+
     @keyframes slide-from-right {
         from {
             transform: translateX(100%);
@@ -490,9 +543,9 @@ nav .logo {
     }
 }
 
-/*---Navigation---*/
-
-/*---Topic HTML---*/
+/*
+Styles for topic.html
+*/
 /* parallax effect adapated from https://www.youtube.com/watch?v=mxHoPYFsTuk&t */
 .topic-wrapper {
     height: 100vh;
@@ -829,8 +882,6 @@ nav .logo {
         padding: 0; /*make caption move back from the right*/
     }
 }
-
-/*---Topic HTML---*/
 
 /*
 Specific styles for quiz.html
