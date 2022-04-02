@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Article about MP3 format" />
-    <meta name="keywords" content="MP3 format" />
-    <meta name="author" content="HTML Bois" />
-    <title>MP3 Format</title>
+    <meta name="description" content="Quiz on MP3 format"/>
+    <meta name="keywords" content="MP3 format, quiz"/>
+    <meta name="author" content="Peter Farmer, Kien Quoc Mai, Yong Yuan Chong, Keath Kor"/>
+    <title>MP3 Quiz</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,500;1,500&family=Gravitas+One&family=Luckiest+Guy&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400&display=swap" rel="stylesheet">
@@ -19,26 +19,26 @@
 <body>
     <header>
         <nav>
-            <h1>HB</h1>
+            <div class="logo">HB</div>
 
-            <section class="menu">
+            <div class="menu">
                 <div class="menu__hamburger">
                     <div></div>
                     <div></div>
                     <div></div>
                 </div>
                 <ul class="menu__list">
-                    <li><a id="index-page" href="index.html#index-page">Home</a></li>
-                    <li><a id="topic-page" href="topic.html#topic-page">Topic</a></li>
+                    <li><a href="index.html#index-page">Home</a></li>
+                    <li><a href="topic.html#topic-page">Topic</a></li>
                     <li><a id="quiz-page" href="quiz.html#quiz-page">Quiz</a></li>
-                    <li><a id="enhancement-page" href="enhancements.html#enhancement-page">Enhancement</a></li>
+                    <li><a href="enhancements.html#enhancement-page">Enhancements</a></li>
                 </ul>
-            </section>
+            </div>
         </nav>
     </header>
     <main class="quiz-main">
 
-        <h2 class="quiz-h2">MP3 Quiz</h2>
+        <h1 class="quiz-h2">MP3 Quiz</h1>
 
         <form method="post" action="https://mercury.swin.edu.au/it000000/formtest.php">
             <fieldset class="quiz-fieldset"><legend class="quiz-fieldset__legend">Student Information</legend>
@@ -47,24 +47,29 @@
                 <!--letters + spaces only for first name and last name-->
                 <!--numbers only for student ID-->
                 <label for="fname" class="quiz-fieldset__label">First Name</label>
-                <input type="text" name="fname" id="fname" class="quiz-input__text--info" pattern="^[a-zA-Z\s]{1,30}$" placeholder="Steve" title="Please enter upper or lower case letters only, spaces are allowed. Maximum 30 characters" required />
+                <input type="text" name="fname" id="fname" class="quiz-input__text--info" pattern="^[a-zA-Z\s-]{1,30}$" placeholder="Steve" title="Please enter upper or lower case letters only, spaces are allowed. Maximum 30 characters" required />
                 <br />
                 <label for="lname" class="quiz-fieldset__label">Last Name</label>
-                <input type="text" name="lname" id="lname" class="quiz-input__text--info" pattern="^[a-zA-Z\s]{1,30}$" placeholder="Johnson" title="Please enter upper or lower case letters only, spaces are allowed. Maximum 30 characters" required />
+                <input type="text" name="lname" id="lname" class="quiz-input__text--info" pattern="^[a-zA-Z\s-]{1,30}$" placeholder="Johnson" title="Please enter upper or lower case letters only, spaces are allowed. Maximum 30 characters" required />
                 <br />
                 <label for="sid" class="quiz-fieldset__label">Student ID</label>
                 <input type="text" name="sid" id="sid" class="quiz-input__text--info" pattern="^[0-9]{7,10}$" placeholder="102654312" title="Please enter between 7 and 10 numbers only." required />
             </fieldset>
 
-            <div class="quiz-graphic">
-                <span>Q</span>
-                <span>U</span>
-                <span>I</span>
-                <span>Z</span>
-                <span>T</span>
-                <span>I</span>
-                <span>M</span>
-                <span>E</span>
+            <div class="quiz-graphicContainer enhancement" id="quiz-graphic">
+                <svg>
+                    <rect rx=10 ry=10 width=7.2em height=2.5em></rect>
+                </svg>
+                <div class="quiz-graphic">
+                    <span>Q</span>
+                    <span>U</span>
+                    <span>I</span>
+                    <span>Z</span>
+                    <span>T</span>
+                    <span>I</span>
+                    <span>M</span>
+                    <span>E</span>
+                </div>
             </div>
 
             <fieldset class="quiz-fieldset"><legend class="quiz-fieldset__legend quiz-fieldset__legend--questions">Questions</legend>
@@ -257,35 +262,35 @@
             <section class="footer__card">
                 <img src="./images/peter.png" alt="Peter Farmer's avatar">
                 <div>
-                    <div>Peter Farmer</div>
+                    <h3>Peter Farmer</h3>
                     <a href="mailto:102573805@student.swin.edu.au">Email me !!</a>
                 </div>
             </section>
             <section class="footer__card">
                 <img src="./images/keath.png" alt="Keath Kor's avatar">
                 <div>
-                    <div>Keath Kor</div>
+                    <h3>Keath Kor</h3>
                     <a href="mailto:103844324@student.swin.edu.au">Email me !!</a>
                 </div>
             </section>
             <section class="footer__card">
                 <img src="./images/yongyuan.png" alt="Yong Yuan Chong's avatar">
                 <div>
-                    <div>Yong Yuan Chong</div>
+                    <h3>Yong Yuan Chong</h3>
                     <a href="mailto:101224021@student.swin.edu.au">Email me !!</a>
                 </div>
             </section>
             <section class="footer__card">
                 <img src="./images/quoc.png" alt="Kien Quoc Mai's avatar">
                 <div>
-                    <div>Kien Quoc Mai</div>
+                    <h3>Kien Quoc Mai</h3>
                     <a href="mailto:103532920@student.swin.edu.au">Email me !!</a>
                 </div>
             </section>
             <section class="footer__card">
                 <img src="./images/orson.png" alt="Orson Routt's avatar">
                 <div>
-                    <div>Orson Routt</div>
+                    <h3>Orson Routt</h3>
                     <a href="mailto:103575527@student.swin.edu.au">Email me !!</a>
                 </div>
             </section>

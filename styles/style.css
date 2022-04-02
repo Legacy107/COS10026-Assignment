@@ -1,3 +1,11 @@
+/*
+filename: style.css
+author: Peter Farmer, Orson Routt, Kien Quoc Mai, Yong Yuan Chong, Keath Kor
+created: 03/03/2022
+last modified: 02/04/2022
+description: CSS styling for all 4 pages including navbar and footer
+*/
+
 *,
 *:after,
 *:before {
@@ -14,9 +22,12 @@ body {
     --green-500: hsla(171, 52%, 52%, 1);
     --cyan-300: hsla(198, 81%, 36%, 1); /* button hover */
     --cyan-400: hsla(198, 76%, 31%, 1);
+    --cyan-400-transparent: hsla(198, 76%, 31%, 0.2);
     --black-400: hsla(200, 96%, 10%, 1);
     --gray-300: hsla(0, 0%, 77%, 1);
     --gray-400: hsla(200, 9%, 72%, 1);
+    --red-200: hsla(0, 67%, 76%, 1);
+    --lime-300: rgb(172, 220, 127);
     background-color: var(--green-100);
 }
 
@@ -36,7 +47,7 @@ main > * {
     }
 }
 
-h1 {
+h1, .logo {
     font: 400 2rem/1.2em "Gravitas One", cursive;
 }
 
@@ -45,7 +56,7 @@ h2 {
 }
 
 button {
-    font-weight: 700; /* unfinished style - merge with actual button style */
+    font-weight: 700;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
@@ -60,15 +71,54 @@ button:hover {
 }
 
 main {
-    min-width: 375px;
+    min-width: 300px;
     min-height: 100vh;
     padding-bottom: 5rem;
 }
 
-/*
-Specific styles for topic.html
-*/
+/* animation applied on enhancements when being targeted */
+.enhancement:target {
+    padding: 1rem;
+    border: 0.5rem dashed var(--red-200);
+    animation: borderColorCycle 0.5s ease-in-out infinite alternate;
+}
 
+@keyframes borderColorCycle {
+    from {
+        border-color: var(--lime-300);
+    }
+
+    to {
+        border-color: var(--red-200);
+    }
+}
+
+.unsplash {
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
+    color: white;
+    font-weight: 300;
+    font-style: italic;
+    opacity: 0.7;
+}
+
+.unsplash:hover {
+    opacity: 1;
+}
+
+.unsplash a:link,
+.unsplash a:visited {
+    color: white
+}
+
+.unsplash a:hover {
+    color: var(--green-300)
+}
+
+/*
+Specific styles for index.html
+*/
 .intro-h1__large {
     font-family: "Gravitas One", sans-serif;
     font-weight: 400;
@@ -79,11 +129,12 @@ Specific styles for topic.html
 
 .intro-main {
     position: relative;
-    background-color: hsla(0, 0%, 0%, 0.5);
+    background-color: hsla(0, 0%, 0%, 0.7);
     background-blend-mode: darken;
-    background-image: url("../images/intro_background.jpeg");
+    background-image: url("./images/intro_background.jpeg");
     background-size: cover;
-    padding-left: 2em;
+    background-position: center center;
+    padding-left: 3em;
     padding-top: 7em;
     padding-bottom: 7em;
 }
@@ -95,8 +146,9 @@ Specific styles for topic.html
     font-size: 1.5rem;
     position: relative;
     left: 1.5em;
-    width: calc(50% - 2.5em);
-    line-height: 1.4;
+    width: calc(70% - 2.5em);
+    max-width: 60ch;
+    line-height: 1.7;
     padding-top: 0.25em;
     padding-bottom: 0.25em;
     margin: 1.25em 0em 1.75em 0em;
@@ -113,16 +165,30 @@ Specific styles for topic.html
     border-radius: 0.25em;
 }
 
-.intro-button__next {
+.intro-main form {
+    display: flex;
+    gap: 2em;
+    flex-wrap: wrap;
+}
+
+.intro-button {
     font-size: 1.5rem;
     padding: 0.65em 1.25em 0.65em 1.25em;
     border-radius: 0em 1em 0em 1em;
 }
 
+.intro-button--video {
+    font-size: 1.5rem;
+    padding: 0.65em 1.25em 0.65em 1.25em;
+    border-radius: 0em 1em 0em 1em;
+    background-color: var(--cyan-400-transparent);
+    border: 2px solid var(--cyan-400);
+}
+
 /* tablet style changes */
 @media only screen and (max-width: 850px) {
     .intro-main {
-        padding-left: 1em;
+        padding-left: 2em;
     }
 
     .intro-p__line {
@@ -147,7 +213,7 @@ Specific styles for topic.html
         visibility: hidden;
     }
 
-    .intro-button__next {
+    .intro-button {
         width: calc(100% - 1em);
         font-size: 1.4rem;
         padding: 0.6em 1.15em 0.6em 1.15em;
@@ -157,70 +223,127 @@ Specific styles for topic.html
 /*
 Specific styles for enhancements.html
 */
-
 .enhancements-main__title {
     padding-left: clamp(5px, 2vw, 2em);
     margin-block: 1.5em;
 }
 
-.enhancements-main article {
+.enhancements-main section {
     display: flex;
     flex-direction: row;
     align-items: stretch;
 }
 
-.enhancements-main section {
+.enhancements-main section > div {
     flex: 1 1 50%;
 }
 
-.enhancements-main article:nth-child(2n + 1) {
+.enhancements-main section:nth-child(2n + 1) {
     flex-direction: row-reverse;
 }
 
-.enhancements-main article:not(article:first-of-type) {
+.enhancements-main section:not(section:first-of-type) {
     margin-top: 10em;
 }
 
-.nhancements-article__demo {
+.enhancements-article__demo {
     position: relative;
     align-self: stretch;
     display: grid;
     place-items: center;
 }
 
-.nhancements-article__demoImg {
+.enhancements-article__demoImg {
     border: 5px solid var(--green-500);
     transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
 }
 
-.nhancements-article__demoImg:hover {
+.enhancements-article__demoImg:hover {
     transform: scale(1.25);
-    z-index: 100;
+    z-index: 5;
     box-shadow: 0 0 5px 5px var(--gray-300);
 }
 
-#enhancements-desktopDemo {
+.enhancements-article__demo > a:hover {
+    z-index: 5;
+}
+
+#enhancements-desktopLayoutDemo {
     width: 30%;
     min-width: 15em;
-    max-width: 25em;
+    max-width: 22.5em;
     position: absolute;
     transform: translate(-40%, -15%);
 }
 
-#enhancements-tabletDemo {
-    width: 23%;
+#enhancements-desktopLayoutDemo:hover {
+    transform: translate(-40%, -15%) scale(1.25);
+}
+
+#enhancements-tabletLayoutDemo {
+    width: 21%;
     min-width: 11em;
-    max-width: 20em;
+    max-width: 17em;
     position: absolute;
     transform: translate(0, 35%);
 }
 
-#enhancements-mobileDemo {
-    width: 15%;
-    min-width: 7em;
-    max-width: 13em;
+#enhancements-tabletLayoutDemo:hover {
+    transform: translate(0, 35%) scale(1.25);
+}
+
+#enhancements-mobileLayoutDemo {
+    width: 13%;
+    min-width: 6.5em;
+    max-width: 9.5em;
     position: absolute;
     transform: translate(80%, -5%);
+}
+
+#enhancements-mobileLayoutDemo:hover {
+    transform: translate(80%, -5%) scale(1.25);
+}
+
+.enhancements-article__demo > a {
+    position: absolute;
+    width: 40%;
+    min-width: 15em;
+    max-width: 22.5em;
+}
+
+.enhancements-article__demo > a:nth-child(2) {
+    width: 20%;
+    min-width: 7em;
+    max-width: 10em;
+}
+
+.enhancements-article__demo img[id*="AnimationDemo"],
+#parallaxDemoparallaxDemo {
+    width: 100%;
+}
+
+#enhancements-bouncingAnimationDemo {
+    transform: translate(-40%, -15%);
+}
+
+#enhancements-bouncingAnimationDemo:hover {
+    transform: translate(-40%, -15%) scale(1.25);
+}
+
+#enhancements-enteringAnimationDemo {
+    transform: translate(0, 30%);
+}
+
+#enhancements-enteringAnimationDemo:hover {
+    transform: translate(0, 30%) scale(1.25);
+}
+
+#enhancements-navbarAnimationDemo {
+    transform: translate(80%, 0);
+}
+
+#enhancements-navbarAnimationDemo:hover {
+    transform: translate(80%, -5%) scale(1.25);
 }
 
 .enhancements-article__description {
@@ -237,7 +360,6 @@ Specific styles for enhancements.html
 
 .enhancements-article__description > p {
     color: white;
-    font-weight: 300;
 }
 
 @media screen and (min-width: 650px) and (max-width: 850px) {
@@ -251,11 +373,11 @@ Specific styles for enhancements.html
         font-size: 1.5rem;
     }
 
-    .enhancements-main article {
+    .enhancements-main section {
         flex-direction: column;
     }
 
-    .enhancements-main article:nth-child(2n + 1) {
+    .enhancements-main section:nth-child(2n + 1) {
         flex-direction: column;
     }
 
@@ -269,7 +391,7 @@ Specific styles for enhancements.html
         padding-inline: 2.5em;
     }
 
-    .enhancements-main article:not(article:first-of-type) {
+    .enhancements-main section:not(section:first-of-type) {
         margin-top: 2em;
     }
 }
@@ -277,7 +399,6 @@ Specific styles for enhancements.html
 /*
 Styles for footer
 */
-
 .footer__container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(11em, 1fr));
@@ -285,15 +406,18 @@ Styles for footer
 }
 
 footer {
-   background-color: #13678A;
-   color: white; 
-   font-size: medium;
-   padding: 2.5em 2em 3em 2em;
+    font-style: italic;
+    background-color: #13678A;
+    color: white;
+    font-size: medium;
+    padding: 2.5em 2em 3em 2em;
 }
 
 .footer__header {
     color: var(--green-300);
     margin-bottom: 0.8em;
+    text-align: center;
+    font-style: italic;
 }
 
 .footer__card{
@@ -319,7 +443,9 @@ footer {
     height: 2.5rem;
 }
 
-/*---Navigation---*/
+/*
+Styles for navbar
+*/
 header {
     position: sticky;
     top: 0;
@@ -340,12 +466,13 @@ nav > * {
     pointer-events: all;
 }
 
-nav h1 {
+nav .logo {
     color: var(--green-300);
 }
 
 .menu__list {
     font-size: 1.2em;
+    font-weight: 500;
     display: flex;
     gap: 1em;
 }
@@ -414,6 +541,10 @@ nav h1 {
 }
 
 @media screen and (max-width: 650px) {
+    nav {
+        padding: 1em 1.8em;
+    }
+
     .menu__hamburger {
         display: flex;
         flex-direction: column;
@@ -430,12 +561,30 @@ nav h1 {
         top: 0;
         width: 50%;
         height: 100vh;
-        padding: 4em 1.8em;
+        padding: 4em 1.5em;
         background-color: var(--cyan-400);
+        animation: slide-from-right 0.5s ease-out;
     }
 
     .menu__list {
         display: none;
+    }
+
+    #intro-menu:target:hover .menu__list {
+        top: 4.5em;
+        padding: 1rem;
+        border: 0.5rem dashed var(--red-200);
+        animation: borderColorCycle 0.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes slide-from-right {
+        from {
+            transform: translateX(100%);
+        }
+
+        to {
+            transform: translateX(0);
+        }
     }
 
     .menu__list li {
@@ -443,9 +592,10 @@ nav h1 {
     }
 }
 
-/*---Navigation---*/
-
-/*---Topic HTML---*/
+/*
+Styles for topic.html
+*/
+/* parallax effect adapated from https://www.youtube.com/watch?v=mxHoPYFsTuk&t */
 .topic-wrapper {
     height: 100vh;
     overflow-y: auto;
@@ -466,7 +616,7 @@ nav h1 {
 .topic-hero__img {
     background-color: hsla(0, 0%, 0%, 0.5);
     background-blend-mode: darken;
-    background-image: url("../images/intro_background.jpeg");
+    background-image: url("./images/intro_background.jpeg");
     background-size: cover;
     background-position: center;
 
@@ -478,12 +628,17 @@ nav h1 {
     transform: translateZ(-10px) scale(2); /* move back -10px behind the screen and scale back by 2 */
     top: -30vh;
 }
+/* end of parallax effect adapated from https://www.youtube.com/watch?v=mxHoPYFsTuk&t */
 
 .topic-hero__title {
     position: absolute;
     bottom: 1.8em;
     left: 0.8em;
     color: var(--green-300);
+}
+
+.topic-hero .unsplash {
+    top: 2em;
 }
 
 .topic-main {
@@ -497,6 +652,7 @@ nav h1 {
     column-gap: 5%; /*left-right gaps*/
     grid-template-columns: 0% 90% 0%; /*width of 2 columns*/
     grid-template-areas: /*how the stuff is arranged*/
+        ". title ."
         ". history ."
         ". owner ."
         "image image image"
@@ -526,6 +682,11 @@ nav h1 {
     margin: 2em 0;
 }
 
+#topic-title {
+    grid-area: title;
+    margin-bottom: 1.5em;
+}
+
 #topic-history::before {
     content: " ";
     position: absolute;
@@ -552,11 +713,15 @@ nav h1 {
 
 #topic-image img {
     width: 100%; /*full length*/
-    max-height: 35em;
+    max-height: 40em;
     border-radius: 0 0.8em 0 0.8em; /*top-left, top-right, bottom-right, bottom-left*/
+    border: 5px solid var(--green-500);
+    padding: 0.8em;
 }
 
 #topic-image figcaption {
+    font: italic 300 0.9rem/1rem 'Poppins', sans-serif;
+    margin-top: 1em;
     padding: 0 5%; /*make caption move to the right*/
 }
 
@@ -588,12 +753,12 @@ nav h1 {
 
 #topic-table table tr td {
     padding: 1em; /*give space for items*/
+    text-align: center;
 }
 
 #topic-table table tr td:first-child {
     /*all tr's first td*/
     font-weight: bold;
-    text-align: center;
 }
 
 #topic-table table tr:nth-child(even) {
@@ -640,8 +805,16 @@ nav h1 {
     box-shadow: 0.5em 0.5em 1em rgb(0 0 0 / 30%); /*left-right, top-bottom, density, size, color*/
 }
 
+#topic-aside h2 {
+    margin-bottom: 0.8em;
+}
+
 #topic-aside ul {
-    padding-left: 2em; /*make the bullet points move to the right*/
+    padding-left: 1.4em; /*make the bullet points move to the right*/
+}
+
+#topic-aside ul li {
+    line-height: 2;
 }
 
 #topic-aside ul li a:link {
@@ -666,12 +839,13 @@ nav h1 {
 }
 
 .topic-button {
+    text-transform: uppercase;
+    font: 700 1.2rem "Poppins", bold;
     width: 100%; /*setup for text align center*/
     margin: 0 auto; /*text align center*/
     padding: 0.8em 0 0.8em; /*top left-right bottom*/
     color: var(--green-300);
     cursor: pointer; /*set cursor to pointer when hovering*/
-    font: inherit; /*inherit font instead of using button font*/
     background-color: var(--cyan-400);
     border-radius: 0 0.8em 0 0.8em; /*top-left, top-right, bottom-right, bottom-left*/
     box-shadow: 0 0.3em 1em rgb(0 0 0 / 30%); /*left-right, top-bottom, density, size, color*/
@@ -740,14 +914,15 @@ nav h1 {
 
     #topic-article {
         padding: 1em 3em; /*padding follow nav*/
-        grid-template-columns: 65% 0% 25%; /*width of 2 columns*/
+        grid-template-columns: 55% 0% 35%; /*width of 2 columns*/
         grid-template-areas: /*how the stuff is arranged*/
+            "title title title"
             "history . aside"
             "owner . aside"
             "image image image"
             "compare . ."
             "software . ."
-            "table . ."
+            "table table table"
             "term . ."
             "quiz . ."
             "references references references";
@@ -761,8 +936,6 @@ nav h1 {
         padding: 0; /*make caption move back from the right*/
     }
 }
-
-/*---Topic HTML---*/
 
 /*
 Specific styles for quiz.html
@@ -784,14 +957,36 @@ Specific styles for quiz.html
     position: relative;
 }
 
-.quiz-graphic {
+.quiz-graphicContainer {
     position: absolute;
-    right: 10vw;
+    right: 6vw;
     top: 6rem;
-    font: 400 clamp(3rem, 5vw, 4rem) / 2em "Luckiest Guy", cursive;
+    font: 400 clamp(2rem, 5vw, 4rem) / 2em "Luckiest Guy", cursive;
 }
 
-/* animation from https://css-tricks.com/making-css-animations-feel-natural/ */
+.quiz-graphicContainer svg {
+    height: auto;
+    position: absolute;
+    overflow: visible;
+}
+
+.quiz-graphicContainer rect {
+    fill: none;
+    stroke: var(--cyan-300);
+    stroke-width: 8;
+    stroke-dasharray: 30 15 1 15;
+    stroke-linecap: round;
+    animation:
+        dashCycle 3s ease-in-out 0.2s infinite alternate,
+        colorCycle 1.5s ease-in-out 0.2s infinite alternate;
+}
+
+.quiz-graphic {
+    padding: 0.5em;
+}
+
+/* graphic animation
+/* keyframes adapted from https://css-tricks.com/making-css-animations-feel-natural/ */
 @keyframes bouncing {
     0% {
         transform: scale(1, 1) translateY(0);
@@ -821,6 +1016,7 @@ Specific styles for quiz.html
         transform: scale(1, 1) translateY(0);
     }
 }
+/* end of keyframes adapted from https://css-tricks.com/making-css-animations-feel-natural/ */
 
 .quiz-graphic span {
     display: inline-block;
@@ -860,7 +1056,22 @@ Specific styles for quiz.html
     animation-delay: 0.7s;
 }
 
-/* end of bouncing animation */
+@keyframes dashCycle {
+    to {
+        stroke-dashoffset: 500;
+    }
+}
+
+@keyframes colorCycle {
+    from {
+        stroke: var(--cyan-300);
+    }
+
+    to {
+        stroke: var(--green-500);
+    }
+}
+/* end of graphic animation */
 
 .quiz-fieldset {
     border: none;
@@ -874,7 +1085,7 @@ Specific styles for quiz.html
 
 .quiz-fieldset__legend {
     font: 500 1.325rem/1.26em "Gelasio", serif;
-    color: var(--green-500);
+    color: var(--cyan-400);
     margin: 2rem 0 1rem 5%;
 }
 
@@ -882,7 +1093,7 @@ Specific styles for quiz.html
 .quiz-fieldset__legend::after {
     content: "";
     float: left;
-    background: var(--green-500);
+    background: var(--cyan-400);
     width: 158%;
     height: 5px;
     border-radius: 3px;
@@ -995,7 +1206,7 @@ answer */
 
 /*following concerns button redressing and usability */
 .quiz-label__answer {
-    font-family: "poppins";
+    font-family: "Poppins", sans-serif;
     cursor: pointer;
 }
 
@@ -1005,7 +1216,6 @@ answer */
     height: 25px;
     width: 25px;
     background-color: var(--gray-300);
-    vertical-align: middle;
     border-radius: 0 7.5px 0 7.5px;
     cursor: pointer;
     margin-right: 1rem;
@@ -1023,6 +1233,7 @@ answer */
     left: 10%;
     top: 10%;
     display: none; /*hides the checkmark so it only shows when its been clicked*/
+    vertical-align: middle;
 }
 
 .quiz-checkbox:hover {
@@ -1049,10 +1260,10 @@ answer */
     height: 25px;
     width: 25px;
     background-color: var(--gray-300);
-    vertical-align: middle;
     position: relative;
     cursor: pointer;
     margin-right: 1rem;
+    vertical-align: middle;
 }
 
 .quiz-radio:hover {
@@ -1091,8 +1302,8 @@ answer */
     position: relative;
     border: none;
     margin: 1rem 0 0 5%;
-    padding: 0.5rem 1.2rem;
-    font: 700 1.5rem "poppins", bold;
+    padding: 0.6em 1.2em;
+    font: 700 1.2rem "Poppins", sans-serif, bold;
     border-radius: 0 12.5px 0 12.5px;
     background-color: var(--cyan-400);
     color: var(--green-300);
@@ -1101,13 +1312,14 @@ answer */
 }
 
 .quiz-submit:hover {
-    background-color: var(--green-500);
+    background-color: var(--cyan-300);
 }
 
 @media screen and (max-width: 850px) {
-    .quiz-graphic {
+    .quiz-graphicContainer {
         position: static;
-        margin: 4rem 0 2rem 5%;
+        margin: 4rem 0 1.5rem 6%;
+        font-size: clamp(2rem, 10vw, 4rem)
     }
 
     /*changes quiz sections from left/right to top/bottom*/

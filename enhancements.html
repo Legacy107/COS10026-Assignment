@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Enhancements page for the HTML Boys' MP3 website."/>
     <meta name="keywords" content="HTML, CSS, Enhancements"/>
-    <meta name="author" content="HTML Bois"/>
-    <title>MP3 Format</title>
+    <meta name="author" content="Kien Quoc Mai, Yong Yuan Chong, Keath Kor"/>
+    <title>Enhancements</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,52 +17,83 @@
 <body>
     <header>
         <nav>
-            <h1>HB</h1>
+            <div class="logo">HB</div>
 
-            <section class="menu">
+            <div class="menu">
                 <div class="menu__hamburger">
                     <div></div>
                     <div></div>
                     <div></div>
                 </div>
                 <ul class="menu__list">
-                    <li><a id="index-page" href="index.html#index-page">Home</a></li>
-                    <li><a id="topic-page" href="topic.html#topic-page">Topic</a></li>
-                    <li><a id="quiz-page" href="quiz.html#quiz-page">Quiz</a></li>
-                    <li><a id="enhancement-page" href="enhancements.html#enhancement-page">Enhancement</a></li>
+                    <li><a href="index.html#index-page">Home</a></li>
+                    <li><a href="topic.html#topic-page">Topic</a></li>
+                    <li><a href="quiz.html#quiz-page">Quiz</a></li>
+                    <li><a id="enhancement-page" href="enhancements.html#enhancement-page">Enhancements</a></li>
                 </ul>
-            </section>
+            </div>
         </nav>
     </header>
 
     <main class="enhancements-main">
         <h1 class="enhancements-main__title">Enhancements</h1>
 
-        <article>
-            <section class="nhancements-article__demo">
-                <img class="nhancements-article__demoImg" id="enhancements-desktopDemo" src="images/desktop-index.jpg" alt="desktop version of index page">
-                <img class="nhancements-article__demoImg" id="enhancements-mobileDemo" src="images/mobile-index.jpg" alt="mobile version of index page">
-                <img class="nhancements-article__demoImg" id="enhancements-tabletDemo" src="images/tablet-index.jpg" alt="tablet version of index page">
-            </section>
+        <section>
+            <div class="enhancements-article__demo">
+                <img class="enhancements-article__demoImg" id="enhancements-desktopLayoutDemo" src="images/desktop-index.jpg" alt="desktop version of index page">
+                <img class="enhancements-article__demoImg" id="enhancements-mobileLayoutDemo" src="images/mobile-index.jpg" alt="mobile version of index page">
+                <img class="enhancements-article__demoImg" id="enhancements-tabletLayoutDemo" src="images/tablet-index.jpg" alt="tablet version of index page">
+            </div>
 
-            <section class="enhancements-article__description">
+            <div class="enhancements-article__description">
                 <h2>Responsive Design</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tortor est, interdum at lectus id, mattis posuere dolor. Maecenas at lacus justo. Phasellus vel porttitor risus. Sed sed orci id sapien faucibus fermentum. Suspendisse semper nisi neque, ut convallis eros tempus at. Fusce condimentum efficitur mattis. Proin posuere lobortis commodo. Aliquam sodales aliquam nulla, at finibus velit lobortis finibus. Sed efficitur in nulla eget sagittis.</p>
-            </section>
-        </article>
+                <p>
+                    Various techniques including the use of media queries, flexbox and grid are utilized
+                    to make the page responsive to different screen layouts e.g. desktop, tablet and mobile layout.
+                    By doing that, the website can be accessed on a variety of devices which enhances user's experience.
+                </p>
+            </div>
+        </section>
 
-        <article>
-            <section class="nhancements-article__demo">
-                <img class="nhancements-article__demoImg" id="enhancements-desktopDemo" src="images/desktop-index.jpg" alt="desktop version of index page">
-                <img class="nhancements-article__demoImg" id="enhancements-mobileDemo" src="images/mobile-index.jpg" alt="mobile version of index page">
-                <img class="nhancements-article__demoImg" id="enhancements-tabletDemo" src="images/tablet-index.jpg" alt="tablet version of index page">
-            </section>
+        <section>
+            <div class="enhancements-article__demo">
+                <a href="./quiz.html#quiz-graphic">
+                    <img class="enhancements-article__demoImg" id="enhancements-bouncingAnimationDemo" src="images/bouncing.gif" alt="bouncing animation demo">
+                </a>
+                <a href="./index.html#intro-menu">
+                    <img class="enhancements-article__demoImg" id="enhancements-navbarAnimationDemo" src="images/navbar.gif" alt="navbar animation demo">
+                </a>
+                <a href="./index.html#intro-main">
+                    <img class="enhancements-article__demoImg" id="enhancements-enteringAnimationDemo" src="images/entering.gif" alt="entering animation demo">
+                </a>
+            </div>
 
-            <section class="enhancements-article__description">
-                <h2>Advanced CSS properties and selectors</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tortor est, interdum at lectus id, mattis posuere dolor. Maecenas at lacus justo. Phasellus vel porttitor risus. Sed sed orci id sapien faucibus fermentum. Suspendisse semper nisi neque, ut convallis eros tempus at. Fusce condimentum efficitur mattis. Proin posuere lobortis commodo. Aliquam sodales aliquam nulla, at finibus velit lobortis finibus. Sed efficitur in nulla eget sagittis.</p>
-            </section>
-        </article>
+            <div class="enhancements-article__description">
+                <h2>Transition and Animation</h2>
+                <p>
+                    Throught out all pages, animation and transition properties are applied on different element
+                    in order to increase the interactivity as well as maintain a smooth and aesthetically pleasing experience.
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <div class="enhancements-article__demo">
+                <a href="./topic.html#topic-hero">
+                    <img class="enhancements-article__demoImg" id="parallaxDemo" src="images/parallax.gif" alt="parallax background">
+                </a>
+            </div>
+
+            <div class="enhancements-article__description">
+                <h2>Parallax effect</h2>
+                <p>
+                    At the top of the topic page, the parallax effect is applied on the image element so that
+                    it is scrolled at a different pace compared to other elements.
+                    This is achieved using 3D transformation.
+                    The parallax effect helps creating a nicer scrolling experience which enhances the overall user's experience of the topic page.
+                </p>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -71,35 +102,35 @@
             <section class="footer__card">
                 <img src="./images/peter.png" alt="Peter Farmer's avatar">
                 <div>
-                    <div>Peter Farmer</div>
+                    <h3>Peter Farmer</h3>
                     <a href="mailto:102573805@student.swin.edu.au">Email me !!</a>
                 </div>
             </section>
             <section class="footer__card">
                 <img src="./images/keath.png" alt="Keath Kor's avatar">
                 <div>
-                    <div>Keath Kor</div>
+                    <h3>Keath Kor</h3>
                     <a href="mailto:103844324@student.swin.edu.au">Email me !!</a>
                 </div>
             </section>
             <section class="footer__card">
                 <img src="./images/yongyuan.png" alt="Yong Yuan Chong's avatar">
                 <div>
-                    <div>Yong Yuan Chong</div>
+                    <h3>Yong Yuan Chong</h3>
                     <a href="mailto:101224021@student.swin.edu.au">Email me !!</a>
                 </div>
             </section>
             <section class="footer__card">
                 <img src="./images/quoc.png" alt="Kien Quoc Mai's avatar">
                 <div>
-                    <div>Kien Quoc Mai</div>
+                    <h3>Kien Quoc Mai</h3>
                     <a href="mailto:103532920@student.swin.edu.au">Email me !!</a>
                 </div>
             </section>
             <section class="footer__card">
                 <img src="./images/orson.png" alt="Orson Routt's avatar">
                 <div>
-                    <div>Orson Routt</div>
+                    <h3>Orson Routt</h3>
                     <a href="mailto:103575527@student.swin.edu.au">Email me !!</a>
                 </div>
             </section>
