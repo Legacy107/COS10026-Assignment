@@ -516,7 +516,7 @@ nav .logo {
 }
 
 .menu__list li a:target::before,
-.menu__list li a:focus {
+.menu__list li a:focus::before {
     width: 100%;
 }
 
