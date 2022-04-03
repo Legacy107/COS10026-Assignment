@@ -317,6 +317,10 @@ Specific styles for enhancements.html
     max-width: 10em;
 }
 
+.enhancements-article__demo > a[href*="topic-hero"] {
+    width: unset;
+}
+
 .enhancements-article__demo img[id*="AnimationDemo"],
 #parallaxDemoparallaxDemo {
     width: 100%;
@@ -574,7 +578,9 @@ nav .logo {
         top: 4.5em;
         padding: 1rem;
         border: 0.5rem dashed var(--red-200);
-        animation: borderColorCycle 0.5s ease-in-out infinite alternate;
+        animation: 
+            slide-from-right 0.5s ease-out,
+            borderColorCycle 0.5s ease-in-out infinite alternate;
     }
 
     @keyframes slide-from-right {
