@@ -317,6 +317,10 @@ Specific styles for enhancements.html
     max-width: 10em;
 }
 
+.enhancements-article__demo > a[href*="topic-hero"] {
+    width: unset;
+}
+
 .enhancements-article__demo img[id*="AnimationDemo"],
 #parallaxDemoparallaxDemo {
     width: 100%;
