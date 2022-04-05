@@ -860,7 +860,6 @@ Styles for topic.html
 #topic-references {
     grid-area: references;
     margin-top: 5em;
-    font-style: italic;
 }
 
 #topic-references ol {
