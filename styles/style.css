@@ -120,7 +120,7 @@ main {
 Specific styles for index.html
 */
 .intro-h1__large {
-    font: 400 3.75rem "Gravitas One";
+    font: 400 3.75rem "Gravitas One", sans-serif;
     letter-spacing: 0.3rem;
     color: var(--green-300);
 }
