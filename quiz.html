@@ -53,7 +53,7 @@
                 <input type="text" name="lname" id="lname" class="quiz-input__text--info" pattern="^[a-zA-Z\s-]{1,30}$" placeholder="Johnson" title="Please enter upper or lower case letters only, spaces are allowed. Maximum 30 characters" required />
                 <br />
                 <label for="sid" class="quiz-fieldset__label">Student ID</label>
-                <input type="text" name="sid" id="sid" class="quiz-input__text--info" pattern="^(\d{7}|\d{10})$" placeholder="0102654312" title="Please enter 7 or 10 digits only." required />
+                <input type="text" name="sid" id="sid" class="quiz-input__text--info" pattern="^(\d{7}|\d{10})$" placeholder="0102654312" title="Please enter 7 to 10 digits." required />
             </fieldset>
 
             <div class="quiz-graphicContainer enhancement" id="quiz-graphic">
@@ -142,7 +142,7 @@
                         <h4 class="quiz-h4">Answer</h4>
                         <div class="quiz-div__answers--grid">
                             <div class="quiz-div__answers" >
-                                <input type="checkbox" name="standards[]" id="MPEG1" value="MPEG 1 Audio layer III" class="quiz-checkbox" checked="checked" />
+                                <input type="checkbox" name="standards[]" id="MPEG1" value="MPEG 1 Audio layer III" class="quiz-checkbox" />
                                 <label for="MPEG1" class="quiz-label__answer">MPEG 1 Audio layer III</label>
                             </div>
                             <div class="quiz-div__answers" >
@@ -176,7 +176,7 @@
                         <h4 class="quiz-h4">Answer</h4>
                         <div class="quiz-div__answers--grid">
                             <div class="quiz-div__answers">
-                                <input type="checkbox" name="decline[]" id="variety_of_devices" value="variety of devices" class="quiz-checkbox" checked="checked" />
+                                <input type="checkbox" name="decline[]" id="variety_of_devices" value="variety of devices" class="quiz-checkbox" />
                                 <label for="variety_of_devices" class="quiz-label__answer">A wider variety of devices</label>
                             </div>
                             <div class="quiz-div__answers" >
@@ -210,8 +210,8 @@
                     <!--Right for Large/ Bottom for small-->
                     <div class="quiz-div__right">
                         <h4 class="quiz-h4">Answer</h4>
-                        <select name="creator" id="potential_creators" class="quiz-selector">
-                            <option value="Please Select an Answer">Please Select an Answer</option>
+                        <select name="creator" id="potential_creators" class="quiz-selector" required>
+                            <option value="">Please Select an Answer</option>
                             <option value="Fraunhofer Society">Fraunhofer Society</option>
                             <option value="Karlheinz Brandenburg">Karlheinz Brandenburg</option>
                             <option value="MPEG">MPEG</option>
