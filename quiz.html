@@ -53,7 +53,7 @@
                 <input type="text" name="lname" id="lname" class="quiz-input__text--info" pattern="^[a-zA-Z\s-]{1,30}$" placeholder="Johnson" title="Please enter upper or lower case letters only, spaces are allowed. Maximum 30 characters" required />
                 <br />
                 <label for="sid" class="quiz-fieldset__label">Student ID</label>
-                <input type="text" name="sid" id="sid" class="quiz-input__text--info" pattern="^\d{7,10}$" placeholder="0102654312" title="Please enter 7 to 10 digits." required />
+                <input type="text" name="sid" id="sid" class="quiz-input__text--info" pattern="^(\d{7}|\d{10})$" placeholder="0102654312" title="Please enter 7 to 10 digits." required />
             </fieldset>
 
             <div class="quiz-graphicContainer enhancement" id="quiz-graphic">
