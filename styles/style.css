@@ -682,7 +682,7 @@ Styles for topic.html
 #topic-software,
 #topic-table,
 #topic-term,
-#topic-aside,
+.topic-main aside,
 #topic-references,
 .topic-form {
     margin: 2em 0;
@@ -803,6 +803,9 @@ Styles for topic.html
 
 #topic-aside {
     grid-area: aside;
+}
+
+.topic-main aside {
     padding: 8%; /*content placement*/
     color: white;
     background-color: var(--cyan-400);
@@ -811,33 +814,42 @@ Styles for topic.html
     box-shadow: 0.5em 0.5em 1em rgb(0 0 0 / 30%); /*left-right, top-bottom, density, size, color*/
 }
 
-#topic-aside h2 {
+.topic-main aside h2 {
     margin-bottom: 0.8em;
 }
 
-#topic-aside ul {
+.topic-main aside ul {
     padding-left: 1.4em; /*make the bullet points move to the right*/
 }
 
-#topic-aside ul li {
+.topic-main aside ul li {
     line-height: 2;
 }
 
-#topic-aside ul li a:link {
+.topic-main aside ul li a:link {
     color: white;
     text-decoration: none;
 }
 
-#topic-aside ul li a:hover {
+.topic-main aside ul li a:hover {
     color: white;
 }
 
-#topic-aside ul li a:visited {
+.topic-main aside ul li a:visited {
     color: white;
 }
 
-#topic-aside ul li a:active {
+.topic-main aside ul li a:active {
     color: white;
+}
+
+#topic-aside--float {
+    display: none;
+    float: right;
+    grid-area: none;
+    width: 30vw;
+    height: 100%;
+    padding: 2em;
 }
 
 .topic-form {
@@ -922,8 +934,8 @@ Styles for topic.html
         grid-template-columns: 55% 0% 35%; /*width of 2 columns*/
         grid-template-areas: /*how the stuff is arranged*/
             "title title title"
-            "history . aside"
-            "owner . aside"
+            "history history history"
+            "owner . ."
             "image image image"
             "compare . ."
             "software . ."
@@ -933,8 +945,17 @@ Styles for topic.html
             "references references references";
     }
 
-    #topic-aside {
+    #topic-history p {
+        display: inline-block;
+        width: 52vw;
+    }
+
+    .topic-main aside {
         max-height: 24em; /*height of aside*/
+    }
+
+    #topic-aside--float {
+        display: block;
     }
 
     #topic-image figcaption {
