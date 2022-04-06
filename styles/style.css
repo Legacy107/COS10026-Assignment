@@ -47,7 +47,7 @@ main > * {
     }
 }
 
-h1, .logo {
+h1 {
     font: 400 2rem/1.2em "Gravitas One", cursive;
 }
 
@@ -457,7 +457,7 @@ header {
     box-shadow: 0 5px 15px 0 var(--black-400);
 }
 
-nav {
+header {
     width: 100%; /*full length nav bar*/
     padding: 1em 3em; /*make space for nav*/
     display: flex;
@@ -470,7 +470,7 @@ nav > * {
     pointer-events: all;
 }
 
-nav .logo {
+header .logo {
     color: var(--green-300);
 }
 
@@ -545,7 +545,7 @@ nav .logo {
 }
 
 @media screen and (max-width: 650px) {
-    nav {
+    header {
         padding: 1em 1.8em;
     }
 
