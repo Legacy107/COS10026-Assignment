@@ -954,6 +954,10 @@ Styles for topic.html
         max-height: 24em; /*height of aside*/
     }
 
+    #topic-aside {
+        display: none;
+    }
+
     #topic-aside--float {
         display: block;
     }
