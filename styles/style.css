@@ -1347,6 +1347,8 @@ answer */
 @media screen and (max-width: 850px) {
     .quiz-graphicContainer {
         position: static;
+        top: initial;
+        right: initial;
         margin: 4rem 0 1.5rem 6%;
         font-size: clamp(2rem, 10vw, 4rem)
     }
