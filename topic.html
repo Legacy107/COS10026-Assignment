@@ -53,11 +53,14 @@
         <main class="topic-main">
             <article id="topic-article"> <!--Grid-->
                 <h2 class="topic-h2__fakeh1" id="topic-title">All you need to know about MP3</h2>
-                <section id="topic-history">
-                    <h2>What is MP3?</h2>
-                    <p>MP3 is a coding format for digital audio.<br/><br/>The MP3 format is named after the MPEG standards, MPEG-1 audio layer 3 and MPEG-2 Audio Layer 3, this is abbreviated to MP3. Additional to the two stated before, there is another unofficial MP3 standard called MPEG 2.5.<br/><br/>The key feature of the MP3 format is the way it goes about compressing digital audio this process enables it to be used in situations with smaller storage space requirements. The type of compression MP3 uses is called lossy data compression.<br/><br/>Lossy data-compression works by removing any small bits of data that aren’t necessary for the audio to be stored, with a secondary goal of this being done without causing any distortions of artifacts in the audio.<br/><br/>This kind of compression does make the original form of the data irretrievable, however, the compressed data can be stored at a much smaller file size than the original information.<br/><br/>Depending on the purpose of the audio, differing amounts of data loss and artifacting can be tolerated. For example, a telephone call can lose more information than a compact disc as the purpose of a telephone call is less dependant on the quality of the audio.<br/><br/>This compression technology has had a long history, and has been involved in many scandals, including plagiarism of popular music by parties with no legal rights to the music.<br/><br/>And while plagiarism hasn't really affected the popularity of the format, newer audio formats and a wider range of technologies such as smartphones and watches, have started to replace older technologies such as the Winamp player, which was a behemoth of the MP3 format in the days of broadband.</p>
-                    <!-- A duplication of aside is needed so that it can float to the right in desktop and belong to the grid layout in smaller screen sizes -->
-                    <aside id="topic-aside--float">
+                <section id="topic-history" class="topic-history">
+                    <!-- wrapper element is needed because history section's children act as article's children on mobile layout -->
+                    <div class="topic-history__content topic-history">
+                        <h2>What is MP3?</h2>
+                        <p>MP3 is a coding format for digital audio.<br/><br/>The MP3 format is named after the MPEG standards, MPEG-1 audio layer 3 and MPEG-2 Audio Layer 3, this is abbreviated to MP3. Additional to the two stated before, there is another unofficial MP3 standard called MPEG 2.5.<br/><br/>The key feature of the MP3 format is the way it goes about compressing digital audio this process enables it to be used in situations with smaller storage space requirements. The type of compression MP3 uses is called lossy data compression.<br/><br/>Lossy data-compression works by removing any small bits of data that aren’t necessary for the audio to be stored, with a secondary goal of this being done without causing any distortions of artifacts in the audio.<br/><br/>This kind of compression does make the original form of the data irretrievable, however, the compressed data can be stored at a much smaller file size than the original information.<br/><br/>Depending on the purpose of the audio, differing amounts of data loss and artifacting can be tolerated. For example, a telephone call can lose more information than a compact disc as the purpose of a telephone call is less dependant on the quality of the audio.<br/><br/>This compression technology has had a long history, and has been involved in many scandals, including plagiarism of popular music by parties with no legal rights to the music.<br/><br/>And while plagiarism hasn't really affected the popularity of the format, newer audio formats and a wider range of technologies such as smartphones and watches, have started to replace older technologies such as the Winamp player, which was a behemoth of the MP3 format in the days of broadband.</p>
+                    </div>
+
+                    <aside id="topic-aside">
                         <h2>Music Download Sites</h2>
                         <ul>
                             <li><a href="https://music.youtube.com/">Youtube Music</a></li>
@@ -141,17 +144,6 @@
                         <dd>A method of data compression in which the size of the file is reduced by eliminating data in the file.</dd>
                     </dl>
                 </section>
-    
-                <aside id="topic-aside">
-                    <h2>Music Download Sites</h2>
-                    <ul>
-                        <li><a href="https://music.youtube.com/">Youtube Music</a></li>
-                        <li><a href="https://bandcamp.com/">Bandcamp</a></li>
-                        <li><a href="https://www.jamendo.com/">Jamendo</a></li>
-                        <li><a href="https://audiomack.com/">Audiomack</a></li>
-                        <li><a href="https://www.mp3juices.cc/">MP3Juices</a></li>
-                    </ul>
-                </aside>
     
                 <form class="topic-form">
                     <button class="topic-button" formaction="./quiz.html#quiz-page">

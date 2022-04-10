@@ -674,14 +674,14 @@ Styles for topic.html
     margin-bottom: 0.8em;
 }
 
-#topic-history,
+.topic-history,
 #topic-owner,
 #topic-image,
 #topic-compare,
 #topic-software,
 #topic-table,
 #topic-term,
-.topic-main aside,
+#topic-aside,
 #topic-references,
 .topic-form {
     margin: 2em 0;
@@ -692,7 +692,7 @@ Styles for topic.html
     margin-bottom: 1.5em;
 }
 
-#topic-history::before {
+.topic-history::before {
     content: " ";
     position: absolute;
     width: 100%; /*full length*/
@@ -702,10 +702,15 @@ Styles for topic.html
     background-color: var(--green-500); /*color*/
 }
 
-#topic-history {
+.topic-history {
     margin-top: 3em;
     grid-area: history;
     position: relative;
+}
+
+/* history section's children act as article's children on mobile layout */
+#topic-history {
+    display: contents;
 }
 
 #topic-owner {
@@ -802,9 +807,6 @@ Styles for topic.html
 
 #topic-aside {
     grid-area: aside;
-}
-
-.topic-main aside {
     padding: 8%; /*content placement*/
     color: white;
     background-color: var(--cyan-400);
@@ -813,42 +815,33 @@ Styles for topic.html
     box-shadow: 0.5em 0.5em 1em rgb(0 0 0 / 30%); /*left-right, top-bottom, density, size, color*/
 }
 
-.topic-main aside h2 {
+#topic-aside h2 {
     margin-bottom: 0.8em;
 }
 
-.topic-main aside ul {
+#topic-aside ul {
     padding-left: 1.4em; /*make the bullet points move to the right*/
 }
 
-.topic-main aside ul li {
+#topic-aside ul li {
     line-height: 2;
 }
 
-.topic-main aside ul li a:link {
+#topic-aside ul li a:link {
     color: white;
     text-decoration: none;
 }
 
-.topic-main aside ul li a:hover {
+#topic-aside ul li a:hover {
     color: white;
 }
 
-.topic-main aside ul li a:visited {
+#topic-aside ul li a:visited {
     color: white;
 }
 
-.topic-main aside ul li a:active {
+#topic-aside ul li a:active {
     color: white;
-}
-
-#topic-aside--float {
-    display: none;
-    float: right;
-    grid-area: none;
-    width: 30vw;
-    height: 100%;
-    padding: 2em;
 }
 
 .topic-form {
@@ -904,7 +897,7 @@ Styles for topic.html
         left: 1.4em;
     }
 
-    #topic-history::before {
+    .topic-history::before {
         width: 26em;
     }
 
@@ -944,21 +937,26 @@ Styles for topic.html
             "references references references";
     }
 
-    #topic-history p {
+    #topic-history {
+        display: initial;
+    }
+
+    .topic-history p {
         display: inline-block;
         width: 52vw;
     }
 
-    .topic-main aside {
-        max-height: 24em; /*height of aside*/
+    .topic-history__content {
+        display: contents;
     }
 
     #topic-aside {
-        display: none;
-    }
-
-    #topic-aside--float {
-        display: block;
+        max-height: 24em; /*height of aside*/
+        float: right;
+        grid-area: none;
+        width: 30vw;
+        height: 100%;
+        padding: 2em;
     }
 
     #topic-image figcaption {
