@@ -1404,3 +1404,87 @@ answer */
         width: 90%;
     }
 }
+
+/*
+Styles for markquiz.html
+*/
+.markquiz-main {
+    background-color: var(--green-100);
+}
+
+.markquiz-main h1 {
+    position: relative;
+    text-align: center;
+    margin: 2em 0;
+}
+
+.markquiz-card:nth-child(2)::before { /*refering to the first section*/
+    content: " ";
+    position: absolute;
+    left: 5em; /*centering*/
+    right: 5em; /*centering*/
+    height: 0.4em;
+    top: -4em; /*placement*/
+    border-radius: 1em; /*edges*/
+    background-color: var(--green-500); /*color*/
+}
+
+.markquiz-card {
+    position: relative;
+    padding: 2em; /*content placement*/
+    margin: 2em auto;
+    width: 60%; /*width for filler sizing*/
+    max-width: 30em; /*max width*/
+    min-width: 20em; /*minimum width*/
+    background-color: var(--green-300);
+    border: var(--cyan-400) solid 0.5em;
+    border-radius: 2em; /*edges*/
+    box-shadow: 0.5em 0.5em 1em rgb(0 0 0 / 30%); /*left-right, top-bottom, density, size, color*/
+}
+
+.markquiz-card h2 {
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.markquiz-card h2::before {
+    content: " ";
+    position: absolute;
+    left: 25%; /*centering*/
+    right: 25%; /*centering*/
+    height: 0.2em;
+    top: 2.5em; /*placement*/
+    border-radius: 1em; /*edges*/
+    background-color: var(--cyan-400); /*color*/
+}
+
+.markquiz-card p {
+    margin: 0.3em;
+}
+
+.markquiz-button {
+    font: 700 1.2rem "Poppins", bold;
+    width: 100%; /*full width*/
+    margin-top: 1em;
+    padding: 0.5em 0; /*top left-right bottom*/
+    color: var(--green-300);
+    cursor: pointer; /*set cursor to pointer when hovering*/
+    background-color: var(--cyan-400);
+    border-radius: 0 0.8em 0 0.8em; /*top-left, top-right, bottom-right, bottom-left*/
+    box-shadow: 0 0.3em 1em rgb(0 0 0 / 30%); /*left-right, top-bottom, density, size, color*/
+}
+
+@media screen and (min-width: 650px) { /*tablet*/
+    .markquiz-card h2 {
+        text-align: left; /*reset centering*/
+    }
+
+    .markquiz-card h2::before {
+        left: auto; /*reset centering*/
+        right: auto; /*reset centering*/
+        width: 3em;
+    }
+}
+
+@media screen and (min-width: 850px) { /*pc*/
+}
