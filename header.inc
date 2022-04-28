@@ -8,10 +8,10 @@
                 <div></div>
             </div>
             <ul class="menu__list">
-                <li><a id="index-page" href="index.html#index-page">Home</a></li>
-                <li><a href="topic.html#topic-page">Topic</a></li>
-                <li><a href="quiz.html#quiz-page">Quiz</a></li>
-                <li><a href="enhancements.html#enhancement-page">Enhancements</a></li>
+                <li><a id="index-page" href="index.php#index-page">Home</a></li>
+                <li><a id="topic-page" href="topic.php#topic-page">Topic</a></li>
+                <li><a id="quiz-page" href="quiz.php#quiz-page">Quiz</a></li>
+                <li><a id="enhancement-page" href="enhancements.php#enhancement-page">Enhancements</a></li>
             </ul>
         </div>
     </nav>

@@ -17,9 +17,9 @@
 <body>
     <!-- Wrapper for parallax effect -->
     <div class="topic-wrapper">
-<?php include('header.inc')
-?>
-    
+        <?php include('header.inc')
+        ?>
+
         <section class="topic-hero enhancement" id="topic-hero">
             <div class="topic-hero__img"></div>
             <h2 class="topic-h2__fakeh1 topic-hero__title">THE MP3 FORMAT</h2>
@@ -130,7 +130,7 @@
                 </section>
     
                 <form class="topic-form">
-                    <button class="topic-button" formaction="./quiz.html#quiz-page">
+                    <button class="topic-button" formaction="./quiz.php#quiz-page">
                         Ready for the quiz?
                     </button>
                 </form>
@@ -177,8 +177,8 @@
             </article>
         </main>
 
-<?php include('footer.inc')
-?>
+        <?php include('footer.inc')
+        ?>
     </div>
 </body>
 </html>

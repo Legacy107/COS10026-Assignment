@@ -67,8 +67,8 @@
             </tr>
         </table>
     </main>
+
     <?php include('footer.inc')
     ?>
-   
 </body>
 </html>

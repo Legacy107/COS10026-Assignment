@@ -15,8 +15,8 @@
     <link rel="stylesheet" href="styles/style.css"/>
 </head>
 <body>
-<?php include('header.inc')
-?>
+    <?php include('header.inc')
+    ?>
 
     <main class="markquiz-main">
         <h1>QUIZ COMPLETED!</h1>
@@ -32,7 +32,7 @@
             <p>Date Attempted: </p>
 
             <form class="markquiz-form">
-                <button class="markquiz-button" formaction="./quiz.html#quiz-page">Quiz Page</button>
+                <button class="markquiz-button" formaction="./quiz.php#quiz-page">Quiz Page</button>
             </form>
         </section>
 
@@ -47,13 +47,12 @@
             <p>Date Attempted: </p>
 
             <form class="markquiz-form">
-                <button class="markquiz-button" formaction="./topic.html#topic-page">Topic Page</button>
+                <button class="markquiz-button" formaction="./topic.php#topic-page">Topic Page</button>
             </form>
         </section>
     </main>
-<?php include('footer.inc')
-?>
 
-          
+    <?php include('footer.inc')
+    ?> 
 </body>
 </html>

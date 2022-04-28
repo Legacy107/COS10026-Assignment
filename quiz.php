@@ -17,8 +17,9 @@
     <link rel="stylesheet" href="styles/style.css"/>
 </head>
 <body>
-<?php include('header.inc')
-?>  
+    <?php include('header.inc')
+    ?>
+
     <main class="quiz-main">
 
         <h1 class="quiz-h2">MP3 Quiz</h1>
@@ -237,7 +238,7 @@
         
     </main>
 
-<?php include('footer.inc')
-?> 
+    <?php include('footer.inc')
+    ?> 
 </body>
 </html>

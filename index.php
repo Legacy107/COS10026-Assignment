@@ -15,15 +15,14 @@
     <link rel="stylesheet" href="styles/style.css"/>
 </head>
 <body class="body">
-
-    <?php include('footer.inc')
+    <?php include('header.inc')
     ?>
 
     <main class="intro-main enhancement" id="intro-main">
         <h1 class="intro-h1__large">MP3 FORMAT</h1>
         <p class="intro-p__line">MP3 is a coding format that’s been around for decades, and since its initial standardisation in 1993 has been a consistent part of audio formatting. Its initial creation was led by <i>Karlheinz Brandenburg</i> of the <i>Fraunhofer Society</i>, and it is thanks to him and his group's efforts that MP3 has become the dominant global format that you have certainly used in your life either knowingly or unknowingly. Even in spite of other technologies rising up to contest this mammoth of a format, its still here to stay for a long time.</p>
         <form>
-            <button class="intro-button" value="FIND OUT MORE" formaction="./topic.html#topic-page">FIND OUT MORE</button>
+            <button class="intro-button" value="FIND OUT MORE" formaction="./topic.php#topic-page">FIND OUT MORE</button>
             <button class="intro-button intro-button--video" formaction="https://youtu.be/-Vz2DZYxPwo">VIEW DEMO VIDEO</button>
         </form>
         <p class="unsplash">
@@ -36,8 +35,8 @@
             </a>
         </p>
     </main>
+
     <?php include('footer.inc')
     ?>
-  
 </body>
 </html>

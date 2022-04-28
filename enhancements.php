@@ -36,13 +36,13 @@
 
         <section>
             <div class="enhancements-article__demo">
-                <a href="./quiz.html#quiz-graphic">
+                <a href="./quiz.php#quiz-graphic">
                     <img class="enhancements-article__demoImg" id="enhancements-bouncingAnimationDemo" src="images/bouncing.gif" alt="bouncing animation demo">
                 </a>
-                <a href="./index.html#intro-menu">
+                <a href="./index.php#intro-menu">
                     <img class="enhancements-article__demoImg" id="enhancements-navbarAnimationDemo" src="images/navbar.gif" alt="navbar animation demo">
                 </a>
-                <a href="./index.html#intro-main">
+                <a href="./index.php#intro-main">
                     <img class="enhancements-article__demoImg" id="enhancements-enteringAnimationDemo" src="images/entering.gif" alt="entering animation demo">
                 </a>
             </div>
@@ -55,7 +55,7 @@
 
         <section>
             <div class="enhancements-article__demo">
-                <a href="./topic.html#topic-hero">
+                <a href="./topic.php#topic-hero">
                     <img class="enhancements-article__demoImg" id="parallaxDemo" src="images/parallax.gif" alt="parallax background">
                 </a>
             </div>
