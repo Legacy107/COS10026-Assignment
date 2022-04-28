@@ -36,7 +36,7 @@
 
     <main class="manage-main">
         <h1>Manage Attempts</h1>
-        <form method="post" action="">
+        <form id="manage__filter" method="post" action="manage.php?type=filter">
           <fieldset id="manage__controls">
             <div>
               <label for="fname">First Name</label>
@@ -51,16 +51,17 @@
               <input type="text" id="sid" name="sid"/>
             </div>
             <div>
-              <label for="presets">Presets</label>
-              <select id="presets" name="presets">
+              <label for="filter">Filter Options</label>
+              <select id="filter" name="filter">
                 <option value="all">All</option>
+                <option value="name">By name</option>
+                <option value="sid">By student ID</option>
                 <option value="100_first">100% on first attempt</option>
                 <option value="less_50_second">&lt;50% on second attempt</option>
               </select>
             </div>
+            <input type="submit" value="Filter"/>
           </fieldset>
-          <input type="submit" value="Filter"/>
-          <input type="submit" value="Delete Attempts" id="manage__delete" formaction=""/>
         </form>
 
         <h2>List of Attempts</h2>
@@ -73,7 +74,7 @@
                 <th>Action</th>
             </tr>
             <tr>
-                <form method="post" action="">
+                <form method="post" action="manage.php?type=edit&attempt=AID">
                     <td>123456789</td>
                     <td>John Doe</td>
                     <td>05:00 24/04/2022</td>
@@ -82,6 +83,8 @@
                 </form>
             </tr>
         </table>
+
+        <input type="submit" value="Delete Attempts" id="manage__delete" form="manage__filter" formaction="manage.php?type=delete"/> 
     </main>
 
     <footer>
