@@ -17,25 +17,9 @@
 <body>
     <!-- Wrapper for parallax effect -->
     <div class="topic-wrapper">
-        <header>
-            <h1 class="logo">HB</h1>
-            <nav>
-                <div class="menu">
-                    <div class="menu__hamburger">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
-                    <ul class="menu__list">
-                        <li><a href="index.html#index-page">Home</a></li>
-                        <li><a id="topic-page" href="topic.html#topic-page">Topic</a></li>
-                        <li><a href="quiz.html#quiz-page">Quiz</a></li>
-                        <li><a href="enhancements.html#enhancement-page">Enhancements</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-    
+        <?php include('header.inc')
+        ?>
+
         <section class="topic-hero enhancement" id="topic-hero">
             <div class="topic-hero__img"></div>
             <h2 class="topic-h2__fakeh1 topic-hero__title">THE MP3 FORMAT</h2>
@@ -146,7 +130,7 @@
                 </section>
     
                 <form class="topic-form">
-                    <button class="topic-button" formaction="./quiz.html#quiz-page">
+                    <button class="topic-button" formaction="./quiz.php#quiz-page">
                         Ready for the quiz?
                     </button>
                 </form>
@@ -193,46 +177,8 @@
             </article>
         </main>
 
-        <footer>
-            <h2 class="footer__header">HTML Bois</h2>
-            <div class="footer__container">
-                <section class="footer__card">
-                    <img src="./images/peter.png" alt="Peter Farmer's avatar">
-                    <div>
-                        <h3>Peter Farmer</h3>
-                        <a href="mailto:102573805@student.swin.edu.au">Email me !!</a>
-                    </div>
-                </section>
-                <section class="footer__card">
-                    <img src="./images/keath.png" alt="Keath Kor's avatar">
-                    <div>
-                        <h3>Keath Kor</h3>
-                        <a href="mailto:103844324@student.swin.edu.au">Email me !!</a>
-                    </div>
-                </section>
-                <section class="footer__card">
-                    <img src="./images/yongyuan.png" alt="Yong Yuan Chong's avatar">
-                    <div>
-                        <h3>Yong Yuan Chong</h3>
-                        <a href="mailto:101224021@student.swin.edu.au">Email me !!</a>
-                    </div>
-                </section>
-                <section class="footer__card">
-                    <img src="./images/quoc.png" alt="Kien Quoc Mai's avatar">
-                    <div>
-                        <h3>Kien Quoc Mai</h3>
-                        <a href="mailto:103532920@student.swin.edu.au">Email me !!</a>
-                    </div>
-                </section>
-                <section class="footer__card">
-                    <img src="./images/orson.png" alt="Orson Routt's avatar">
-                    <div>
-                        <h3>Orson Routt</h3>
-                        <a href="mailto:103575527@student.swin.edu.au">Email me !!</a>
-                    </div>
-                </section>
-            </div>
-        </footer>
+        <?php include('footer.inc')
+        ?>
     </div>
 </body>
 </html>
