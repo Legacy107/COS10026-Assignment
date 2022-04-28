@@ -60,18 +60,27 @@
             </div>
           </fieldset>
           <input type="submit" value="Filter"/>
-          <input type="submit" value="Delete Attempts" id="manage__delete"/>
+          <input type="submit" value="Delete Attempts" id="manage__delete" formaction=""/>
         </form>
 
         <h2>List of Attempts</h2>
         <table>
-          <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Date</th>
-              <th>Score</th>
-              <th>Action</th>
-          </tr>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Score</th>
+                <th>Action</th>
+            </tr>
+            <tr>
+                <form method="post" action="">
+                    <td>123456789</td>
+                    <td>John Doe</td>
+                    <td>05:00 24/04/2022</td>
+                    <td><input type="number" value="100"/></td>
+                    <td><input type="submit" value="Edit"/></td>
+                </form>
+            </tr>
         </table>
     </main>
 
