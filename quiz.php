@@ -24,7 +24,7 @@
 
         <h1 class="quiz-h2">MP3 Quiz</h1>
 
-        <form method="post" action="https://mercury.swin.edu.au/it000000/formtest.php">
+        <form method="post" action="mark.php" novalidate>
             <fieldset class="quiz-fieldset"><legend class="quiz-fieldset__legend">Student Information</legend>
 
                 <!--user information-->
