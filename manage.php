@@ -118,7 +118,7 @@
             </tr>
         </table>
 
-        <form action="manage.php?action=delete">
+        <form method="post" action="manage.php?action=delete">
             <input type="hidden" name="username" value="USERNAME"/>
             <input type="hidden" name="password" value="PASSWORD"/>
             <input type="hidden" name="fname" value="FNAME"/> <!-- These are here for the script to authenticate that a legitimate student is selected. -->
