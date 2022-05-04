@@ -20,6 +20,7 @@ body {
     --green-300: hsla(91, 94%, 86%, 1);
     --green-400: hsla(127, 67%, 76%, 1);
     --green-500: hsla(171, 52%, 52%, 1);
+    --cyan-100: hsla(198, 55%, 86%, 1);
     --cyan-300: hsla(198, 81%, 36%, 1); /* button hover */
     --cyan-400: hsla(198, 76%, 31%, 1);
     --cyan-400-transparent: hsla(198, 76%, 31%, 0.2);
@@ -1487,4 +1488,83 @@ Styles for markquiz.html
 }
 
 @media screen and (min-width: 850px) { /*pc*/
+}
+
+/*Following is for login page*/
+
+.login-h1 {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+}
+
+/*centers form on page*/
+.login-form__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form {
+    background: var(--cyan-400);
+    width: 17rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px 15px 0 15px;
+    block-size: auto;
+    padding-bottom: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.login-form > label {
+    position: relative;
+    display: block;
+    font: 700 1rem "Poppins", serif;
+    font-weight: bold;
+    color: var(--green-300);
+    margin-left: 12%;
+}
+
+/*decreases space between first label and top of .login-form div */
+.login-form > label:first-child {
+    margin-top: 1.5rem;
+}
+
+.login-form > input[type="text"] {
+    background: var(--cyan-300);
+    position: relative;
+    padding: 0.5rem 0.5rem;
+    border: 1px var(--green-100) solid;
+    border-radius: 12.5px 12.5px 0 12.5px;
+    font: 400 1rem "Poppins", serif;
+    color: white;
+    width: 85%;
+    cursor: pointer;
+    margin: auto;
+    top: -1rem;
+}
+
+.login-submit {
+    border-radius: 12.5px 12.5px 0 12.5px;
+    border: 2px var(--cyan-400) solid;
+    background-color: var(--cyan-100);
+    color: var(--cyan-400);
+    font: 700 1rem "Poppins", serif;
+    font-weight: bold;
+    width: 17rem;
+    position: relative;
+    display: block;
+    margin: auto;
+    padding: 0.5rem 0;
+    cursor: pointer;
+    margin-bottom: 2rem;
+}
+
+.login-submit:hover {
+    color: white;
+    background-color: var(--cyan-400);
 }
