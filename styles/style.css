@@ -179,9 +179,9 @@ Specific styles for manage.php
 .manage-submit {
     position: relative;
     border: none;
-    width: 10rem;
+    min-width: 10rem;
     margin: 2rem 0rem;
-    padding: 0.2em 0.2em;
+    padding: 0.3em 0.7em;
     font: 700 1rem "Poppins", sans-serif, bold;
     border-radius: 0 9px 0 9px;
     background-color: var(--cyan-400);
@@ -256,6 +256,10 @@ Specific styles for manage.php
 
 #manage-main {
     margin-left: 8rem;
+}
+
+#manage-main * {
+    letter-spacing: 0.05em;
 }
 
 #manage__delete {
