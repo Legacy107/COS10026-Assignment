@@ -15,40 +15,49 @@
     <link rel="stylesheet" href="styles/style.css"/>
 </head>
 <body>
-    <?php include('header.inc')
-    ?>
+    <?php include('header.inc')?>
 
-    <main class="manage-main">
-        <h1>Manage Attempts</h1>
-        <form id="manage__filter" method="post" action="manage.php?type=filter">
-          <fieldset id="manage__controls">
-            <div>
-              <label for="fname">First Name</label>
-              <input type="text" id="fname" name="fname"/>
-            </div>
-            <div>
-              <label for="fname">Last Name</label>
-              <input type="text" id="lname" name="lname"/>
-            </div>
-            <div>
-              <label for="fname">Student ID</label>
-              <input type="text" id="sid" name="sid"/>
-            </div>
-            <div>
-              <label for="filter">Filter Options</label>
-              <select id="filter" name="filter">
-                <option value="all">All</option>
-                <option value="name">By name</option>
-                <option value="sid">By student ID</option>
-                <option value="100_first">100% on first attempt</option>
-                <option value="less_50_second">&lt;50% on second attempt</option>
-              </select>
-            </div>
-            <input type="submit" value="Filter"/>
-          </fieldset>
+    <main id="manage-main">
+        <h1 id="manage__mainheading">Manage Attempts</h1>
+        <form id="manage__filter" method="post" action="manage.php?action=filter">
+            <fieldset id="manage__filters">
+                <div class="manage__filterarea">
+                    <h4>
+                        <label class="manage__label" for="fname">First Name</label>
+                    </h4>
+                    <input type="text" id="fname" class="manage__textinput" name="fname" pattern="^[a-zA-Z\s-]{0,30}$" title="Please enter upper or lower case letters only, spaces are allowed. Maximum 30 characters"/>
+                </div>
+                <div class="manage__filterarea">
+                    <h4>
+                        <label class="manage__label" for="fname">Last Name</label>
+                    </h4>
+                    <input type="text" id="lname" class="manage__textinput" name="lname" pattern="^[a-zA-Z\s-]{0,30}$" title="Please enter upper or lower case letters only, spaces are allowed. Maximum 30 characters"/>
+                </div>
+                <div class="manage__filterarea">
+                    <h4>
+                        <label class="manage__label" for="fname">Student ID</label>
+                    </h4>
+                    <input type="text" id="sid" class="manage__textinput" name="sid" pattern="^(\d{7}|\d{10})?$" title="Please enter 7 or 10 digits."/>
+                </div>
+                <br/>
+                <div class="manage__filterarea">
+                    <h4>
+                        <label class="manage__label" for="filter">Filter Options</label>
+                    </h4>
+                    <select id="filter" name="filter">
+                        <option value="all">All</option>
+                        <option value="name">By name</option>
+                        <option value="sid">By student ID</option>
+                        <option value="100_first">100% on first attempt</option>
+                        <option value="less_50_second">&lt;50% on second attempt</option>
+                    </select>
+                </div>
+            </fieldset>
+            <br/>
+            <input type="submit" class="manage-submit" value="Filter"/>
         </form>
 
-        <h2>List of Attempts</h2>
+        <h2 id="manage__listheading">List of Attempts</h2>
         <table>
             <tr>
                 <th>ID</th>
@@ -58,20 +67,42 @@
                 <th>Action</th>
             </tr>
             <tr>
-                <form method="post" action="manage.php?type=edit&attempt=AID">
-                    <td>123456789</td>
-                    <td>John Doe</td>
-                    <td>05:00 24/04/2022</td>
-                    <td><input type="number" value="100"/></td>
-                    <td><input type="submit" value="Edit"/></td>
+                <td>123456789</td>
+                <td>John Doe</td>
+                <td>05:00 24/04/2022</td>
+                <form method="post" action="manage.php?action=edit">
+                    <input type="hidden" name="attempt" value="AID"/>
+                    <td><input type="number" class="manage-score" name="attempt_value" min="0" max="6" value="6" required/></td>
+                    <td><input type="submit" class="manage-edit" value="Edit"/></td>
+                </form>
+            </tr>
+            <tr>
+                <td>123456789</td>
+                <td>John Doe</td>
+                <td>05:00 24/04/2022</td>
+                <form method="post" action="manage.php?action=edit">
+                    <input type="hidden" name="attempt" value="AID"/>
+                    <td><input type="number" class="manage-score" name="attempt_value" min="0" max="6" value="6" required/></td>
+                    <td><input type="submit" class="manage-edit" value="Edit"/></td>
+                </form>
+            </tr>
+            <tr>
+                <td>123456789</td>
+                <td>John Doe</td>
+                <td>05:00 24/04/2022</td>
+                <form method="post" action="manage.php?action=edit">
+                    <input type="hidden" name="attempt" value="AID"/>
+                    <td><input type="number" class="manage-score" name="attempt_value" min="0" max="6" value="6" required/></td>
+                    <td><input type="submit" class="manage-edit" value="Edit"/></td>
                 </form>
             </tr>
         </table>
 
-        <input type="submit" value="Delete Attempts" id="manage__delete" form="manage__filter" formaction="manage.php?type=delete"/> 
+        <form method="post" action="manage.php?action=delete">
+            <input type="submit" id="manage__delete" class="manage-submit" value="Delete Attempts"/>
+        </form>
     </main>
 
-    <?php include('footer.inc')
-    ?>
+    <?php include('footer.inc')?>
 </body>
 </html>
