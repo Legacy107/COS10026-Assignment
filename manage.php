@@ -72,13 +72,14 @@
                 <td>123456789</td>
                 <td>John Doe</td>
                 <td>05:00 24/04/2022</td>
-                <form method="post" action="manage.php?action=edit&attempt=AID">
+                <form method="post" action="manage.php?action=edit">
                     <input type="hidden" name="username" value="USERNAME"/>
                     <input type="hidden" name="password" value="PASSWORD"/>
-                    <input type="hidden" name="fname" value="FNAME"/>
-                    <input type="hidden" name="lname" value="LNAME"/>
-                    <input type="hidden" name="sid" value="SID"/>
-                    <input type="hidden" name="filter" value="FILTER"/>
+                    <input type="hidden" name="fname" value="FNAME"/> <!-- These are here to redisplay the search after a change. -->
+                    <input type="hidden" name="lname" value="LNAME"/> <!-- * -->
+                    <input type="hidden" name="sid" value="SID"/> <!-- * -->
+                    <input type="hidden" name="filter" value="FILTER"/> <!-- * -->
+                    <input type="hidden" name="attempt" value="AID"/>
                     <td><input type="number" class="manage-score" name="attempt_value" min="0" max="6" value="6" required/></td>
                     <td><input type="submit" class="manage-edit" value="Edit"/></td>
                 </form>
@@ -87,13 +88,14 @@
                 <td>123456789</td>
                 <td>John Doe</td>
                 <td>05:00 24/04/2022</td>
-                <form method="post" action="manage.php?action=edit&attempt=AID">
+                <form method="post" action="manage.php?action=edit">
                     <input type="hidden" name="username" value="USERNAME"/>
                     <input type="hidden" name="password" value="PASSWORD"/>
                     <input type="hidden" name="fname" value="FNAME"/>
                     <input type="hidden" name="lname" value="LNAME"/>
                     <input type="hidden" name="sid" value="SID"/>
                     <input type="hidden" name="filter" value="FILTER"/>
+                    <input type="hidden" name="attempt" value="AID"/>
                     <td><input type="number" class="manage-score" name="attempt_value" min="0" max="6" value="6" required/></td>
                     <td><input type="submit" class="manage-edit" value="Edit"/></td>
                 </form>
@@ -102,13 +104,14 @@
                 <td>123456789</td>
                 <td>John Doe</td>
                 <td>05:00 24/04/2022</td>
-                <form method="post" action="manage.php?action=edit&attempt=AID">
+                <form method="post" action="manage.php?action=edit">
                     <input type="hidden" name="username" value="USERNAME"/>
                     <input type="hidden" name="password" value="PASSWORD"/>
                     <input type="hidden" name="fname" value="FNAME"/>
                     <input type="hidden" name="lname" value="LNAME"/>
                     <input type="hidden" name="sid" value="SID"/>
                     <input type="hidden" name="filter" value="FILTER"/>
+                    <input type="hidden" name="attempt" value="AID"/>
                     <td><input type="number" class="manage-score" name="attempt_value" min="0" max="6" value="6" required/></td>
                     <td><input type="submit" class="manage-edit" value="Edit"/></td>
                 </form>
@@ -118,6 +121,10 @@
         <form action="manage.php?action=delete">
             <input type="hidden" name="username" value="USERNAME"/>
             <input type="hidden" name="password" value="PASSWORD"/>
+            <input type="hidden" name="fname" value="FNAME"/> <!-- These are here for the script to authenticate that a legitimate student is selected. -->
+            <input type="hidden" name="lname" value="LNAME"/> <!-- * -->
+            <input type="hidden" name="sid" value="SID"/> <!-- * -->
+            <input type="hidden" name="filter" value="FILTER"/> <!-- * -->
             <input type="submit" id="manage__delete" class="manage-submit" value="Delete Attempts"/>
         </form>
     </main>
