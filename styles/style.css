@@ -193,10 +193,6 @@ Specific styles for manage.php
     background-color: var(--cyan-300);
 }
 
-.manage-delete {
-    background-color: var(--red-400);
-}
-
 .manage-delete:hover {
     background-color: var(--red-300);
 }
@@ -260,6 +256,10 @@ Specific styles for manage.php
 
 #manage-main {
     margin-left: 8rem;
+}
+
+#manage__delete {
+    background-color: var(--red-400);
 }
 
 /*

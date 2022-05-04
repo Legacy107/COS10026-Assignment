@@ -60,62 +60,66 @@
         </form>
 
         <h2 id="manage__listheading">List of Attempts</h2>
-            <table>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Date</th>
-                    <th>Score</th>
-                    <th>Action</th>
-                </tr>
-                <tr>
-                    <td>123456789</td>
-                    <td>John Doe</td>
-                    <td>05:00 24/04/2022</td>
-                    <form method="post" action="manage.php?action=edit&attempt=AID">
-                        <input type="hidden" name="username" value="USERNAME"/>
-                        <input type="hidden" name="password" value="PASSWORD"/>
-                        <input type="hidden" name="fname" value="FNAME"/>
-                        <input type="hidden" name="lname" value="LNAME"/>
-                        <input type="hidden" name="sid" value="SID"/>
-                        <input type="hidden" name="filter" value="FILTER"/>
-                        <td><input type="number" class="manage-score" name="attempt_value" min="0" max="6" value="6" required/></td>
-                        <td><input type="submit" class="manage-edit" value="Edit"/></td>
-                    </form>
-                </tr>
-                <tr>
-                    <td>123456789</td>
-                    <td>John Doe</td>
-                    <td>05:00 24/04/2022</td>
-                    <form method="post" action="manage.php?action=edit&attempt=AID">
-                        <input type="hidden" name="username" value="USERNAME"/>
-                        <input type="hidden" name="password" value="PASSWORD"/>
-                        <input type="hidden" name="fname" value="FNAME"/>
-                        <input type="hidden" name="lname" value="LNAME"/>
-                        <input type="hidden" name="sid" value="SID"/>
-                        <input type="hidden" name="filter" value="FILTER"/>
-                        <td><input type="number" class="manage-score" name="attempt_value" min="0" max="6" value="6" required/></td>
-                        <td><input type="submit" class="manage-edit" value="Edit"/></td>
-                    </form>
-                </tr>
-                <tr>
-                    <td>123456789</td>
-                    <td>John Doe</td>
-                    <td>05:00 24/04/2022</td>
-                    <form method="post" action="manage.php?action=edit&attempt=AID">
-                        <input type="hidden" name="username" value="USERNAME"/>
-                        <input type="hidden" name="password" value="PASSWORD"/>
-                        <input type="hidden" name="fname" value="FNAME"/>
-                        <input type="hidden" name="lname" value="LNAME"/>
-                        <input type="hidden" name="sid" value="SID"/>
-                        <input type="hidden" name="filter" value="FILTER"/>
-                        <td><input type="number" class="manage-score" name="attempt_value" min="0" max="6" value="6" required/></td>
-                        <td><input type="submit" class="manage-edit" value="Edit"/></td>
-                    </form>
-                </tr>
-          </table>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Score</th>
+                <th>Action</th>
+            </tr>
+            <tr>
+                <td>123456789</td>
+                <td>John Doe</td>
+                <td>05:00 24/04/2022</td>
+                <form method="post" action="manage.php?action=edit&attempt=AID">
+                    <input type="hidden" name="username" value="USERNAME"/>
+                    <input type="hidden" name="password" value="PASSWORD"/>
+                    <input type="hidden" name="fname" value="FNAME"/>
+                    <input type="hidden" name="lname" value="LNAME"/>
+                    <input type="hidden" name="sid" value="SID"/>
+                    <input type="hidden" name="filter" value="FILTER"/>
+                    <td><input type="number" class="manage-score" name="attempt_value" min="0" max="6" value="6" required/></td>
+                    <td><input type="submit" class="manage-edit" value="Edit"/></td>
+                </form>
+            </tr>
+            <tr>
+                <td>123456789</td>
+                <td>John Doe</td>
+                <td>05:00 24/04/2022</td>
+                <form method="post" action="manage.php?action=edit&attempt=AID">
+                    <input type="hidden" name="username" value="USERNAME"/>
+                    <input type="hidden" name="password" value="PASSWORD"/>
+                    <input type="hidden" name="fname" value="FNAME"/>
+                    <input type="hidden" name="lname" value="LNAME"/>
+                    <input type="hidden" name="sid" value="SID"/>
+                    <input type="hidden" name="filter" value="FILTER"/>
+                    <td><input type="number" class="manage-score" name="attempt_value" min="0" max="6" value="6" required/></td>
+                    <td><input type="submit" class="manage-edit" value="Edit"/></td>
+                </form>
+            </tr>
+            <tr>
+                <td>123456789</td>
+                <td>John Doe</td>
+                <td>05:00 24/04/2022</td>
+                <form method="post" action="manage.php?action=edit&attempt=AID">
+                    <input type="hidden" name="username" value="USERNAME"/>
+                    <input type="hidden" name="password" value="PASSWORD"/>
+                    <input type="hidden" name="fname" value="FNAME"/>
+                    <input type="hidden" name="lname" value="LNAME"/>
+                    <input type="hidden" name="sid" value="SID"/>
+                    <input type="hidden" name="filter" value="FILTER"/>
+                    <td><input type="number" class="manage-score" name="attempt_value" min="0" max="6" value="6" required/></td>
+                    <td><input type="submit" class="manage-edit" value="Edit"/></td>
+                </form>
+            </tr>
+        </table>
 
-        <input type="submit" class="manage-submit manage-delete" value="Delete Attempts" id="manage__delete" form="manage__filter" formaction="manage.php?action=delete"/> 
+        <form action="manage.php?action=delete">
+            <input type="hidden" name="username" value="USERNAME"/>
+            <input type="hidden" name="password" value="PASSWORD"/>
+            <input type="submit" id="manage__delete" class="manage-submit" value="Delete Attempts"/>
+        </form>
     </main>
 
     <?php include('footer.inc')?>
