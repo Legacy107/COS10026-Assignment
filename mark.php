@@ -1,38 +1,43 @@
 <?php
-    if (isset($_POST["fname"])) { //text alpha
-        $fname = $_POST["fname"];
-    }
+    function GetData() {
+        $dataArray = array();
+        if (isset($_POST["fname"])) { //text alpha
+            array_push($dataArray, $_POST["fname"]);
+        }
 
-    if (isset($_POST["lname"])) { //text alpha
-        $lname = $_POST["lname"];
-    }
+        if (isset($_POST["lname"])) { //text alpha
+            array_push($dataArray, $_POST["lname"]);
+        }
 
-    if (isset($_POST["sid"])) { //text numeric
-        $sid = $_POST["sid"];
-    }
+        if (isset($_POST["sid"])) { //text numeric
+            array_push($dataArray, $_POST["sid"]);
+        }
 
-    if (isset($_POST["MPEG"])) { //text alpha
-        $mpeg = $_POST["MPEG"];
-    }
+        if (isset($_POST["MPEG"])) { //text alpha
+            array_push($dataArray, $_POST["MPEG"]);
+        }
 
-    if (isset($_POST["years"])) { //radio
-        $years = $_POST["years"];
-    }
+        if (isset($_POST["years"])) { //radio
+            array_push($dataArray, $_POST["years"]);
+        }
 
-    if (isset($_POST["standards"])) { //checkbox
-        $standards = $_POST["standards"];
-    }
+        if (isset($_POST["standards"])) { //checkbox
+            array_push($dataArray, $_POST["standards"]);
+        }
 
-    if (isset($_POST["decline"])) { //checkbox
-        $decline = $_POST["decline"];
-    }
+        if (isset($_POST["decline"])) { //checkbox
+            array_push($dataArray, $_POST["decline"]);
+        }
 
-    if (isset($_POST["creator"])) { //select
-        $creator = $_POST["creator"];
-    }
+        if (isset($_POST["creator"])) { //select
+            array_push($dataArray, $_POST["creator"]);
+        }
 
-    if (isset($_POST["compression"])) { //radio
-        $compression = $_POST["compression"];
+        if (isset($_POST["compression"])) { //radio
+            array_push($dataArray, $_POST["compression"]);
+        }
+
+        return $dataArray;
     }
 
     //Sanitise
@@ -40,91 +45,77 @@
 
 
     //Mark data to points
-    echo "<p>Name: $fname $lname</p>"; //delete later
-    echo "<p>ID: $sid</p>"; //delete later
+    function MarkQuestion($dataArray) {
+        $totalPoints = 0;
 
-    $totalPoints = 0;
-
-    if ($mpeg == "Moving Picture Experts Group") {
-        $totalPoints += 1;
-        echo "<p>MPEG YES</p>"; //delete later
-    }
-    echo "$mpeg<br>"; //delete later
-    
-    if ($years == "1995 / 1998") {
-        $totalPoints += 1;
-        echo "<p>Years YES</p>"; //delete later
-    }
-    echo "$years<br>"; //delete later
-
-    $pointStandards = 0;
-    for ($i=0; $i<count($standards); $i++) {
-        if ($standards[$i] == "MPEG 1 Audio layer III") {
-            $pointStandards += 0.5;
-            echo "<p>Standards1 YES</p>"; //delete later
-        }
-
-        if ($standards[$i] == "MPEG 2 Audio Layer III") {
-            $pointStandards += 0.5;
-            echo "<p>Standards2 YES</p>"; //delete later
-        }
-
-        if ($standards[$i] == "MPEG 2.5 Audio Layer III") {
-            $pointStandards -= 0.5;
-        }
-
-        if ($standards[$i] == "MPEG 3 Audio Layer III") {
-            $pointStandards -= 0.5;
+        if ($dataArray[3] == "Moving Picture Experts Group") {
+            $totalPoints += 1;
         }
         
-        echo $standards[$i]; //delete later
-    }
-    if ($pointStandards > 0) { //If have points, add to total points
-        $totalPoints += $pointStandards;
-    }
-    echo "<br>"; //delete later
-
-    $pointDecline = 0;
-    for ($j=0; $j<count($decline); $j++) {
-        if ($decline[$j] == "variety of devices") {
-            $pointDecline += 0.5;
-            echo "<p>Decline1 YES</p>"; //delete later
+        if ($dataArray[4] == "1995 / 1998") {
+            $totalPoints += 1;
         }
 
-        if ($decline[$j] == "legal issues") {
-            $pointDecline -= 0.5;
+        $pointStandards = 0;
+        for ($i=0; $i<count($dataArray[5]); $i++) {
+            if (($dataArray[5])[$i] == "MPEG 1 Audio layer III") {
+                $pointStandards += 0.5;
+            }
+
+            if (($dataArray[5])[$i] == "MPEG 2 Audio Layer III") {
+                $pointStandards += 0.5;
+            }
+
+            if (($dataArray[5])[$i] == "MPEG 2.5 Audio Layer III") {
+                $pointStandards -= 0.5;
+            }
+
+            if (($dataArray[5])[$i] == "MPEG 3 Audio Layer III") {
+                $pointStandards -= 0.5;
+            }
+        }
+        if ($pointStandards > 0) { //If have points, add to total points
+            $totalPoints += $pointStandards;
         }
 
-        if ($decline[$j] == "alternative audio formats") {
-            $pointDecline += 0.5;
-            echo "<p>Decline2 YES</p>"; //delete later
+        $pointDecline = 0;
+        for ($j=0; $j<count($dataArray[6]); $j++) {
+            if (($dataArray[6])[$j] == "variety of devices") {
+                $pointDecline += 0.5;
+            }
+
+            if (($dataArray[6])[$j] == "legal issues") {
+                $pointDecline -= 0.5;
+            }
+
+            if (($dataArray[6])[$j] == "alternative audio formats") {
+                $pointDecline += 0.5;
+            }
+
+            if (($dataArray[6])[$j] == "MPEG changes") {
+                $pointDecline -= 0.5;
+            }
+        }
+        if ($pointDecline > 0) { //If have points, add to total points
+            $totalPoints += $pointDecline;
         }
 
-        if ($decline[$j] == "MPEG changes") {
-            $pointDecline -= 0.5;
+        if ($dataArray[7] == "Fraunhofer Society") {
+            $totalPoints += 1;
         }
 
-        echo $decline[$j]; //delete later
-    }
-    if ($pointDecline > 0) { //If have points, add to total points
-        $totalPoints += $pointDecline;
-    }
-    echo "<br>"; //delete later
+        if ($dataArray[8] == "False") {
+            $totalPoints += 1;
+        }
 
-    if ($creator == "Fraunhofer Society") {
-        $totalPoints += 1;
-        echo "<p>Creator YES</p>"; //delete later
+        return $totalPoints;
     }
-    echo "$creator<br>"; //delete later
 
-    if ($compression == "False") {
-        $totalPoints += 1;
-        echo "<p>Compression YES</p>"; //delete later
-    }
-    echo "$compression<br>"; //delete later
 
-    echo "$totalPoints<br>"; //delete later
+    $data = GetData();
+    $points = MarkQuestion($data);
 
+    echo "$points<br>"; //delete later
 
     if (false) { //validate fail, 0 score, already 2 attempts
         echo "<p>
