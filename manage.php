@@ -102,6 +102,10 @@
             <input type="submit" id="manage__delete" class="manage-submit" value="Delete Attempts"/>
         </form>
     </main>
+    
+    <form method="post" action="logout.php">
+        <input type="submit" id="manage__logout" class="manage-submit" value="Logout"/>
+    </form>
 
     <?php include('footer.inc')?>
 </body>
