@@ -39,9 +39,41 @@
 
         return $dataArray;
     }
+    
+    $data = GetData();
 
     //Sanitise
+    function sanitise_input($data) {
+        foreach ($data as $input) {
+            $input = trim($input);
+            $input = stripslashes($input);
+            $input = htmlspecialchars($input);
+        }
+        return $data;
+    }
+    $data = sanatise_input($data)
     //Validate Stuff
+    if (!preg_match("/^[a-zA-Z]*$/",$data[0])) {
+        $errMsg .= "<p>Only alpha letters allowed in your first name.</p>" ;
+    }
+    else if(strlen($data[0]) > 30)
+    {
+       echo "first name is too long, maximum is 30 characters.";
+    }
+    if (!preg_match("/^[a-zA-Z]*$/",$data[1])) {
+        $errMsg .= "<P>Only alpha letters allowed in your last name.</p>" ;
+    }
+        elseif(strlen($data[1]) > 30)
+    {
+        echo "last name is too long, maximum is 30 characters.";
+    }
+    if ($data[2]=="") {
+        $errMsg .= "<p>You must enter your student id.</p>" ;
+    }   else if (!is_numeric($var),$data[2])) {
+        $errMsg .= "<p>Your student id must be a number.</p>" ;
+    }   else if (!preg_match('/^[1-7][7-10]*$/', $data[2])) {
+        $errMsg .= "<p>Your student id must be between 7 to 10 digits.</p>" ;
+    }
 
 
     //Mark data to points
@@ -111,8 +143,6 @@
         return $totalPoints;
     }
 
-
-    $data = GetData();
     $points = MarkQuestion($data);
 
     echo "$points<br>"; //delete later
