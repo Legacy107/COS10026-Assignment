@@ -135,7 +135,7 @@
     }
     else if(strlen($data[0]) > 30)
     {
-       echo "first name is too long, maximum is 30 characters.";
+        $errMsg .= "<p>First name is too long, maximum is 30 characters.</p>";
     }
 
     if (!preg_match("/^[a-zA-Z\s-]{1,30}$/", $data[1])) {
@@ -143,7 +143,7 @@
     }
     else if(strlen($data[1]) > 30)
     {
-        echo "last name is too long, maximum is 30 characters.";
+        $errMsg .= "<p>Last name is too long, maximum is 30 characters.</p>";
     }
 
     if ($data[2] == "") {
