@@ -263,6 +263,12 @@ Specific styles for manage.php
     background-color: var(--red-400);
 }
 
+#manage__logout {
+    position: fixed;
+    top: 5em;
+    right: 3em;
+}
+
 /*
 Specific styles for index.html
 */
