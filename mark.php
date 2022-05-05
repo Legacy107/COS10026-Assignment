@@ -1,4 +1,12 @@
 <?php
+    // Sanitise
+    function sanitise_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
     function GetData() {
         $dataArray = array();
         if (isset($_POST["fname"])) { //text alpha
@@ -39,44 +47,8 @@
 
         return $dataArray;
     }
-    
-    $data = GetData();
 
-    //Sanitise
-    function sanitise_input($data) {
-        foreach ($data as $input) {
-            $input = trim($input);
-            $input = stripslashes($input);
-            $input = htmlspecialchars($input);
-        }
-        return $data;
-    }
-    $data = sanatise_input($data)
-    //Validate Stuff
-    if (!preg_match("/^[a-zA-Z]*$/",$data[0])) {
-        $errMsg .= "<p>Only alpha letters allowed in your first name.</p>" ;
-    }
-    else if(strlen($data[0]) > 30)
-    {
-       echo "first name is too long, maximum is 30 characters.";
-    }
-    if (!preg_match("/^[a-zA-Z]*$/",$data[1])) {
-        $errMsg .= "<P>Only alpha letters allowed in your last name.</p>" ;
-    }
-        elseif(strlen($data[1]) > 30)
-    {
-        echo "last name is too long, maximum is 30 characters.";
-    }
-    if ($data[2]=="") {
-        $errMsg .= "<p>You must enter your student id.</p>" ;
-    }   else if (!is_numeric($var),$data[2])) {
-        $errMsg .= "<p>Your student id must be a number.</p>" ;
-    }   else if (!preg_match('/^[1-7][7-10]*$/', $data[2])) {
-        $errMsg .= "<p>Your student id must be between 7 to 10 digits.</p>" ;
-    }
-
-
-    //Mark data to points
+    // Mark data to points
     function MarkQuestion($dataArray) {
         $totalPoints = 0;
 
@@ -142,19 +114,52 @@
 
         return $totalPoints;
     }
+    
+    $data = GetData();
+
+    // Sanitize data
+    foreach ($data as &$input) {
+        if (gettype($input) == "array") {
+            foreach ($input as &$field) {
+                $filed = sanitise_input($field);
+            }
+        } else {
+            $input = sanitise_input($input);
+        }
+    }
+
+    // Validate Stuff
+    $errMsg = "";
+    if (!preg_match("/^[a-zA-Z\s-]{1,30}$/", $data[0])) {
+        $errMsg .= "<p>Only alpha letters allowed in your first name.</p>" ;
+    }
+    else if(strlen($data[0]) > 30)
+    {
+       echo "first name is too long, maximum is 30 characters.";
+    }
+
+    if (!preg_match("/^[a-zA-Z\s-]{1,30}$/", $data[1])) {
+        $errMsg .= "<P>Only alpha letters allowed in your last name.</p>" ;
+    }
+    else if(strlen($data[1]) > 30)
+    {
+        echo "last name is too long, maximum is 30 characters.";
+    }
+
+    if ($data[2] == "") {
+        $errMsg .= "<p>You must enter your student id.</p>" ;
+    } else if (!is_numeric($data[2])) {
+        $errMsg .= "<p>Your student id must be a number.</p>" ;
+    } else if (!preg_match('/^(\d{7}|\d{10})$/', $data[2])) {
+        $errMsg .= "<p>Your student id must be between 7 to 10 digits.</p>" ;
+    }
+
+    if ($errMsg) {
+        echo($errMsg);
+        exit();
+    }
 
     $points = MarkQuestion($data);
 
     echo "$points<br>"; //delete later
-
-    if (false) { //validate fail, 0 score, already 2 attempts
-        echo "<p>
-            reasons why.
-        </p>";
-
-    } else {
-        echo "Placeholder: To markquiz page."; //delete later
-        //Send data to SQL
-        //header ("location: markquiz.php");
-    }
 ?>
