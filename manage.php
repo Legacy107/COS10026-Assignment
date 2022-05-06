@@ -1,55 +1,59 @@
 <?php 
-    include "data_checking.php";
+    include "data_input.php";
     include "database.php";
     include "debug.php";
 
-    # Checks if a username-password pair exists in the SQL database.
-    function check_credentials($conn, $username, $password) {
-        GLOBAL $ERROR;
-        create_admin_table($conn);
-        if ($ERROR == null) {
-            $result = mysqli_query($conn, "SELECT * FROM admins WHERE username = '$username' and password = '$password'");
-            if (mysqli_num_rows($result) > 0) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    # Checks if a username is valid.
-    function check_username($str) {
-      return check_regex("/^\w{1,30}$/", $str, "Username must be 1-30 alphanumeric/underscore characters.");
-    }
-
-    # Checks if a password is valid.
-    function check_password($str) {
-      return check_regex("/^\w{9,30}$/", $str, "Password must be 9-30 alphanumeric/underscore characters.");
+    # Redirects to the login page while passing an error message in $_SESSION.
+    function login_error($errorMsg) {
+        session_unset();
+        $_SESSION["errorMsg"] = $errorMsg;
+        $_SESSION["errorOri"] = "manage.php";
+        header("Location: login.php?action=error");
+        exit();
     }
   
-    GLOBAL $ERROR;
     session_start();
-    $username = check_username(get_session("username"));
-    $password = check_password(get_session("password"));
-    if ($ERROR != null) {
-        $ERROR = null;
-        $username = check_username(get_post("username"));
-        $password = check_password(get_post("password"));
+    # Try get username / password from session.
+    $username = get_session("username");
+    $password = get_session("password");
+    # If not try from post.
+    $getPost = ($username == null or $password == null);
+    if ($getPost) {
+        $username = get_post("username");
+        $password = get_post("password");
+    }
+    # Detect null username / password.
+    if ($username == null) {
+        login_error("Username not found in session or post.");
+    }
+    if ($password == null) {
+        login_error("Password not found in session or post");
+    }
+    if ($getPost) {
         $_SESSION["username"] = $username;
         $_SESSION["password"] = $password;
     }
-    if ($ERROR == null) {
-        $conn = get_conn();
-        $correct = check_credentials($conn, $username, $password);
-        if ($ERROR == null) {
-            if (!$correct) {
-                $ERROR = "Incorrect username or password.";
-            }
-        }
+    # Detect incorrect format for username / password.
+    if (!preg_match("/^\w{1,30}$/", $username)) {
+        login_error("Username must be 1-30 alphanumeric/underscore characters.");
     }
-    if ($ERROR != null) {
-        session_unset();
-        $_SESSION["errorMsg"] = $ERROR;
-        header("Location: login.php?action=error");
+    if (!preg_match("/^\w{9,30}$/", $password)) {
+        login_error("Password must be 9-30 alphanumeric/underscore characters.");
+    }
+    # Try connecting to MySQL database.
+    $conn = get_conn();
+    if ($conn == null) {
+        login_error("Unable to connect to MySQL database.");
+    }
+    # Try query for username + password.
+    try {
+        $result = mysqli_query($conn, "SELECT * FROM admins WHERE username = '$username' and password = '$password'");
+    } catch (Exception $_ex) {
+        login_error("Credential query failed.");
+    }
+    # Detect incorrect username + password.
+    if (mysqli_num_rows($result) <= 0) {
+        login_error("Incorrect username or password.");
     }
 ?>
 

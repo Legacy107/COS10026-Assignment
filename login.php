@@ -22,23 +22,28 @@
         <h1 class="login-h1">Admin Panel</h1>
 
         <?php
-            include "data_checking.php";
+            include "data_input.php";
 
-            GLOBAL $ERROR;
             session_start();
-            $action = get_action(["error"]);
-            if ($ERROR == null) {
-                if ($action == "error") {
-                    $errorMsg = get_session("errorMsg");
-                    if ($ERROR == null) {
-                        $ERROR = $errorMsg;
-                    }
+            $action = get_action();
+            $error = null;
+            $origin = "login.php";
+            if ($action == "error") {
+                $errorMsg = get_session("errorMsg");
+                $errorOri = get_session("errorOri");
+                if ($errorMsg == null) {
+                    $error = "No error message in session.";
+                } elseif ($errorOri == null) {
+                    $error = "No error origin in session.";
+                } else {
+                    $origin = $errorOri;
+                    $error = $errorMsg;
                 }
             }
             session_unset();
             session_destroy();
-            if ($ERROR != null) {
-                echo("<p id='login-error'>ERROR: $ERROR</p>");
+            if ($error != null) {
+                echo("<p id='login-error'>ERROR &lt;$origin&gt; - $error</p>");
             }
         ?>
 
