@@ -19,24 +19,24 @@
 <body>
     <?php include('header.inc')
     ?>
+    <main class="login-main">
+        <h1 class="login-h1">Admin Panel</h1>
 
-    <h1 class="login-h1">Admin Panel</h1>
-
-    <form method="POST" action="">
-        <div class="login-form__wrapper">
-            <div class="login-form">
-                <label for="admin_name" class="login-label__name">Username</label>
-                <br />
-                <input type="text" name="admin_name" id="admin_name" />
-                <br />
-                <label for="admin_password">Password</label>
-                <br />
-                <input type="text" name="admin_password" id="admin_password" />
+        <form method="POST" action="">
+            <div class="login-form__wrapper">
+                <div class="login-form">
+                    <label for="admin_name" class="login-label__name">Username</label>
+                    <br />
+                    <input type="text" name="admin_name" id="admin_name" pattern="^[a-zA-Z0-9]{1,30}$" title="Please enter upper, lower case letters or numbers only. Maximum 30 characters" />
+                    <br />
+                    <label for="admin_password">Password</label>
+                    <br />
+                    <input type="password" name="admin_password" id="admin_password" pattern="^[a-zA-Z0-9]{1,30}$" title="Please enter upper, lower case letters or numbers only. Maximum 30 characters" />
+                </div>
             </div>
-        </div>
-        <input type="submit" value="LOGIN" class="login-submit" />
-    </form>
-
+            <input type="submit" value="LOGIN" class="login-submit" />
+        </form>
+    </main>
     <?php include('footer.inc')
     ?>
 </body>

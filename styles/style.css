@@ -1492,10 +1492,15 @@ Styles for markquiz.html
 
 /*Following is for login page*/
 
-.login-h1 {
-    position: relative;
+.login-main {
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.login-h1 {
+    position: relative;
     padding-top: 3rem;
     padding-bottom: 2rem;
 }
@@ -1534,7 +1539,8 @@ Styles for markquiz.html
     margin-top: 1.5rem;
 }
 
-.login-form > input[type="text"] {
+.login-form > input[type="text"],
+.login-form > input[type="password"]{
     background: var(--cyan-300);
     position: relative;
     padding: 0.5rem 0.5rem;
@@ -1561,10 +1567,10 @@ Styles for markquiz.html
     margin: auto;
     padding: 0.5rem 0;
     cursor: pointer;
-    margin-bottom: 2rem;
 }
 
 .login-submit:hover {
     color: white;
     background-color: var(--cyan-400);
 }
+
