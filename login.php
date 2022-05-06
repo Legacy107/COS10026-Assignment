@@ -26,9 +26,8 @@
 
             session_start();
             $action = get_action();
-            $error = null;
-            $origin = "login.php";
             if ($action == "error") {
+                $origin = "login.php";
                 $errorMsg = get_session("errorMsg");
                 $errorOri = get_session("errorOri");
                 if ($errorMsg == null) {
@@ -39,12 +38,10 @@
                     $origin = $errorOri;
                     $error = $errorMsg;
                 }
+                echo("<p id='login-error'>ERROR &lt;$origin&gt; - $error</p>");
             }
             session_unset();
             session_destroy();
-            if ($error != null) {
-                echo("<p id='login-error'>ERROR &lt;$origin&gt; - $error</p>");
-            }
         ?>
 
         <form method="POST" action="manage.php" novalidate>
