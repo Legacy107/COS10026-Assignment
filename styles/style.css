@@ -222,12 +222,12 @@ Specific styles for manage.php
     width: 5rem;
 }
 
-.manage__filterarea {
+.manage-filterarea {
     margin: 0 1.5rem 1.5rem 0;
     display: inline-block;
 }
 
-.manage__textinput {
+.manage-textinput {
     font: 500 1rem/1.26em "Poppins", sans-serif;
     border: 1px solid var(--black-400);
     background-color: var(--green-100);
@@ -236,11 +236,11 @@ Specific styles for manage.php
     margin-top: 0.2rem;
 }
 
-.manage__label {
+.manage-label {
     margin-left: 0.5rem;
 }
 
-#manage__filters {
+#manage-filters {
     display: inline-block;
     border: solid 0.2rem var(--green-500);
     border-radius: 0 15px 0 15px;
@@ -248,11 +248,11 @@ Specific styles for manage.php
     padding-top: 1.5rem;
 }
 
-#manage__mainheading {
+#manage-mainheading {
     margin: 4rem 0;
 }
 
-#manage__listheading {
+#manage-listheading {
     margin: 2rem 0;
 }
 
@@ -260,14 +260,23 @@ Specific styles for manage.php
     margin-left: 8rem;
 }
 
-#manage__delete {
+#manage-delete {
     background-color: var(--red-400);
 }
 
-#manage__logout {
+#manage-logout {
     position: fixed;
     top: 5em;
     right: 3em;
+}
+
+@media only screen and (max-width: 850px) {
+    #manage-logout {
+        position: relative;
+        top: 0;
+        right: 0;
+        left: 3em;
+    }
 }
 
 /*
@@ -1673,3 +1682,7 @@ Styles for markquiz.html
     background-color: var(--cyan-400);
 }
 
+#login-error {
+    color: red;
+    padding-bottom: 2rem;
+}

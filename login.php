@@ -17,28 +17,47 @@
 </head>
 
 <body>
-    <?php include('header.inc')
-    ?>
+    <?php include('header.inc')?>
     <main class="login-main">
         <h1 class="login-h1">Admin Panel</h1>
 
-        <form method="POST" action="">
+        <?php
+            include "data_checking.php";
+
+            GLOBAL $ERROR;
+            session_start();
+            $action = get_action(["error"]);
+            if ($ERROR == null) {
+                if ($action == "error") {
+                    $errorMsg = get_session("errorMsg");
+                    if ($ERROR == null) {
+                        $ERROR = $errorMsg;
+                    }
+                }
+            }
+            session_unset();
+            session_destroy();
+            if ($ERROR != null) {
+                echo("<p id='login-error'>ERROR: $ERROR</p>");
+            }
+        ?>
+
+        <form method="POST" action="manage.php" novalidate>
             <div class="login-form__wrapper">
                 <div class="login-form">
                     <label for="admin_name" class="login-label__name">Username</label>
                     <br />
-                    <input type="text" name="admin_name" id="admin_name" pattern="^[a-zA-Z0-9]{1,30}$" title="Please enter upper, lower case letters or numbers only. Maximum 30 characters" />
+                    <input type="text" name="username" id="admin_name" pattern="^\w{1,30}$" title="Username must be 1-30 alphanumeric/underscore characters." required/>
                     <br />
                     <label for="admin_password">Password</label>
                     <br />
-                    <input type="password" name="admin_password" id="admin_password" pattern="^[a-zA-Z0-9]{1,30}$" title="Please enter upper, lower case letters or numbers only. Maximum 30 characters" />
+                    <input type="password" name="password" id="admin_password" pattern="^\w{9,30}$" title="Password must be 9-30 alphanumeric/underscore characters." required/>
                 </div>
             </div>
             <input type="submit" value="LOGIN" class="login-submit" />
         </form>
     </main>
-    <?php include('footer.inc')
-    ?>
+    <?php include('footer.inc')?>
 </body>
 
 </html>
