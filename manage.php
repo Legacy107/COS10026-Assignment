@@ -1,7 +1,6 @@
 <?php 
     include "data_input.php";
     include "database.php";
-    include "debug.php";
 
     # Redirects to the login page while passing an error message in $_SESSION.
     function login_error($errorMsg) {
@@ -13,47 +12,42 @@
     }
   
     session_start();
-    # Try get username / password from session.
-    $username = get_session("username");
-    $password = get_session("password");
-    # If not try from post.
-    $getPost = ($username == null or $password == null);
-    if ($getPost) {
-        $username = get_post("username");
-        $password = get_post("password");
-    }
-    # Detect null username / password.
-    if ($username == null) {
-        login_error("Username not found in session or post.");
-    }
-    if ($password == null) {
-        login_error("Password not found in session or post");
-    }
-    if ($getPost) {
-        $_SESSION["username"] = $username;
-        $_SESSION["password"] = $password;
-    }
-    # Detect incorrect format for username / password.
-    if (!preg_match("/^\w{1,30}$/", $username)) {
-        login_error("Username must be 1-30 alphanumeric/underscore characters.");
-    }
-    if (!preg_match("/^\w{9,30}$/", $password)) {
-        login_error("Password must be 9-30 alphanumeric/underscore characters.");
-    }
     # Try connecting to MySQL database.
     $conn = get_conn();
     if ($conn == null) {
         login_error("Unable to connect to MySQL database.");
     }
-    # Try query for username + password.
-    try {
-        $result = mysqli_query($conn, "SELECT * FROM admins WHERE username = '$username' and password = '$password'");
-    } catch (Exception $_ex) {
-        login_error("Credential query failed.");
-    }
-    # Detect incorrect username + password.
-    if (mysqli_num_rows($result) <= 0) {
-        login_error("Incorrect username or password.");
+    # Try get an ID from the session. Skip if found.
+    $adminId = get_session("admin_id");
+    if ($adminId == null) {
+        # If not found try from post.
+        $username = get_post("username");
+        $password = get_post("password");
+        # Detect null username / password.
+        if ($username == null) {
+            login_error("Username not found in post.");
+        }
+        if ($password == null) {
+            login_error("Password not found in post");
+        }
+        # Detect incorrect format for username / password.
+        if (!preg_match("/^\w{1,30}$/", $username)) {
+            login_error("Username must be 1-30 alphanumeric/underscore characters.");
+        }
+        if (!preg_match("/^\w{9,30}$/", $password)) {
+            login_error("Password must be 9-30 alphanumeric/underscore characters.");
+        }
+        # Try query for username + password.
+        try {
+            $result = mysqli_query($conn, "SELECT id FROM admins WHERE username = '$username' and password = '$password'");
+        } catch (Exception $_ex) {
+            login_error("Credential query failed.");
+        }
+        # Detect incorrect username + password.
+        if (mysqli_num_rows($result) <= 0) {
+            login_error("Incorrect username or password.");
+        }
+        $_SESSION["admin_id"] = mysqli_fetch_array($result)[0];
     }
 ?>
 
