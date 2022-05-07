@@ -37,7 +37,7 @@
     # Creates the 'users' table if it doesn't exist.
     function create_user_table($conn) {
         $query = "CREATE TABLE IF NOT EXISTS users (
-            id INT NOT NULL,
+            id INT NOT NULL UNIQUE,
             firstName VARCHAR(30) NOT NULL,
             lastName VARCHAR(30) NOT NULL,
             PRIMARY KEY (id)
