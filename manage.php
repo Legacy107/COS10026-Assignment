@@ -1,3 +1,56 @@
+<?php 
+    include "data_input.php";
+    include "database.php";
+
+    # Redirects to the login page while passing an error message in $_SESSION.
+    function login_error($errorMsg) {
+        session_unset();
+        $_SESSION["errorMsg"] = $errorMsg;
+        $_SESSION["errorOri"] = "manage.php";
+        header("Location: login.php?action=error");
+        exit();
+    }
+  
+    session_start();
+    # Try connecting to MySQL database.
+    $conn = get_conn();
+    if ($conn == null) {
+        login_error("Unable to connect to MySQL database.");
+    }
+    # Try get an ID from the session. Skip if found.
+    $adminId = get_session("admin_id");
+    if ($adminId == null) {
+        # If not found try from post.
+        $username = get_post("username");
+        $password = get_post("password");
+        # Detect null username / password.
+        if ($username == null) {
+            login_error("Username not found in post.");
+        }
+        if ($password == null) {
+            login_error("Password not found in post");
+        }
+        # Detect incorrect format for username / password.
+        if (!preg_match("/^\w{1,30}$/", $username)) {
+            login_error("Username must be 1-30 alphanumeric/underscore characters.");
+        }
+        if (!preg_match("/^\w{9,30}$/", $password)) {
+            login_error("Password must be 9-30 alphanumeric/underscore characters.");
+        }
+        # Try query for username + password.
+        try {
+            $result = mysqli_query($conn, "SELECT id FROM admins WHERE username = '$username' and password = '$password'");
+        } catch (Exception $_ex) {
+            login_error("Credential query failed.");
+        }
+        # Detect incorrect username + password.
+        if (mysqli_num_rows($result) <= 0) {
+            login_error("Incorrect username or password.");
+        }
+        $_SESSION["admin_id"] = mysqli_fetch_array($result)[0];
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,31 +71,31 @@
     <?php include('header.inc')?>
 
     <main id="manage-main">
-        <h1 id="manage__mainheading">Manage Attempts</h1>
-        <form id="manage__filter" method="post" action="manage.php?action=filter">
-            <fieldset id="manage__filters">
-                <div class="manage__filterarea">
+        <h1 id="manage-mainheading">Manage Attempts</h1>
+        <form method="post" action="manage.php?action=filter">
+            <fieldset id="manage-filters">
+                <div class="manage-filterarea">
                     <h4>
-                        <label class="manage__label" for="fname">First Name</label>
+                        <label class="manage-label" for="fname">First Name</label>
                     </h4>
-                    <input type="text" id="fname" class="manage__textinput" name="fname" pattern="^[a-zA-Z\s-]{0,30}$" title="Please enter upper or lower case letters only, spaces are allowed. Maximum 30 characters"/>
+                    <input type="text" id="fname" class="manage-textinput" name="fname" pattern="^[a-zA-Z\s-]{0,30}$" title="Please enter upper or lower case letters only, spaces are allowed. Maximum 30 characters"/>
                 </div>
-                <div class="manage__filterarea">
+                <div class="manage-filterarea">
                     <h4>
-                        <label class="manage__label" for="fname">Last Name</label>
+                        <label class="manage-label" for="fname">Last Name</label>
                     </h4>
-                    <input type="text" id="lname" class="manage__textinput" name="lname" pattern="^[a-zA-Z\s-]{0,30}$" title="Please enter upper or lower case letters only, spaces are allowed. Maximum 30 characters"/>
+                    <input type="text" id="lname" class="manage-textinput" name="lname" pattern="^[a-zA-Z\s-]{0,30}$" title="Please enter upper or lower case letters only, spaces are allowed. Maximum 30 characters"/>
                 </div>
-                <div class="manage__filterarea">
+                <div class="manage-filterarea">
                     <h4>
-                        <label class="manage__label" for="fname">Student ID</label>
+                        <label class="manage-label" for="fname">Student ID</label>
                     </h4>
-                    <input type="text" id="sid" class="manage__textinput" name="sid" pattern="^(\d{7}|\d{10})?$" title="Please enter 7 or 10 digits."/>
+                    <input type="text" id="sid" class="manage-textinput" name="sid" pattern="^(\d{7}|\d{10})?$" title="Please enter 7 or 10 digits."/>
                 </div>
                 <br/>
-                <div class="manage__filterarea">
+                <div class="manage-filterarea">
                     <h4>
-                        <label class="manage__label" for="filter">Filter Options</label>
+                        <label class="manage-label" for="filter">Filter Options</label>
                     </h4>
                     <select id="filter" name="filter">
                         <option value="all">All</option>
@@ -57,7 +110,7 @@
             <input type="submit" class="manage-submit" value="Filter"/>
         </form>
 
-        <h2 id="manage__listheading">List of Attempts</h2>
+        <h2 id="manage-listheading">List of Attempts</h2>
         <table>
             <tr>
                 <th>ID</th>
@@ -99,12 +152,12 @@
         </table>
 
         <form method="post" action="manage.php?action=delete">
-            <input type="submit" id="manage__delete" class="manage-submit" value="Delete Attempts"/>
+            <input type="submit" id="manage-delete" class="manage-submit" value="Delete Attempts"/>
         </form>
     </main>
     
-    <form method="post" action="logout.php">
-        <input type="submit" id="manage__logout" class="manage-submit" value="Logout"/>
+    <form method="post" action="login.php">
+        <input type="submit" id="manage-logout" class="manage-submit" value="Logout"/>
     </form>
 
     <?php include('footer.inc')?>

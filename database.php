@@ -1,120 +1,71 @@
 <?php
-    // MariaDB config
-    // TODO: replace with team's DB
+    // MariaDB config variables.
     $host = "feenix-mariadb.swin.edu.au";
-    $user = "s103532920";
-    $pwd = "";
-    $sql_db = "s103532920_db";
+    $user = "s103575527";
+    $pwd = "311002";
+    $sql_db = "s103575527_db";
+    # Details for Orson's database.
+    # Has [orson_routt, long_password] and [admin, not_admin] as logins.
 
-    /**
-     * Get SQL connection
-     * @return bool false if failed to connect
-     * @return Object $conn 
-     */
+    # Gets a connection to the MySQL database using the config variables. Returns null if it can't connect.
     function get_conn() {
-        global $host, $user, $pwd, $sql_db;
-        $conn = @mysqli_connect(
-            $host,
-            $user,
-            $pwd,
-            $sql_db
-        );
-
-        // Checks if connection is successful
-        if (!$conn) {
-            error_log("Failed to connect to MySQL: (" . mysqli_connect_errno() . ") " . mysqli_connect_error());
-            return false;
-        } else {
-            return $conn;
+        GLOBAL $host, $user, $pwd, $sql_db;
+        try {
+            $conn = mysqli_connect($host, $user, $pwd, $sql_db);
+        } catch (Exception $_ex) {
+            return null;
         }
+        return $conn;
     }
 
-    /**
-     * Create User table if not exists
-     * @return bool true if succesfully executed the query
-     */
-    function create_user_table() {
-        $conn = get_conn();
-        if (!$conn) {
-            return false;
-        }
-        $query = "CREATE TABLE IF NOT EXISTS User (
-            id INT NOT NULL,
-            firstName VARCHAR(30) NOT NULL,
-            lastName VARCHAR(30) NOT NULL,
-            CHECK ((1000000 <= id AND id <= 9999999) OR (10000000 <= id AND id <= 99999999)),
-            PRIMARY KEY (id)
-        )";
-        $result = mysqli_query($conn, $query);
-        
-        if (!$result) {
-            error_log(
-                "Failed to create User table: (" .
-                mysqli_errno($conn) . ") " .
-                mysqli_error($conn)
-            );
-        }
-        mysqli_close($conn);
-        return (bool)$result;
-    }
-
-    /**
-     * Create Admin table if not exists
-     * @return bool true if succesfully executed the query
-     */
-    function create_admin_table() {
-        $conn = get_conn();
-        if (!$conn) {
-            return false;
-        }
-        $query = "CREATE TABLE IF NOT EXISTS Admin (
+    # Creates the 'admins' table if it doesn't exist.
+    function create_admin_table($conn) {
+        $query = "CREATE TABLE IF NOT EXISTS admins (
             id INT NOT NULL AUTO_INCREMENT,
             username VARCHAR(30) NOT NULL UNIQUE,
             password VARCHAR(30) NOT NULL,
-            CHECK (LENGTH(password) > 8),
             PRIMARY KEY (id)
         )";
-        $result = mysqli_query($conn, $query);
-        
-        if (!$result) {
-            error_log(
-                "Failed to create Admin table: (" .
-                mysqli_errno($conn) . ") " .
-                mysqli_error($conn)
-            );
-        }
-        mysqli_close($conn);
-        return (bool)$result;
-    }
-
-    /**
-     * Create Attempt table if not exists
-     * @return bool true if succesfully executed the query
-     */
-    function create_attempt_table() {
-        $conn = get_conn();
-        if (!$conn) {
+        try {
+            mysqli_query($conn, $query);
+        } catch (Exception $_ex) {
             return false;
         }
-        $query = "CREATE TABLE IF NOT EXISTS Attempt (
-            id INT NOT NULL AUTO_INCREMENT,
-            userId INT,
-            score TINYINT DEFAULT 0,
-            dateCreated	TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            dateUpdated	TIMESTAMP,
-            PRIMARY KEY (id),
-            FOREIGN KEY (userId) REFERENCES User(id)
+        return true;
+    }
+
+    # Creates the 'users' table if it doesn't exist.
+    function create_user_table($conn) {
+        $query = "CREATE TABLE IF NOT EXISTS users (
+            id INT NOT NULL,
+            firstName VARCHAR(30) NOT NULL,
+            lastName VARCHAR(30) NOT NULL,
+            PRIMARY KEY (id)
         )";
-        $result = mysqli_query($conn, $query);
-        
-        if (!$result) {
-            error_log(
-                "Failed to create Attempt table: (" .
-                mysqli_errno($conn) . ") " .
-                mysqli_error($conn)
-            );
+        try {
+            mysqli_query($conn, $query);
+        } catch (Exception $_ex) {
+            return false;
         }
-        mysqli_close($conn);
-        return (bool)$result;
+        return true;
+    }
+
+    # Creates the 'attempts' table if it doesn't exist.
+    function create_attempt_table($conn) {
+        $query = "CREATE TABLE IF NOT EXISTS attempts (
+            id INT NOT NULL AUTO_INCREMENT,
+            userId INT NOT NULL,
+            score TINYINT NOT NULL,
+            dateCreated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            dateUpdated TIMESTAMP,
+            PRIMARY KEY (id),
+            FOREIGN KEY (userId) REFERENCES users(id)
+        )";
+        try {
+            mysqli_query($conn, $query);
+        } catch (Exception $_ex) {
+            return false;
+        }
+        return true;
     }
 ?>
