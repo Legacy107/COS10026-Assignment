@@ -68,4 +68,177 @@
         }
         return true;
     }
+
+    # Create a user.
+    function save_user($conn, $sid, $fname, $lname) {
+        $query = "INSERT INTO attempts (id, firstname, lastname)
+            VALUES ('$sid', '$fname', '$lname');
+        ";
+        try {
+            mysqli_query($conn, $query);
+        } catch (Exception $_ex) {
+            return false;
+        }
+        return true;
+    }
+
+    # Create an attempt.
+    function save_attempt($conn, $user_id, $score) {
+        $query = "INSERT INTO attempts (userId, score, dateUpdated)
+            VALUES ('$user_id', $score, CURRENT_TIMESTAMP);
+        ";
+        try {
+            mysqli_query($conn, $query);
+        } catch (Exception $_ex) {
+            return false;
+        }
+        return true;
+    }
+
+    # Read attempts.
+    function get_attempts($conn, $user_id, $fname, $lname) {
+        $need_and = false;
+        $query = "SELECT * FROM attempts
+            INNER JOIN users ON attempts.userId = users.id
+        ";
+        if ($user_id) {
+            if ($need_and)
+                $query .= " and";
+            else {
+                $need_and = true;
+                $query .= " WHERE";
+            }
+            
+            $query .= " users.id = '$user_id'";
+        }
+        if ($fname) {
+            if ($need_and)
+                $query .= " and";
+            else {
+                $need_and = true;
+                $query .= " WHERE";
+            }
+            
+            $query .= " users.firstname = '$fname'";
+        }
+        if ($lname) {
+            if ($need_and)
+                $query .= " and";
+            else {
+                $need_and = true;
+                $query .= " WHERE";
+            }
+            
+            $query .= " users.lastname = '$lname'";
+        }
+
+        $query .= "ORDER BY attemps.dateCreated";
+
+        try {
+            $result = mysqli_query($conn, $query);
+            if (!result)
+                return false;
+
+            $attempts = array();
+            while ($row = mysqli_fetch_assoc($result)) {
+                array_push($attempts, $row);
+            }
+
+            mysqli_free_result($result);
+            return attempts;
+        } catch (Exception $_ex) {
+            return false;
+        }
+    }
+
+    # Read second attempts with score > 50%.
+    function get_second_attempts_gt_50($conn) {
+        $query = "SELECT attemps.* FROM attempts
+
+            INNER JOIN
+            (
+                SELECT max(dateCreated) maxDateCreated, userId
+                FROM attempts
+                GROUP BY userId
+            ) temp_attempts
+            ON attempts.userId = temp_attempts.userId
+            AND attempts.dateCreated = temp_attempts.maxDateCreated
+            WHERE attempts.score > 3
+            ORDER BY attemps.dateCreated
+        ";
+
+        try {
+            $result = mysqli_query($conn, $query);
+            if (!result)
+                return false;
+
+            $attempts = array();
+            while ($row = mysqli_fetch_assoc($result)) {
+                array_push($attempts, $row);
+            }
+
+            mysqli_free_result($result);
+            return attempts;
+        } catch (Exception $_ex) {
+            return false;
+        }
+    }
+
+    # Read first attempts with scores of 100%.
+    function get_first_attempts_100($conn) {
+        $query = "SELECT attemps.* FROM attempts
+            INNER JOIN
+            (
+                SELECT min(dateCreated) minDateCreated, userId
+                FROM attempts
+                GROUP BY userId
+            ) temp_attempts
+            ON attempts.userId = temp_attempts.userId
+            AND attempts.dateCreated = temp_attempts.minDateCreated
+            WHERE attempts.score = 6
+            ORDER BY attemps.dateCreated
+        ";
+
+        try {
+            $result = mysqli_query($conn, $query);
+            if (!result)
+                return false;
+
+            $attempts = array();
+            while ($row = mysqli_fetch_assoc($result)) {
+                array_push($attempts, $row);
+            }
+
+            mysqli_free_result($result);
+            return attempts;
+        } catch (Exception $_ex) {
+            return false;
+        }
+    }
+
+    # Update an attempt.
+    function update_attempt($conn, $id, $score) {
+        $query = "UPDATE attempts
+            SET score = $score, dateUpdated = CURRENT_TIMESTAMP
+            WHERE id = '$id'
+        ";
+        try {
+            mysqli_query($conn, $query);
+        } catch (Exception $_ex) {
+            return false;
+        }
+        return true;
+    }
+
+    # Delete an attempts.
+    function delete_attempt($conn, $ids) {
+        $query = "DELETE FROM attempts
+            WHERE id IN (" . implode(", ", $ids) . ")";
+        try {
+            mysqli_query($conn, $query);
+        } catch (Exception $_ex) {
+            return false;
+        }
+        return true;
+    }
 ?>
