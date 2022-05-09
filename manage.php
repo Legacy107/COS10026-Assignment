@@ -49,6 +49,17 @@
         }
         $_SESSION["adminId"] = mysqli_fetch_array($result)[0];
     }
+
+    $action = get_action();
+
+    if ($action == "filter") {
+        $_SESSION["fname"] = get_post("fname") ?: null;
+        $_SESSION["lname"] = get_post("lname") ?: null;
+        $_SESSION["sid"] = get_post("sid") ?: null;
+        $_SESSION["filter"] = get_post("filter");
+    }
+    else
+        $_SESSION["filter"] = "all";
 ?>
 
 <!DOCTYPE html>
@@ -78,19 +89,40 @@
                     <h4>
                         <label class="manage-label" for="fname">First Name</label>
                     </h4>
-                    <input type="text" id="fname" class="manage-textinput" name="fname" pattern="^[a-zA-Z\s-]{0,30}$" title="Please enter upper or lower case letters only, spaces are allowed. Maximum 30 characters"/>
+                    <input
+                        type="text" id="fname" class="manage-textinput" name="fname" pattern="^[a-zA-Z\s-]{0,30}$" title="Please enter upper or lower case letters only, spaces are allowed. Maximum 30 characters"
+                        <?php
+                            $fname = get_session("fname");
+                            if ($fname)
+                                echo "value=\"" . $fname . "\"";
+                        ?>
+                    />
                 </div>
                 <div class="manage-filterarea">
                     <h4>
-                        <label class="manage-label" for="fname">Last Name</label>
+                        <label class="manage-label" for="lname">Last Name</label>
                     </h4>
-                    <input type="text" id="lname" class="manage-textinput" name="lname" pattern="^[a-zA-Z\s-]{0,30}$" title="Please enter upper or lower case letters only, spaces are allowed. Maximum 30 characters"/>
+                    <input
+                        type="text" id="lname" class="manage-textinput" name="lname" pattern="^[a-zA-Z\s-]{0,30}$" title="Please enter upper or lower case letters only, spaces are allowed. Maximum 30 characters"
+                        <?php
+                            $lname = get_session("lname");
+                            if ($lname)
+                                echo "value=\"" . $lname . "\"";
+                        ?>
+                    />
                 </div>
                 <div class="manage-filterarea">
                     <h4>
-                        <label class="manage-label" for="fname">Student ID</label>
+                        <label class="manage-label" for="sid">Student ID</label>
                     </h4>
-                    <input type="text" id="sid" class="manage-textinput" name="sid" pattern="^(\d{7}|\d{10})?$" title="Please enter 7 or 10 digits."/>
+                    <input
+                        type="text" id="sid" class="manage-textinput" name="sid" pattern="^(\d{7}|\d{10})?$" title="Please enter 7 or 10 digits."
+                        <?php
+                            $sid = get_session("sid");
+                            if ($sid)
+                                echo "value=\"" . $sid . "\"";
+                        ?>
+                    />
                 </div>
                 <br/>
                 <div class="manage-filterarea">
@@ -98,11 +130,22 @@
                         <label class="manage-label" for="filter">Filter Options</label>
                     </h4>
                     <select id="filter" name="filter">
-                        <option value="all">All</option>
-                        <option value="name">By name</option>
-                        <option value="sid">By student ID</option>
-                        <option value="100_first">100% on first attempt</option>
-                        <option value="less_50_second">&lt;50% on second attempt</option>
+                        <?php
+                            $options = array(
+                                "all"               => "All",
+                                "name"              => "By name",
+                                "sid"               => "By student ID",
+                                "100_first"          => "100% on first attempt",
+                                "less_50_second"    => "&lt;50% on second attempt",
+                            );
+                            $filter = get_session("filter");
+
+                            foreach ($options as $key => $option) {
+                                echo "<option value=\"$key\"";
+                                echo $filter == $key ? " selected>\n" : ">\n";
+                                echo "$option\n</option>";
+                            }
+                        ?>
                     </select>
                 </div>
             </fieldset>
@@ -119,36 +162,66 @@
                 <th>Score</th>
                 <th>Action</th>
             </tr>
-            <tr>
-                <td>123456789</td>
-                <td>John Doe</td>
-                <td>05:00 24/04/2022</td>
-                <form method="post" action="manage.php?action=edit">
-                    <input type="hidden" name="attempt" value="AID"/>
-                    <td><input type="number" class="manage-score" name="attempt_value" min="0" max="6" value="6" required/></td>
-                    <td><input type="submit" class="manage-edit" value="Edit"/></td>
-                </form>
-            </tr>
-            <tr>
-                <td>123456789</td>
-                <td>John Doe</td>
-                <td>05:00 24/04/2022</td>
-                <form method="post" action="manage.php?action=edit">
-                    <input type="hidden" name="attempt" value="AID"/>
-                    <td><input type="number" class="manage-score" name="attempt_value" min="0" max="6" value="6" required/></td>
-                    <td><input type="submit" class="manage-edit" value="Edit"/></td>
-                </form>
-            </tr>
-            <tr>
-                <td>123456789</td>
-                <td>John Doe</td>
-                <td>05:00 24/04/2022</td>
-                <form method="post" action="manage.php?action=edit">
-                    <input type="hidden" name="attempt" value="AID"/>
-                    <td><input type="number" class="manage-score" name="attempt_value" min="0" max="6" value="6" required/></td>
-                    <td><input type="submit" class="manage-edit" value="Edit"/></td>
-                </form>
-            </tr>
+            <?php
+                function get_table_data() {
+                    $errorMsg = validate_user_data($_SESSION);
+                    if ($errorMsg)
+                        return "<tr><td colspan=\"5\">$errorMsg</td></tr>";
+
+                    $conn = get_conn();
+                    if (!$conn)
+                        return "<tr><td colspan=\"5\">Cannot connect to the database</td></tr>";
+
+                    switch ($_SESSION["filter"]) {
+                        case 'name':
+                            $attempts = get_attempts($conn, null, $_SESSION["fname"], $_SESSION["lname"]);
+                            break;
+                        case 'sid':
+                            $attempts = get_attempts($conn, $_SESSION["sid"]);
+                            break;
+                        case '100_first':
+                            $attempts =  get_first_attempts_100($conn);
+                            break;
+                        case 'less_50_second':
+                            $attempts =  get_second_attempts_gt_50($conn);
+                            break;
+                        default:
+                            $attempts = get_attempts($conn);
+                            break;
+                    }
+                    if (!$attempts)
+                        return "<tr><td colspan=\"5\">Cannot get attempts</td></tr>";
+
+                    $result = "";
+                    foreach ($attempts as $attempt) {
+                        $result .= "<tr>\n";
+                        $result .= "<td>" . $attempt["id"] . "</td>\n";
+                        $result .= "<td>" . $attempt["firstname"] . " " . $attempt["lastname"] . "</td>\n";
+                        $result .= "<td>" . $attempt["dateCreated"] . "</td>\n";
+                        $result .= "<form method=\"post\" action=\"manage.php?action=edit\">";
+                        $result .= "<input type=\"hidden\" name=\"attemptId\" value=\"" . $attempt["id"] . "\"/>\n";
+                        $result .= "
+                            <td>
+                                <input
+                                    type=\"number\"
+                                    class=\"manage-score\"
+                                    name=\"attempt_value\"
+                                    min=\"0\"
+                                    max=\"6\"
+                                    value=\"" . $attempt["score"] . "\"" . "
+                                    required/>
+                            </td>\n";
+                        $result .= "
+                            <td><input type=\"submit\" class=\"manage-edit\" value=\"Edit\"/></td>\n
+                            </form>\n
+                            </tr>\n
+                        ";
+                    }
+
+                    return $result;
+                }
+                echo get_table_data();
+            ?>
         </table>
 
         <form method="post" action="manage.php?action=delete">

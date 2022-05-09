@@ -90,9 +90,9 @@
     }
 
     # Read attempts.
-    function get_attempts($conn, $user_id, $fname, $lname) {
+    function get_attempts($conn, $user_id = null, $fname = null, $lname = null) {
         $need_and = false;
-        $query = "SELECT * FROM attempts
+        $query = "SELECT attempts.*, users.firstname, users.lastname FROM attempts
             INNER JOIN users ON attempts.userId = users.id
         ";
         if ($user_id) {
@@ -126,11 +126,11 @@
             $query .= " users.lastname = '$lname'";
         }
 
-        $query .= "ORDER BY attemps.dateCreated";
+        $query .= "ORDER BY attempts.dateCreated, attempts.id";
 
         try {
             $result = mysqli_query($conn, $query);
-            if (!result)
+            if (!$result)
                 return false;
 
             $attempts = array();
@@ -139,7 +139,7 @@
             }
 
             mysqli_free_result($result);
-            return attempts;
+            return $attempts;
         } catch (Exception $_ex) {
             return false;
         }
@@ -147,8 +147,8 @@
 
     # Read second attempts with score > 50%.
     function get_second_attempts_gt_50($conn) {
-        $query = "SELECT attemps.* FROM attempts
-
+        $query = "SELECT attempts.*, users.firstname, users.lastname FROM attempts
+            INNER JOIN users ON attempts.userId = users.id
             INNER JOIN
             (
                 SELECT max(dateCreated) maxDateCreated, userId
@@ -158,12 +158,12 @@
             ON attempts.userId = temp_attempts.userId
             AND attempts.dateCreated = temp_attempts.maxDateCreated
             WHERE attempts.score > 3
-            ORDER BY attemps.dateCreated
+            ORDER BY attempts.dateCreated, attempts.id
         ";
 
         try {
             $result = mysqli_query($conn, $query);
-            if (!result)
+            if (!$result)
                 return false;
 
             $attempts = array();
@@ -172,7 +172,7 @@
             }
 
             mysqli_free_result($result);
-            return attempts;
+            return $attempts;
         } catch (Exception $_ex) {
             return false;
         }
@@ -180,7 +180,8 @@
 
     # Read first attempts with scores of 100%.
     function get_first_attempts_100($conn) {
-        $query = "SELECT attemps.* FROM attempts
+        $query = "SELECT attempts.*, users.firstname, users.lastname FROM attempts
+            INNER JOIN users ON attempts.userId = users.id
             INNER JOIN
             (
                 SELECT min(dateCreated) minDateCreated, userId
@@ -190,12 +191,12 @@
             ON attempts.userId = temp_attempts.userId
             AND attempts.dateCreated = temp_attempts.minDateCreated
             WHERE attempts.score = 6
-            ORDER BY attemps.dateCreated
+            ORDER BY attempts.dateCreated, attempts.id
         ";
 
         try {
             $result = mysqli_query($conn, $query);
-            if (!result)
+            if (!$result)
                 return false;
 
             $attempts = array();
@@ -204,7 +205,7 @@
             }
 
             mysqli_free_result($result);
-            return attempts;
+            return $attempts;
         } catch (Exception $_ex) {
             return false;
         }
@@ -235,4 +236,9 @@
         }
         return true;
     }
+
+    $conn = get_conn();
+    create_user_table($conn);
+    create_attempt_table($conn);
+    create_admin_table($conn);
 ?>
