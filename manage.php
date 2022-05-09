@@ -18,7 +18,7 @@
         login_error("Unable to connect to MySQL database.");
     }
     # Try get an ID from the session. Skip if found.
-    $adminId = get_session("admin_id");
+    $adminId = get_session("adminId");
     if ($adminId == null) {
         # If not found try from post.
         $username = get_post("username");
@@ -47,7 +47,7 @@
         if (mysqli_num_rows($result) <= 0) {
             login_error("Incorrect username or password.");
         }
-        $_SESSION["admin_id"] = mysqli_fetch_array($result)[0];
+        $_SESSION["adminId"] = mysqli_fetch_array($result)[0];
     }
 ?>
 

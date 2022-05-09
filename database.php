@@ -1,11 +1,5 @@
 <?php
-    // MariaDB config variables.
-    $host = "feenix-mariadb.swin.edu.au";
-    $user = "s103575527";
-    $pwd = "311002";
-    $sql_db = "s103575527_db";
-    # Details for Orson's database.
-    # Has [orson_routt, long_password] and [admin, not_admin] as logins.
+    include "db_settings.php";
 
     # Gets a connection to the MySQL database using the config variables. Returns null if it can't connect.
     function get_conn() {
