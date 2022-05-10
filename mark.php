@@ -1,11 +1,11 @@
 <?php
     include_once "data_input.php";
 
-    function sanitise_data($data_array) {
+    function sanitise_data_array($data_array) {
         foreach ($data_array as &$input) {
             if (gettype($input) == "array") {
                 foreach ($input as &$field) {
-                    $filed = sanitise_string($field);
+                    $field = sanitise_string($field);
                 }
             } else {
                 $input = sanitise_string($input);
@@ -125,9 +125,9 @@
 
     $data = get_data();
 
-    $data = sanitise_data($data);
+    $data = sanitise_data_array($data);
 
-    $err_msg = validate_data($data);
+    $err_msg = validate_user_data($data);
 
     if ($err_msg) {
         echo($err_msg);

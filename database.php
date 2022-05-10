@@ -225,8 +225,8 @@
         return true;
     }
 
-    # Delete an attempts.
-    function delete_attempt($conn, $ids) {
+    # Delete attempts.
+    function delete_attempts($conn, $ids) {
         $query = "DELETE FROM attempts
             WHERE id IN (" . implode(", ", $ids) . ")";
         try {

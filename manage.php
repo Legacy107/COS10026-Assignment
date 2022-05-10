@@ -52,14 +52,28 @@
 
     $action = get_action();
 
-    if ($action == "filter") {
-        $_SESSION["fname"] = get_post("fname") ?: null;
-        $_SESSION["lname"] = get_post("lname") ?: null;
-        $_SESSION["sid"] = get_post("sid") ?: null;
-        $_SESSION["filter"] = get_post("filter");
+    switch ($action) {
+        case 'filter':
+            $_SESSION["fname"] = get_post("fname") ?: null;
+            $_SESSION["lname"] = get_post("lname") ?: null;
+            $_SESSION["sid"] = get_post("sid") ?: null;
+            $_SESSION["filter"] = get_post("filter");
+            break;
+        case 'delete':
+            $attempts = get_session('attempts');
+            if ($attempts)
+                delete_attempts($conn, $attempts);
+            break;
+        case 'edit':
+            $attemptId = get_post('attemptId');
+            $attempt_value = get_post('attempt_value');
+            if ($attemptId)
+                update_attempt($conn, $attemptId, $attempt_value);
+            break;
+        default:
+            $_SESSION["filter"] = "all";
+            break;
     }
-    else
-        $_SESSION["filter"] = "all";
 ?>
 
 <!DOCTYPE html>
@@ -190,7 +204,12 @@
                             break;
                     }
                     if (!$attempts)
-                        return "<tr><td colspan=\"5\">Cannot get attempts</td></tr>";
+                        return "<tr><td colspan=\"5\">No attempts available</td></tr>";
+
+                    function extract_id($attempt) {
+                        return $attempt['id'];
+                    }
+                    $_SESSION["attempts"] = array_map("extract_id", $attempts);
 
                     $result = "";
                     foreach ($attempts as $attempt) {
@@ -220,7 +239,12 @@
 
                     return $result;
                 }
-                echo get_table_data();
+                $result = get_table_data();
+                // has error
+                if (strpos($result, 'colspan'))
+                    unset($_SESSION['attempts']);
+
+                echo $result;
             ?>
         </table>
 
