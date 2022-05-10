@@ -238,7 +238,10 @@
     }
 
     $conn = get_conn();
-    create_user_table($conn);
-    create_attempt_table($conn);
-    create_admin_table($conn);
+    if ($conn) {
+        create_user_table($conn);
+        create_attempt_table($conn);
+        create_admin_table($conn);
+        mysqli_close($conn);
+    }
 ?>

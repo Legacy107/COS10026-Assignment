@@ -256,7 +256,10 @@
     <form method="post" action="login.php">
         <input type="submit" id="manage-logout" class="manage-submit" value="Logout"/>
     </form>
-
+    
+    <?php
+        mysqli_close($conn);
+    ?>
     <?php include('footer.inc')?>
 </body>
 </html>
