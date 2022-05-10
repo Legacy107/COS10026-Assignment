@@ -197,7 +197,7 @@
                             $attempts =  get_first_attempts_100($conn);
                             break;
                         case 'less_50_second':
-                            $attempts =  get_second_attempts_gt_50($conn);
+                            $attempts =  get_second_attempts_lt_50($conn);
                             break;
                         default:
                             $attempts = get_attempts($conn);

@@ -145,19 +145,20 @@
         }
     }
 
-    # Read second attempts with score > 50%.
-    function get_second_attempts_gt_50($conn) {
+    # Read second attempts with score < 50%.
+    function get_second_attempts_lt_50($conn) {
         $query = "SELECT attempts.*, users.firstname, users.lastname FROM attempts
             INNER JOIN users ON attempts.userId = users.id
             INNER JOIN
             (
-                SELECT max(dateCreated) maxDateCreated, userId
+                SELECT MAX(dateCreated) maxDateCreated, userId, COUNT(id) AS numberOfAttempts
                 FROM attempts
                 GROUP BY userId
+                HAVING numberOfAttempts = 2
             ) temp_attempts
             ON attempts.userId = temp_attempts.userId
             AND attempts.dateCreated = temp_attempts.maxDateCreated
-            WHERE attempts.score > 3
+            WHERE attempts.score < 3
             ORDER BY attempts.dateCreated, attempts.id
         ";
 
