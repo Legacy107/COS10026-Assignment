@@ -253,7 +253,7 @@
         </form>
     </main>
     
-    <form method="post" action="login.php">
+    <form method="post" action="logout.php">
         <input type="submit" id="manage-logout" class="manage-submit" value="Logout"/>
     </form>
     

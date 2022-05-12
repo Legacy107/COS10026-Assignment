@@ -1,6 +1,15 @@
 <?php
     include_once "data_input.php";
 
+    function quiz_error($errors) {
+        session_start();
+        session_unset();
+        $_SESSION["errorMsg"] = $errors;
+        $_SESSION["errorOri"] = "mark.php";
+        header("Location: quiz.php?action=error");
+        exit();
+    }
+
     function sanitise_data_array($data_array) {
         foreach ($data_array as &$input) {
             if (gettype($input) == "array") {
@@ -127,10 +136,10 @@
 
     $data = sanitise_data_array($data);
 
-    $err_msg = validate_user_data($data);
+    $errors = validate_user_data($data);
 
-    if ($err_msg) {
-        echo($err_msg);
+    if ($errors != null) {
+        quiz_error($errors);
         exit();
     }
 

@@ -24,6 +24,42 @@
 
         <h1 class="quiz-h2">MP3 Quiz</h1>
 
+        <?php
+            include "data_input.php";
+
+            session_start();
+            $action = get_action();
+            if ($action == "error") {
+                $origin = "quiz.php";
+                $errorMsg = get_session("errorMsg");
+                $errorOri = get_session("errorOri");
+                $errors = [];
+                if ($errorMsg == null) {
+                    array_push($errors, "No error message in session.");
+                }
+                if ($errorOri == null) {
+                    array_push($errors, "No error origin in session.");
+                }
+                if (count($errors) == 0) {
+                    $origin = $errorOri;
+                    $errors = $errorMsg;
+                }
+                echo("
+                    <p id='error-p'>ERRORS &lt;$origin&gt;:
+                ");
+                foreach ($errors as $error) {
+                    echo("
+                        <br/> - $error
+                    ");
+                }
+                echo("
+                    </p>
+                ");
+            }
+            session_unset();
+            session_destroy();
+        ?>
+
         <form method="post" action="mark.php" novalidate>
             <fieldset class="quiz-fieldset"><legend class="quiz-fieldset__legend">Student Information</legend>
 

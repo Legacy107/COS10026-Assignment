@@ -1681,7 +1681,7 @@ Styles for markquiz.html
     background-color: var(--cyan-400);
 }
 
-#login-error {
+#error-p {
     color: red;
     padding-bottom: 2rem;
 }
