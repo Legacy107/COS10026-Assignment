@@ -25,6 +25,11 @@
             include "data_input.php";
 
             session_start();
+            $adminId = get_session("adminId");
+            if ($adminId != null) {
+                header("Location: manage.php");
+                exit();
+            }
             $action = get_action();
             if ($action == "error") {
                 $origin = "login.php";
@@ -38,7 +43,7 @@
                     $origin = $errorOri;
                     $error = $errorMsg;
                 }
-                echo("<p id='login-error'>ERROR &lt;$origin&gt; - $error</p>");
+                echo("<p id='error-p'>ERROR &lt;$origin&gt; - $error</p>");
             }
             session_unset();
             session_destroy();

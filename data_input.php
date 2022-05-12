@@ -42,38 +42,41 @@
 
     # Validate fname, lname and sid
     function validate_user_data($data_array) {
-        $err_msg = "";
+        $errors = [];
 
         if (isset($data_array["fname"])) {
         if (!preg_match("/^[a-zA-Z\s-]+$/", $data_array["fname"])) {
-            $err_msg .= "<p>Only alpha letters and hyphen are allowed in your first name.</p>" ;
+            array_push($errors, "Only alpha letters and hyphen are allowed in your first name.");
         }
         else if(strlen($data_array["fname"]) > 30)
         {
-            $err_msg .= "<p>First name is too long, maximum is 30 characters.</p>";
+            array_push($errors, "First name is too long, maximum is 30 characters.");
         }
         }
 
         if (isset($data_array["lname"])) {
         if (!preg_match("/^[a-zA-Z\s-]+$/", $data_array["lname"])) {
-            $err_msg .= "<P>Only alpha letters and hyphen are allowed in your last name.</p>";
+            array_push($errors, "Only alpha letters and hyphen are allowed in your last name.");
         }
         else if(strlen($data_array["lname"]) > 30)
         {
-            $err_msg .= "<p>Last name is too long, maximum is 30 characters.</p>";
+            array_push($errors, "Last name is too long, maximum is 30 characters.");
         }
         }
 
         if (isset($data_array["sid"])) {
         if ($data_array["sid"] == "") {
-            $err_msg .= "<p>You must enter your student id.</p>";
+            array_push($errors, "You must enter your student id.");
         } else if (!is_numeric($data_array["sid"])) {
-            $err_msg .= "<p>Your student id must be a number.</p>";
+            array_push($errors, "Your student id must be a number.");
         } else if (!preg_match('/^(\d{7}|\d{10})$/', $data_array["sid"])) {
-            $err_msg .= "<p>Your student id must be between 7 to 10 digits.</p>";
+            array_push($errors, "Your student id must be between 7 to 10 digits.");
         }
         }
-
-        return $err_msg;
+        
+        if (count($errors) == 0) {
+            return null;
+        }
+        return $errors;
     }
 ?>
