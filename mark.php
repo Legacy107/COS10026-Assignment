@@ -1,149 +1,184 @@
+
 <?php
-    include_once "data_input.php";
+include_once "data_input.php";
+include "db_settings.php";
+include "database.php";
 
-    function quiz_error($errors) {
-        session_start();
-        session_unset();
-        $_SESSION["errorMsg"] = $errors;
-        $_SESSION["errorOri"] = "mark.php";
-        header("Location: quiz.php?action=error");
-        exit();
+function quiz_error($errors)
+{
+    session_start();
+    session_unset();
+    $_SESSION["errorMsg"] = $errors;
+    $_SESSION["errorOri"] = "mark.php";
+    header("Location: quiz.php?action=error");
+    exit();
+}
+
+function sanitise_data_array($data_array)
+{
+    foreach ($data_array as &$input) {
+        if (gettype($input) == "array") {
+            foreach ($input as &$field) {
+                $field = sanitise_string($field);
+            }
+        } else {
+            $input = sanitise_string($input);
+        }
+    }
+    return $data_array;
+}
+
+function get_data()
+{
+    $data_array = array();
+    if (isset($_POST["fname"])) { //text alpha
+        $data_array["fname"] = $_POST["fname"];
     }
 
-    function sanitise_data_array($data_array) {
-        foreach ($data_array as &$input) {
-            if (gettype($input) == "array") {
-                foreach ($input as &$field) {
-                    $field = sanitise_string($field);
-                }
-            } else {
-                $input = sanitise_string($input);
-            }
-        }
-        return $data_array;
+    if (isset($_POST["lname"])) { //text alpha
+        $data_array["lname"] = $_POST["lname"];
     }
 
-    function get_data() {
-        $data_array = array();
-        if (isset($_POST["fname"])) { //text alpha
-            $data_array["fname"] = $_POST["fname"];
-        }
-
-        if (isset($_POST["lname"])) { //text alpha
-            $data_array["lname"] = $_POST["lname"];
-        }
-
-        if (isset($_POST["sid"])) { //text numeric
-            $data_array["sid"] = $_POST["sid"];
-        }
-
-        if (isset($_POST["MPEG"])) { //text alpha
-            $data_array["MPEG"] = $_POST["MPEG"];
-        }
-
-        if (isset($_POST["years"])) { //radio
-            $data_array["years"] = $_POST["years"];
-        }
-
-        if (isset($_POST["standards"])) { //checkbox
-            $data_array["standards"] = $_POST["standards"];
-        }
-
-        if (isset($_POST["decline"])) { //checkbox
-            $data_array["decline"] = $_POST["decline"];
-        }
-
-        if (isset($_POST["creator"])) { //select
-            $data_array["creator"] = $_POST["creator"];
-        }
-
-        if (isset($_POST["compression"])) { //radio
-            $data_array["compression"] = $_POST["compression"];
-        }
-
-        return $data_array;
+    if (isset($_POST["sid"])) { //text numeric
+        $data_array["sid"] = $_POST["sid"];
     }
 
-    // Mark data to points
-    function mark_question($data_array) {
-        $total_points = 0;
-
-        if ($data_array["MPEG"] == "Moving Picture Experts Group") {
-            $total_points += 1;
-        }
-        
-        if ($data_array["years"] == "1995 / 1998") {
-            $total_points += 1;
-        }
-
-        $point_standards = 0;
-        for ($i = 0; $i < count($data_array["standards"]); $i++) {
-            if ($data_array["standards"][$i] == "MPEG 1 Audio layer III") {
-                $point_standards += 0.5;
-            }
-
-            if ($data_array["standards"][$i] == "MPEG 2 Audio Layer III") {
-                $point_standards += 0.5;
-            }
-
-            if ($data_array["standards"][$i] == "MPEG 2.5 Audio Layer III") {
-                $point_standards -= 0.5;
-            }
-
-            if ($data_array["standards"][$i] == "MPEG 3 Audio Layer III") {
-                $point_standards -= 0.5;
-            }
-        }
-        if ($point_standards > 0) { //If have points, add to total points
-            $total_points += $point_standards;
-        }
-
-        $point_decline = 0;
-        for ($i = 0; $i < count($data_array["decline"]); $i++) {
-            if ($data_array["decline"][$i] == "variety of devices") {
-                $point_decline += 0.5;
-            }
-
-            if ($data_array["decline"][$i] == "legal issues") {
-                $point_decline -= 0.5;
-            }
-
-            if ($data_array["decline"][$i] == "alternative audio formats") {
-                $point_decline += 0.5;
-            }
-
-            if ($data_array["decline"][$i] == "MPEG changes") {
-                $point_decline -= 0.5;
-            }
-        }
-        if ($point_decline > 0) { //If have points, add to total points
-            $total_points += $point_decline;
-        }
-
-        if ($data_array["creator"] == "Fraunhofer Society") {
-            $total_points += 1;
-        }
-
-        if ($data_array["compression"] == "False") {
-            $total_points += 1;
-        }
-
-        return $total_points;
+    if (isset($_POST["MPEG"])) { //text alpha
+        $data_array["MPEG"] = $_POST["MPEG"];
     }
 
-
-    $data = get_data();
-
-    $data = sanitise_data_array($data);
-
-    $errors = validate_user_data($data);
-
-    if ($errors != null) {
-        quiz_error($errors);
-        exit();
+    if (isset($_POST["years"])) { //radio
+        $data_array["years"] = $_POST["years"];
     }
 
-    $points = mark_question($data);
+    if (isset($_POST["standards"])) { //checkbox
+        $data_array["standards"] = $_POST["standards"];
+    }
 
-    echo "$points<br>"; //delete later
+    if (isset($_POST["decline"])) { //checkbox
+        $data_array["decline"] = $_POST["decline"];
+    }
+
+    if (isset($_POST["creator"])) { //select
+        $data_array["creator"] = $_POST["creator"];
+    }
+
+    if (isset($_POST["compression"])) { //radio
+        $data_array["compression"] = $_POST["compression"];
+    }
+
+    return $data_array;
+}
+
+// Mark data to points
+function mark_question($data_array)
+{
+    $total_points = 0;
+
+    if ($data_array["MPEG"] == "Moving Picture Experts Group") {
+        $total_points += 2;
+    }
+
+    if ($data_array["years"] == "1995 / 1998") {
+        $total_points += 2;
+    }
+
+    $point_standards = 0;
+    for ($i = 0; $i < count($data_array["standards"]); $i++) {
+        if ($data_array["standards"][$i] == "MPEG 1 Audio layer III") {
+            $point_standards += 1;
+        }
+
+        if ($data_array["standards"][$i] == "MPEG 2 Audio Layer III") {
+            $point_standards += 1;
+        }
+
+        if ($data_array["standards"][$i] == "MPEG 2.5 Audio Layer III") {
+            $point_standards -= 1;
+        }
+
+        if ($data_array["standards"][$i] == "MPEG 3 Audio Layer III") {
+            $point_standards -= 1;
+        }
+    }
+    if ($point_standards > 0) { //If have points, add to total points
+        $total_points += $point_standards;
+    }
+
+    $point_decline = 0;
+    for ($i = 0; $i < count($data_array["decline"]); $i++) {
+        if ($data_array["decline"][$i] == "variety of devices") {
+            $point_decline += 1;
+        }
+
+        if ($data_array["decline"][$i] == "legal issues") {
+            $point_decline -= 1;
+        }
+
+        if ($data_array["decline"][$i] == "alternative audio formats") {
+            $point_decline += 1;
+        }
+
+        if ($data_array["decline"][$i] == "MPEG changes") {
+            $point_decline -= 1;
+        }
+    }
+    if ($point_decline > 0) { //If have points, add to total points
+        $total_points += $point_decline;
+    }
+
+    if ($data_array["creator"] == "Fraunhofer Society") {
+        $total_points += 2;
+    }
+
+    if ($data_array["compression"] == "False") {
+        $total_points += 2;
+    }
+
+    return $total_points;
+}
+
+//Checks submission count, and uploads to submission server if user has performed less than 2 attempts
+function submit_results($conn, $data, $score)
+{
+    $query = "SELECT * FROM attempts WHERE userid = " .  $data["sid"];
+    $result = mysqli_query($conn, $query);
+    $rows = mysqli_num_rows($result);
+    if ($rows >= 2) {
+        header("Location: markquiz.php"); #note information will show them that their 3rd+ attempt did not count
+        exit;
+    }
+    save_user($conn, $data["sid"], $data["fname"], $data["lname"]);
+    save_attempt($conn, $data["sid"], $score);
+}
+
+$data = get_data();
+
+$data = sanitise_data_array($data);
+
+$errors = validate_user_data($data);
+
+if ($errors != null) {
+    quiz_error($errors);
+    exit();
+}
+
+$points = mark_question($data);
+
+if ($points == 0) {
+    header("Location: markquiz.php"); #note information will be shown that their attempt did not count because of a zero.
+    exit();
+}
+
+$conn = get_conn();
+
+if ($conn) {
+    submit_results($conn, $data, $points);
+}
+
+mysqli_close($conn);
+
+echo "points: $points<br>"; //delete later
+header("Location: markquiz.php");
+exit();
 ?>
