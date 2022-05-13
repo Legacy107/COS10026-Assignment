@@ -158,7 +158,7 @@
                                 "all"               => "All",
                                 "name"              => "By name",
                                 "sid"               => "By student ID",
-                                "100_first"         => "100% on first attempt",
+                                "100_first"          => "100% on first attempt",
                                 "less_50_second"    => "&lt;50% on second attempt",
                             );
                             $filter = get_session("filter");
@@ -290,10 +290,10 @@
                         $attempts = get_attempts($conn, get_session("sid"));
                         break;
                     case '100_first':
-                        $attempts =  get_first_attempts_100($conn);
+                        $attempts = get_first_attempts_100($conn);
                         break;
                     case 'less_50_second':
-                        $attempts =  get_second_attempts_lt_50($conn);
+                        $attempts = get_second_attempts_lt_50($conn);
                         break;
                     default:
                         $attempts = get_attempts($conn);

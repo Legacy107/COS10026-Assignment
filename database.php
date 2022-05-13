@@ -110,7 +110,7 @@
             if ($hasConst) {
                 $const .= " and";
             }
-            $hasConst = true  ;
+            $hasConst = true ;
             $const .= " users.id = '$user_id'";
         }
         if ($fname) {
