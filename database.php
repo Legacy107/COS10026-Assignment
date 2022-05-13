@@ -204,7 +204,7 @@
 
             return $attempts;
         } catch (Exception $_ex) {
-            return bull;
+            return null;
         }
     }
 

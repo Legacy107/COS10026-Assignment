@@ -284,25 +284,10 @@
                 # check filter
                 switch ($_SESSION["filter"]) {
                     case 'name':
-                        $fname = get_session("fname");
-                        $lname = get_session("lname");
-                        if ($fname != null and !preg_match($nameReg, $fname)) {
-                            $fname = null;
-                            $_SESSION["fname"] = null;
-                        }
-                        if ($lname != null and !preg_match($nameReg, $lname)) {
-                            $lname = null;
-                            $_SESSION["lname"] = null;
-                        }
-                        $attempts = get_attempts($conn, null, $fname, $lname);
+                        $attempts = get_attempts($conn, null, get_session("fname"), get_session("lname"));
                         break;
                     case 'sid':
-                        $sid = get_session("sid");
-                        if ($sid != null and !preg_match($sidReg, $sid)) {
-                            $sid = null;
-                            $_SESSION["sid"] = null;
-                        }
-                        $attempts = get_attempts($conn, $sid);
+                        $attempts = get_attempts($conn, get_session("sid"));
                         break;
                     case '100_first':
                         $attempts =  get_first_attempts_100($conn);
