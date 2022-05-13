@@ -1,6 +1,7 @@
 <?php 
-    include "data_input.php";
-    include "database.php";
+    include_once "data_input.php";
+    include_once "database.php";
+    include_once "error.php";
 
     # Redirects to the login page while passing an error message in $_SESSION.
     function login_error($errorMsg) {
@@ -50,6 +51,9 @@
         $_SESSION["adminId"] = mysqli_fetch_array($result)[0];
     }
 
+    $nameReg = "/^[a-zA-Z\s-]{0,30}$/";
+    $sidReg = "/^(\d{7}|\d{10})?$/";
+
     $action = get_action();
 
     switch ($action) {
@@ -60,15 +64,17 @@
             $_SESSION["filter"] = get_post("filter");
             break;
         case 'delete':
-            $attempts = get_session('attempts');
-            if ($attempts)
-                delete_attempts($conn, $attempts);
+            $deleteSid = get_post("user_id");
+            if ($deleteSid != null) {
+                delete_user($conn, $deleteSid);
+            }
             break;
         case 'edit':
-            $attemptId = get_post('attemptId');
+            $attemptId = get_post('attempt_id');
             $attempt_value = get_post('attempt_value');
-            if ($attemptId)
+            if ($attemptId != null and $attempt_value != null and preg_match("/^[0-6]$/", $attempt_value)) {
                 update_attempt($conn, $attemptId, $attempt_value);
+            }
             break;
         default:
             $_SESSION["filter"] = "all";
@@ -93,7 +99,7 @@
     <link rel="stylesheet" href="styles/style.css"/>
 </head>
 <body>
-    <?php include('header.inc')?>
+    <?php include "header.inc" ?>
 
     <main id="manage-main">
         <h1 id="manage-mainheading">Manage Attempts</h1>
@@ -107,8 +113,9 @@
                         type="text" id="fname" class="manage-textinput" name="fname" pattern="^[a-zA-Z\s-]{0,30}$" title="Please enter upper or lower case letters only, spaces are allowed. Maximum 30 characters"
                         <?php
                             $fname = get_session("fname");
-                            if ($fname)
-                                echo "value=\"" . $fname . "\"";
+                            if ($fname != null and preg_match($nameReg, $fname)) {
+                                echo("value=\"$fname\"");
+                            }
                         ?>
                     />
                 </div>
@@ -120,8 +127,9 @@
                         type="text" id="lname" class="manage-textinput" name="lname" pattern="^[a-zA-Z\s-]{0,30}$" title="Please enter upper or lower case letters only, spaces are allowed. Maximum 30 characters"
                         <?php
                             $lname = get_session("lname");
-                            if ($lname)
-                                echo "value=\"" . $lname . "\"";
+                            if ($lname != null and preg_match($nameReg, $lname)) {
+                                echo("value=\"$lname\"");
+                            }
                         ?>
                     />
                 </div>
@@ -133,8 +141,9 @@
                         type="text" id="sid" class="manage-textinput" name="sid" pattern="^(\d{7}|\d{10})?$" title="Please enter 7 or 10 digits."
                         <?php
                             $sid = get_session("sid");
-                            if ($sid)
-                                echo "value=\"" . $sid . "\"";
+                            if ($sid != null and preg_match($sidReg, $sid)) {
+                                echo("value=\"$sid\"");
+                            }
                         ?>
                     />
                 </div>
@@ -149,15 +158,15 @@
                                 "all"               => "All",
                                 "name"              => "By name",
                                 "sid"               => "By student ID",
-                                "100_first"          => "100% on first attempt",
+                                "100_first"         => "100% on first attempt",
                                 "less_50_second"    => "&lt;50% on second attempt",
                             );
                             $filter = get_session("filter");
 
                             foreach ($options as $key => $option) {
-                                echo "<option value=\"$key\"";
-                                echo $filter == $key ? " selected>\n" : ">\n";
-                                echo "$option\n</option>";
+                                echo("<option value=\"$key\"");
+                                echo($filter == $key ? " selected>\n" : ">\n");
+                                echo("$option\n</option>");
                             }
                         ?>
                     </select>
@@ -167,90 +176,163 @@
             <input type="submit" class="manage-submit" value="Filter"/>
         </form>
 
-        <h2 id="manage-listheading">List of Attempts</h2>
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Date</th>
-                <th>Score</th>
-                <th>Action</th>
-            </tr>
-            <?php
-                function get_table_data() {
-                    $errorMsg = validate_user_data($_SESSION);
-                    if ($errorMsg)
-                        return "<tr><td colspan=\"5\">$errorMsg</td></tr>";
-
-                    $conn = get_conn();
-                    if (!$conn)
-                        return "<tr><td colspan=\"5\">Cannot connect to the database</td></tr>";
-
-                    switch ($_SESSION["filter"]) {
-                        case 'name':
-                            $attempts = get_attempts($conn, null, $_SESSION["fname"], $_SESSION["lname"]);
-                            break;
-                        case 'sid':
-                            $attempts = get_attempts($conn, $_SESSION["sid"]);
-                            break;
-                        case '100_first':
-                            $attempts =  get_first_attempts_100($conn);
-                            break;
-                        case 'less_50_second':
-                            $attempts =  get_second_attempts_lt_50($conn);
-                            break;
-                        default:
-                            $attempts = get_attempts($conn);
-                            break;
-                    }
-                    if (!$attempts)
-                        return "<tr><td colspan=\"5\">No attempts available</td></tr>";
-
-                    function extract_id($attempt) {
-                        return $attempt['id'];
-                    }
-                    $_SESSION["attempts"] = array_map("extract_id", $attempts);
-
-                    $result = "";
-                    foreach ($attempts as $attempt) {
-                        $result .= "<tr>\n";
-                        $result .= "<td>" . $attempt["id"] . "</td>\n";
-                        $result .= "<td>" . $attempt["firstname"] . " " . $attempt["lastname"] . "</td>\n";
-                        $result .= "<td>" . $attempt["dateCreated"] . "</td>\n";
-                        $result .= "<form method=\"post\" action=\"manage.php?action=edit\">";
-                        $result .= "<input type=\"hidden\" name=\"attemptId\" value=\"" . $attempt["id"] . "\"/>\n";
-                        $result .= "
-                            <td>
-                                <input
-                                    type=\"number\"
-                                    class=\"manage-score\"
-                                    name=\"attempt_value\"
-                                    min=\"0\"
-                                    max=\"6\"
-                                    value=\"" . $attempt["score"] . "\"" . "
-                                    required/>
-                            </td>\n";
-                        $result .= "
-                            <td><input type=\"submit\" class=\"manage-edit\" value=\"Edit\"/></td>\n
-                            </form>\n
-                            </tr>\n
-                        ";
-                    }
-
-                    return $result;
+        <?php
+            function echo_attempts_table($data) {
+                $length = count($data);
+                for ($i = 0; $i < $length; $i++) {
+                    echo("
+                        <form id=\"attempt$i\" method=\"post\" action=\"manage.php?action=edit\"></form>
+                    ");
                 }
-                $result = get_table_data();
-                // has error
-                if (strpos($result, 'colspan'))
-                    unset($_SESSION['attempts']);
+                echo("
+                    <table>
+                        <tr>
+                            <th>ID</th>
+                            <th>Student ID</th>
+                            <th>Name</th>
+                            <th>Date Added</th>
+                            <th>Score</th>
+                            <th>Action</th>
+                        </tr>
+                ");
+                if ($length == 0) {
+                    echo("
+                        <tr>
+                            <td colspan=\"6\">No attempts found.</td>
+                        </tr>"
+                    );
+                } else {
+                    $count = 0;
+                    foreach ($data as $row) {
+                        echo("
+                            <tr>
+                                <td>" . $row["id"] . "</td>
+                                <td>" . $row["studentid"] . "</td>
+                                <td>" . $row["firstname"] . " " . $row["lastname"] . "</td>
+                                <td>" . $row["dateCreated"] . "</td>
+                                <td>
+                                    <input type=\"hidden\" name=\"attempt_id\" value=\"" . $row["id"] . "\" form=\"attempt$count\"/>
+                                    <input type=\"number\" class=\"manage-score\" name=\"attempt_value\" min=\"0\" max=\"6\" value=\"" . $row["score"] . "\" form=\"attempt$count\" required/>
+                                </td>
+                                <td>
+                                    <input type=\"submit\" class=\"manage-edit\" value=\"Edit\" form=\"attempt$count\"/>
+                                </td>
+                            </tr>
+                        ");
+                        $count += 1;
+                    }
+                }
+                echo("
+                    </table>
+                ");
+            }
 
-                echo $result;
-            ?>
-        </table>
+            function echo_users_table($data) {
+                $length = count($data);
+                for ($i = 0; $i < $length; $i++) {
+                    echo("
+                        <form id=\"user$i\" method=\"post\" action=\"manage.php?action=delete\"></form>
+                    ");
+                }
+                echo("
+                    <table>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Name</th>
+                            <th>Action</th>
+                        </tr>
+                ");
+                if ($length == 0) {
+                    echo("
+                        <tr>
+                            <td colspan=\"3\">No users found.</td>
+                        </tr>"
+                    );
+                } else {
+                    $count = 0;
+                    foreach ($data as $key => $row) {
+                        echo("
+                            <tr>
+                                <td>" . $key . "</td>
+                                <td>" . $row[0] . " " . $row[1] . "</td>
+                                <td>
+                                    <input type=\"hidden\" name=\"user_id\" value=\"" . $key . "\" form=\"user$count\"/>
+                                    <input type=\"submit\" class=\"manage-edit manage-delete\" value=\"Delete\" form=\"user$count\"/>
+                                </td>
+                            </tr>
+                        ");
+                        $count += 1;
+                    }
+                }
+                echo("
+                    </table>
+                ");
+            }
 
-        <form method="post" action="manage.php?action=delete">
-            <input type="submit" id="manage-delete" class="manage-submit" value="Delete Attempts"/>
-        </form>
+            function echo_manage_error($errors) {
+                echo_error($errors, "manage.php");
+            }
+
+            function make_tables() {
+                GLOBAL $conn, $nameReg, $sidReg;
+                $errorMsg = validate_user_data($_SESSION);
+                if ($errorMsg != null) {
+                    echo_manage_error($errorMsg);
+                    return;
+                }
+
+                # check filter
+                switch ($_SESSION["filter"]) {
+                    case 'name':
+                        $fname = get_session("fname");
+                        $lname = get_session("lname");
+                        if ($fname != null and !preg_match($nameReg, $fname)) {
+                            $fname = null;
+                            $_SESSION["fname"] = null;
+                        }
+                        if ($lname != null and !preg_match($nameReg, $lname)) {
+                            $lname = null;
+                            $_SESSION["lname"] = null;
+                        }
+                        $attempts = get_attempts($conn, null, $fname, $lname);
+                        break;
+                    case 'sid':
+                        $sid = get_session("sid");
+                        if ($sid != null and !preg_match($sidReg, $sid)) {
+                            $sid = null;
+                            $_SESSION["sid"] = null;
+                        }
+                        $attempts = get_attempts($conn, $sid);
+                        break;
+                    case '100_first':
+                        $attempts =  get_first_attempts_100($conn);
+                        break;
+                    case 'less_50_second':
+                        $attempts =  get_second_attempts_lt_50($conn);
+                        break;
+                    default:
+                        $attempts = get_attempts($conn);
+                        break;
+                }
+
+                if (gettype($attempts) == "NULL") {
+                    echo_manage_error(["Failed fetching attempts from SQL database."]);
+                    return;
+                }
+
+                $users = [];
+                foreach ($attempts as $attempt) {
+                    $users[$attempt["studentid"]] = [$attempt["firstname"], $attempt["lastname"]];
+                }
+                
+                echo("<h2 class=\"manage-listheading\">List of Attempts</h2>");
+                echo_attempts_table($attempts);
+
+                echo("<h2 class=\"manage-listheading\">List of Users</h2>");
+                echo_users_table($users);
+            }
+            make_tables();
+        ?>
     </main>
     
     <form method="post" action="logout.php">
@@ -260,6 +342,6 @@
     <?php
         mysqli_close($conn);
     ?>
-    <?php include('footer.inc')?>
+    <?php include "footer.inc" ?>
 </body>
 </html>
