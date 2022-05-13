@@ -31,7 +31,7 @@
     # Creates the 'users' table if it doesn't exist.
     function create_user_table($conn) {
         $query = "CREATE TABLE IF NOT EXISTS users (
-            id INT NOT NULL,
+            id VARCHAR(10) NOT NULL,
             firstName VARCHAR(30) NOT NULL,
             lastName VARCHAR(30) NOT NULL,
             PRIMARY KEY (id)
@@ -48,7 +48,7 @@
     function create_attempt_table($conn) {
         $query = "CREATE TABLE IF NOT EXISTS attempts (
             id INT NOT NULL AUTO_INCREMENT,
-            userId INT NOT NULL,
+            userId VARCHAR(10) NOT NULL,
             score TINYINT NOT NULL,
             dateCreated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             dateUpdated TIMESTAMP,
@@ -110,7 +110,7 @@
             if ($hasConst) {
                 $const .= " and";
             }
-            $hasConst = true ;
+            $hasConst = true;
             $const .= " users.id = '$user_id'";
         }
         if ($fname) {
@@ -119,7 +119,7 @@
             }
             $hasConst = true;
             
-            $const .= " users.firstname = '$fname'";
+            $const .= " users.firstname LIKE '%$fname%'";
         }
         if ($lname) {
             if ($hasConst) {
@@ -127,7 +127,7 @@
             }
             $hasConst = true;
             
-            $const .= " users.lastname = '$lname'";
+            $const .= " users.lastname LIKE '%$lname%'";
         }
 
         if ($hasConst) {
@@ -162,7 +162,7 @@
             ) temp_attempts
             ON attempts.userId = temp_attempts.userId
             AND attempts.dateCreated = temp_attempts.maxDateCreated
-            WHERE attempts.score < 3
+            WHERE attempts.score < 6
             ORDER BY attempts.dateCreated, attempts.id
         ";
 
@@ -191,7 +191,7 @@
             ) temp_attempts
             ON attempts.userId = temp_attempts.userId
             AND attempts.dateCreated = temp_attempts.minDateCreated
-            WHERE attempts.score = 6
+            WHERE attempts.score = 12
             ORDER BY attempts.dateCreated, attempts.id
         ";
 
