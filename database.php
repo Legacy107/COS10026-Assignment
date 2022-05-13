@@ -1,5 +1,5 @@
 <?php
-    include "db_settings.php";
+    include_once "db_settings.php";
 
     # Gets a connection to the MySQL database using the config variables. Returns null if it can't connect.
     function get_conn() {
@@ -89,65 +89,69 @@
         return true;
     }
 
+    function get_sql_array($result) {
+        $array = [];
+        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+        while ($row != null) {
+            array_push($array, $row);
+            $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+        }
+        return $array;
+    }
+
     # Read attempts.
     function get_attempts($conn, $user_id = null, $fname = null, $lname = null) {
-        $need_and = false;
-        $query = "SELECT attempts.*, users.firstname, users.lastname FROM attempts
-            INNER JOIN users ON attempts.userId = users.id
-        ";
+        $hasConst = false;
+        $query = "SELECT attempts.*, users.firstname, users.lastname, users.id AS studentid FROM attempts INNER JOIN users ON attempts.userId = users.id";
+
+        $const = " WHERE";
+
         if ($user_id) {
-            if ($need_and)
-                $query .= " and";
-            else {
-                $need_and = true;
-                $query .= " WHERE";
+            if ($hasConst) {
+                $const .= " and";
             }
-            
-            $query .= " users.id = '$user_id'";
+            $hasConst = true ;
+            $const .= " users.id = '$user_id'";
         }
         if ($fname) {
-            if ($need_and)
-                $query .= " and";
-            else {
-                $need_and = true;
-                $query .= " WHERE";
+            if ($hasConst) {
+                $const .= " and";
             }
+            $hasConst = true;
             
-            $query .= " users.firstname = '$fname'";
+            $const .= " users.firstname = '$fname'";
         }
         if ($lname) {
-            if ($need_and)
-                $query .= " and";
-            else {
-                $need_and = true;
-                $query .= " WHERE";
+            if ($hasConst) {
+                $const .= " and";
             }
+            $hasConst = true;
             
-            $query .= " users.lastname = '$lname'";
+            $const .= " users.lastname = '$lname'";
         }
 
-        $query .= "ORDER BY attempts.dateCreated, attempts.id";
+        if ($hasConst) {
+            $query .= $const;
+        }
+        
+        $query .= " ORDER BY attempts.dateCreated, attempts.id";
 
         try {
             $result = mysqli_query($conn, $query);
-            if (!$result)
-                return false;
 
-            $attempts = array();
-            while ($row = mysqli_fetch_assoc($result)) {
-                array_push($attempts, $row);
-            }
+            $attempts = get_sql_array($result);
 
             mysqli_free_result($result);
+
             return $attempts;
         } catch (Exception $_ex) {
-            return false;
+            return null;
         }
     }
 
     # Read second attempts with score < 50%.
     function get_second_attempts_lt_50($conn) {
-        $query = "SELECT attempts.*, users.firstname, users.lastname FROM attempts
+        $query = "SELECT attempts.*, users.firstname, users.lastname, users.id AS studentid FROM attempts
             INNER JOIN users ON attempts.userId = users.id
             INNER JOIN
             (
@@ -164,24 +168,20 @@
 
         try {
             $result = mysqli_query($conn, $query);
-            if (!$result)
-                return false;
 
-            $attempts = array();
-            while ($row = mysqli_fetch_assoc($result)) {
-                array_push($attempts, $row);
-            }
+            $attempts = get_sql_array($result);
 
             mysqli_free_result($result);
+
             return $attempts;
         } catch (Exception $_ex) {
-            return false;
+            return null;
         }
     }
 
     # Read first attempts with scores of 100%.
     function get_first_attempts_100($conn) {
-        $query = "SELECT attempts.*, users.firstname, users.lastname FROM attempts
+        $query = "SELECT attempts.*, users.firstname, users.lastname, users.id AS studentid FROM attempts
             INNER JOIN users ON attempts.userId = users.id
             INNER JOIN
             (
@@ -197,18 +197,14 @@
 
         try {
             $result = mysqli_query($conn, $query);
-            if (!$result)
-                return false;
 
-            $attempts = array();
-            while ($row = mysqli_fetch_assoc($result)) {
-                array_push($attempts, $row);
-            }
+            $attempts = get_sql_array($result);
 
             mysqli_free_result($result);
+
             return $attempts;
         } catch (Exception $_ex) {
-            return false;
+            return null;
         }
     }
 
@@ -226,10 +222,32 @@
         return true;
     }
 
-    # Delete attempts.
-    function delete_attempts($conn, $ids) {
-        $query = "DELETE FROM attempts
-            WHERE id IN (" . implode(", ", $ids) . ")";
+    # Delete user.
+    function delete_user($conn, $sid) {
+        $query = "DELETE FROM attempts WHERE userId = $sid";
+        try {
+            mysqli_query($conn, $query);
+        } catch (Exception $_ex) {
+            return false;
+        }
+
+        $query = "DELETE FROM users WHERE id = $sid";
+        try {
+            mysqli_query($conn, $query);
+        } catch (Exception $_ex) {
+            return false;
+        }
+        return true;
+    }
+
+    function populate_admin_table($conn) {
+        $query = "INSERT INTO admins (id, username, password)
+            VALUES
+            (NULL, 'orson_routt', 'password1'),
+            (NULL, 'quoc_mai', 'password2'),
+            (NULL, 'peter_farmer', 'password3'),
+            (NULL, 'keath_kor', 'password4'),
+            (NULL, 'yong_yuan', 'password5')";
         try {
             mysqli_query($conn, $query);
         } catch (Exception $_ex) {
@@ -243,6 +261,7 @@
         create_user_table($conn);
         create_attempt_table($conn);
         create_admin_table($conn);
+        populate_admin_table($conn);
         mysqli_close($conn);
     }
 ?>
