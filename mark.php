@@ -148,7 +148,6 @@ function submit_results($conn, $data, $score)
         $errors = [];
         array_push($errors, "Two attempts already completed.");
         quiz_error($errors);
-        exit();
     }
     save_user($conn, $data["sid"], $data["fname"], $data["lname"]);
     save_attempt($conn, $data["sid"], $score);
@@ -163,7 +162,6 @@ $errors = validate_user_data($data);
 #displays any errors that have occurred server side to the user
 if ($errors != null) {
     quiz_error($errors);
-    exit();
 }
 
 $points = mark_question($data);
@@ -172,18 +170,19 @@ if ($points == 0) {
     $errors = [];
     array_push($errors, "Score achieved is zero. Attempt has not counted, please attempt again.");
     quiz_error($errors);
-    exit();
 }
 
 $conn = get_conn();
 
 if ($conn) {
     submit_results($conn, $data, $points);
+} else {
+    $errors = [];
+    array_push($errors, "Connection with server was not established, please contact the team to resolve issues. Please try again later");
 }
 
 mysqli_close($conn);
 
-echo "points: $points<br>"; //delete later
-header("Location: markquiz.php");
+//header("Location: markquiz.php");
 exit();
 ?>

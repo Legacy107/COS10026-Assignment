@@ -71,16 +71,22 @@ function create_attempt_table($conn)
 # Create a user.
 function save_user($conn, $sid, $fname, $lname)
 {
-    $query = "INSERT INTO users (id, firstName, lastName)
-            VALUES ('$sid', '$fname', '$lname');
-        ";
-    try {
-        mysqli_query($conn, $query);
-    } catch (Exception $_ex) {
-        return false;
+    $query = "SELECT * FROM users WHERE id = " .  $sid;
+    $result = mysqli_query($conn, $query);
+    $rows = mysqli_num_rows($result);
+    echo "Test 1";
+    echo "Row number is: $rows";
+    if ($rows == 0) {
+        $query = "INSERT INTO users (id, firstName, lastName)
+            VALUES ('$sid', '$fname', '$lname')";
+        echo "test 2";
+        try {
+            mysqli_query($conn, $query);
+        } catch (Exception $_ex) {
+            return false;
+        }
+        return true;
     }
-    echo "TEST 5";
-    return true;
 }
 
 # Create an attempt.
