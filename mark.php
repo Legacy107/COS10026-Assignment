@@ -145,8 +145,10 @@ function submit_results($conn, $data, $score)
     $result = mysqli_query($conn, $query);
     $rows = mysqli_num_rows($result);
     if ($rows >= 2) {
-        header("Location: markquiz.php"); #note information will show them that their 3rd+ attempt did not count
-        exit;
+        $errors = [];
+        array_push($errors, "Two attempts already completed.");
+        quiz_error($errors);
+        exit();
     }
     save_user($conn, $data["sid"], $data["fname"], $data["lname"]);
     save_attempt($conn, $data["sid"], $score);
@@ -158,6 +160,7 @@ $data = sanitise_data_array($data);
 
 $errors = validate_user_data($data);
 
+#displays any errors that have occurred server side to the user
 if ($errors != null) {
     quiz_error($errors);
     exit();
@@ -166,7 +169,9 @@ if ($errors != null) {
 $points = mark_question($data);
 
 if ($points == 0) {
-    header("Location: markquiz.php"); #note information will be shown that their attempt did not count because of a zero.
+    $errors = [];
+    array_push($errors, "Score achieved is zero. Attempt has not counted, please attempt again.");
+    quiz_error($errors);
     exit();
 }
 
