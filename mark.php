@@ -183,6 +183,6 @@ if ($conn) {
 
 mysqli_close($conn);
 
-//header("Location: markquiz.php");
+header("Location: markquiz.php");
 exit();
 ?>

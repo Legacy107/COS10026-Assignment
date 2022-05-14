@@ -74,12 +74,9 @@ function save_user($conn, $sid, $fname, $lname)
     $query = "SELECT * FROM users WHERE id = " .  $sid;
     $result = mysqli_query($conn, $query);
     $rows = mysqli_num_rows($result);
-    echo "Test 1";
-    echo "Row number is: $rows";
     if ($rows == 0) {
         $query = "INSERT INTO users (id, firstName, lastName)
             VALUES ('$sid', '$fname', '$lname')";
-        echo "test 2";
         try {
             mysqli_query($conn, $query);
         } catch (Exception $_ex) {
