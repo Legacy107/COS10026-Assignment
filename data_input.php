@@ -63,8 +63,6 @@
         if (isset($data_array["sid"])) {
             if ($data_array["sid"] == "") {
                 array_push($errors, "You must enter your student id.");
-            } elseif (!is_numeric($data_array["sid"])) {
-                array_push($errors, "Your student id must be a number.");
             } elseif (!preg_match('/^(\d{7}|\d{10})$/', $data_array["sid"])) {
                 array_push($errors, "Your student id must be between 7 to 10 digits.");
             }
