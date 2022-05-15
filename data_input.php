@@ -45,33 +45,27 @@
         $errors = [];
 
         if (isset($data_array["fname"])) {
-        if (!preg_match("/^[a-zA-Z\s-]+$/", $data_array["fname"])) {
-            array_push($errors, "Only alpha letters and hyphen are allowed in your first name.");
-        }
-        else if(strlen($data_array["fname"]) > 30)
-        {
-            array_push($errors, "First name is too long, maximum is 30 characters.");
-        }
+            if (!preg_match("/^[a-zA-Z\s-]+$/", $data_array["fname"])) {
+                array_push($errors, "Only alpha letters and hyphen are allowed in your first name.");
+            } elseif(strlen($data_array["fname"]) > 30) {
+                array_push($errors, "First name is too long, maximum is 30 characters.");
+            }
         }
 
         if (isset($data_array["lname"])) {
-        if (!preg_match("/^[a-zA-Z\s-]+$/", $data_array["lname"])) {
-            array_push($errors, "Only alpha letters and hyphen are allowed in your last name.");
-        }
-        else if(strlen($data_array["lname"]) > 30)
-        {
-            array_push($errors, "Last name is too long, maximum is 30 characters.");
-        }
+            if (!preg_match("/^[a-zA-Z\s-]+$/", $data_array["lname"])) {
+                array_push($errors, "Only alpha letters and hyphen are allowed in your last name.");
+            } elseif(strlen($data_array["lname"]) > 30) {
+                array_push($errors, "Last name is too long, maximum is 30 characters.");
+            }
         }
 
         if (isset($data_array["sid"])) {
-        if ($data_array["sid"] == "") {
-            array_push($errors, "You must enter your student id.");
-        } else if (!is_numeric($data_array["sid"])) {
-            array_push($errors, "Your student id must be a number.");
-        } else if (!preg_match('/^(\d{7}|\d{10})$/', $data_array["sid"])) {
-            array_push($errors, "Your student id must be between 7 to 10 digits.");
-        }
+            if ($data_array["sid"] == "") {
+                array_push($errors, "You must enter your student id.");
+            } elseif (!preg_match('/^(\d{7}|\d{10})$/', $data_array["sid"])) {
+                array_push($errors, "Your student id must be between 7 to 10 digits.");
+            }
         }
         
         if (count($errors) == 0) {

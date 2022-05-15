@@ -17,15 +17,15 @@
     <link rel="stylesheet" href="styles/style.css"/>
 </head>
 <body>
-    <?php include('header.inc')
-    ?>
+    <?php include "header.inc" ?>
 
     <main class="quiz-main">
 
         <h1 class="quiz-h2">MP3 Quiz</h1>
 
         <?php
-            include "data_input.php";
+            include_once "data_input.php";
+            include_once "error.php";
 
             session_start();
             $action = get_action();
@@ -44,17 +44,7 @@
                     $origin = $errorOri;
                     $errors = $errorMsg;
                 }
-                echo("
-                    <p id='error-p'>ERRORS &lt;$origin&gt;:
-                ");
-                foreach ($errors as $error) {
-                    echo("
-                        <br/> - $error
-                    ");
-                }
-                echo("
-                    </p>
-                ");
+                echo_error($errors, $origin);
             }
             session_unset();
             session_destroy();
@@ -274,7 +264,6 @@
         
     </main>
 
-    <?php include('footer.inc')
-    ?> 
+    <?php include "footer.inc" ?> 
 </body>
 </html>

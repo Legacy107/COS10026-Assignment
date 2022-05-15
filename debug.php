@@ -1,6 +1,6 @@
 <?php
   function echo_sql_table($result) {
-    $output = "";
+    $output = "Echoing...<br/>";
     $current = mysqli_fetch_array($result, MYSQLI_NUM);
     while ($current != null) {
       foreach($current as $i=>$item) {

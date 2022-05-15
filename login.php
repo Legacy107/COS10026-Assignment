@@ -17,12 +17,12 @@
 </head>
 
 <body>
-    <?php include('header.inc')?>
+    <?php include "header.inc" ?>
     <main class="login-main">
         <h1 class="login-h1">Admin Panel</h1>
 
         <?php
-            include "data_input.php";
+            include_once "data_input.php";
 
             session_start();
             $adminId = get_session("adminId");
@@ -43,7 +43,7 @@
                     $origin = $errorOri;
                     $error = $errorMsg;
                 }
-                echo("<p id='error-p'>ERROR &lt;$origin&gt; - $error</p>");
+                echo("<p class='error-p'>ERROR &lt;$origin&gt; - $error</p>");
             }
             session_unset();
             session_destroy();
@@ -64,7 +64,7 @@
             <input type="submit" value="LOGIN" class="login-submit" />
         </form>
     </main>
-    <?php include('footer.inc')?>
+    <?php include "footer.inc" ?>
 </body>
 
 </html>

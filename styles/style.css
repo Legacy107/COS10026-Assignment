@@ -195,10 +195,6 @@ Specific styles for manage.php
     background-color: var(--cyan-300);
 }
 
-.manage-delete:hover {
-    background-color: var(--red-300);
-}
-
 .manage-edit {
     background: none;
     border: none;
@@ -208,8 +204,16 @@ Specific styles for manage.php
     cursor: pointer;
 }
 
+.manage-delete {
+    color: var(--red-400);
+}
+
 .manage-edit:hover {
     color: var(--cyan-300);
+}
+
+.manage-delete:hover {
+    color: var(--red-300);
 }
 
 .manage-score {
@@ -252,7 +256,7 @@ Specific styles for manage.php
     margin: 4rem 0;
 }
 
-#manage-listheading {
+.manage-listheading {
     margin: 2rem 0;
 }
 
@@ -1681,7 +1685,7 @@ Styles for markquiz.html
     background-color: var(--cyan-400);
 }
 
-#error-p {
+.error-p {
     color: red;
     padding-bottom: 2rem;
 }
