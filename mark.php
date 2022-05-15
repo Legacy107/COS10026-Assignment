@@ -1,11 +1,8 @@
-
 <?php
     include_once "data_input.php";
-    include "db_settings.php";
     include "database.php";
 
-    function quiz_error($errors)
-    {
+    function quiz_error($errors) {
         session_start();
         session_unset();
         $_SESSION["errorMsg"] = $errors;
@@ -14,8 +11,7 @@
         exit();
     }
 
-    function sanitise_data_array($data_array)
-    {
+    function sanitise_data_array($data_array) {
         foreach ($data_array as &$input) {
             if (gettype($input) == "array") {
                 foreach ($input as &$field) {
@@ -28,8 +24,7 @@
         return $data_array;
     }
 
-    function get_data()
-    {
+    function get_data() {
         $data_array = array();
         if (isset($_POST["fname"])) { //text alpha
             $data_array["fname"] = $_POST["fname"];
@@ -71,8 +66,7 @@
     }
 
     // Mark data to points
-    function mark_question($data_array)
-    {
+    function mark_question($data_array) {
         $total_points = 0;
 
         if ($data_array["MPEG"] == "Moving Picture Experts Group") {
@@ -139,9 +133,8 @@
     }
 
     //Checks submission count, and uploads to submission server if user has performed less than 2 attempts
-    function submit_results($conn, $data, $score)
-    {
-        $query = "SELECT * FROM attempts WHERE userid = " .  $data["sid"];
+    function submit_results($conn, $data, $score) {
+        $query = "SELECT * FROM attempts WHERE userid = " . $data["sid"];
         $result = mysqli_query($conn, $query);
         $rows = mysqli_num_rows($result);
         if ($rows >= 2) {
@@ -186,5 +179,4 @@
     mysqli_close($conn);
 
     header("Location: markquiz.php");
-    exit();
 ?>

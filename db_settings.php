@@ -1,4 +1,3 @@
-
 <?php
     # MariaDB config variables.
     $host = "feenix-mariadb.swin.edu.au";
