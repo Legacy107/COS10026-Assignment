@@ -51,9 +51,6 @@
         $_SESSION["adminId"] = mysqli_fetch_array($result)[0];
     }
 
-    $nameReg = "/^[a-zA-Z\s-]{0,30}$/";
-    $sidReg = "/^(\d{7}|\d{10})?$/";
-
     $action = get_action();
 
     switch ($action) {
@@ -72,7 +69,7 @@
         case 'edit':
             $attemptId = get_post('attempt_id');
             $attempt_value = get_post('attempt_value');
-            if ($attemptId != null and $attempt_value != null and preg_match("/^[0-6]$/", $attempt_value)) {
+            if ($attemptId != null and $attempt_value != null and preg_match("/^(\d|1[0-2])$/", $attempt_value)) {
                 update_attempt($conn, $attemptId, $attempt_value);
             }
             break;
@@ -113,7 +110,7 @@
                         type="text" id="fname" class="manage-textinput" name="fname" pattern="^[a-zA-Z\s-]{0,30}$" title="Please enter upper or lower case letters only, spaces are allowed. Maximum 30 characters"
                         <?php
                             $fname = get_session("fname");
-                            if ($fname != null and preg_match($nameReg, $fname)) {
+                            if ($fname != null) {
                                 echo("value=\"$fname\"");
                             }
                         ?>
@@ -127,7 +124,7 @@
                         type="text" id="lname" class="manage-textinput" name="lname" pattern="^[a-zA-Z\s-]{0,30}$" title="Please enter upper or lower case letters only, spaces are allowed. Maximum 30 characters"
                         <?php
                             $lname = get_session("lname");
-                            if ($lname != null and preg_match($nameReg, $lname)) {
+                            if ($lname != null) {
                                 echo("value=\"$lname\"");
                             }
                         ?>
@@ -141,7 +138,7 @@
                         type="text" id="sid" class="manage-textinput" name="sid" pattern="^(\d{7}|\d{10})?$" title="Please enter 7 or 10 digits."
                         <?php
                             $sid = get_session("sid");
-                            if ($sid != null and preg_match($sidReg, $sid)) {
+                            if ($sid != null) {
                                 echo("value=\"$sid\"");
                             }
                         ?>
@@ -212,7 +209,7 @@
                                 <td>" . $row["dateCreated"] . "</td>
                                 <td>
                                     <input type=\"hidden\" name=\"attempt_id\" value=\"" . $row["id"] . "\" form=\"attempt$count\"/>
-                                    <input type=\"number\" class=\"manage-score\" name=\"attempt_value\" min=\"0\" max=\"6\" value=\"" . $row["score"] . "\" form=\"attempt$count\" required/>
+                                    <input type=\"number\" class=\"manage-score\" name=\"attempt_value\" min=\"0\" max=\"12\" value=\"" . $row["score"] . "\" form=\"attempt$count\" required/>
                                 </td>
                                 <td>
                                     <input type=\"submit\" class=\"manage-edit\" value=\"Edit\" form=\"attempt$count\"/>
@@ -274,7 +271,7 @@
             }
 
             function make_tables() {
-                GLOBAL $conn, $nameReg, $sidReg;
+                GLOBAL $conn;
                 $errorMsg = validate_user_data($_SESSION);
                 if ($errorMsg != null) {
                     echo_manage_error($errorMsg);
