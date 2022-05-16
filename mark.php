@@ -1,6 +1,6 @@
 <?php
-    include_once "data_input.php";
-    include "database.php";
+    require_once "data_input.php";
+    require_once "database.php";
 
     function quiz_error($errors) {
         session_start();

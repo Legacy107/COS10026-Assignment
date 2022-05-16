@@ -24,8 +24,8 @@
         <h1 class="quiz-h2">MP3 Quiz</h1>
 
         <?php
-            include_once "data_input.php";
-            include_once "error.php";
+            require_once "data_input.php";
+            require_once "error.php";
 
             session_start();
             $action = get_action();

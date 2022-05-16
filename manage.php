@@ -1,7 +1,7 @@
 <?php 
-    include_once "data_input.php";
-    include_once "database.php";
-    include_once "error.php";
+    require_once "data_input.php";
+    require_once "database.php";
+    require_once "error.php";
 
     # Redirects to the login page while passing an error message in $_SESSION.
     function login_error($errorMsg) {

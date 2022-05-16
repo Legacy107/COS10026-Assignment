@@ -1,5 +1,5 @@
 <?php
-    include_once "db_settings.php";
+    require_once "db_settings.php";
 
     # Gets a connection to the MySQL database using the config variables. Returns null if it can't connect.
     function get_conn() {
