@@ -1,9 +1,9 @@
 <?php
-    include_once "db_settings.php";
+    require_once "db_settings.php";
 
     # Gets a connection to the MySQL database using the config variables. Returns null if it can't connect.
     function get_conn() {
-        GLOBAL $host, $user, $pwd, $sql_db;
+        global $host, $user, $pwd, $sql_db;
         try {
             $conn = mysqli_connect($host, $user, $pwd, $sql_db);
         } catch (Exception $_ex) {
@@ -32,8 +32,8 @@
     function create_user_table($conn) {
         $query = "CREATE TABLE IF NOT EXISTS users (
             id VARCHAR(10) NOT NULL,
-            firstName VARCHAR(30) NOT NULL,
-            lastName VARCHAR(30) NOT NULL,
+            firstname VARCHAR(30) NOT NULL,
+            lastname VARCHAR(30) NOT NULL,
             PRIMARY KEY (id)
         )";
         try {
@@ -65,7 +65,7 @@
 
     # Create a user.
     function save_user($conn, $sid, $fname, $lname) {
-        $query = "INSERT INTO attempts (id, firstname, lastname)
+        $query = "INSERT INTO users (id, firstname, lastname)
             VALUES ('$sid', '$fname', '$lname');
         ";
         try {
@@ -133,7 +133,7 @@
         if ($hasConst) {
             $query .= $const;
         }
-        
+
         $query .= " ORDER BY attempts.dateCreated, attempts.id";
 
         try {

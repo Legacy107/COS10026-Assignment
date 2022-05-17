@@ -22,7 +22,7 @@
         <h1 class="login-h1">Admin Panel</h1>
 
         <?php
-            include_once "data_input.php";
+            require_once "data_input.php";
 
             session_start();
             $adminId = get_session("adminId");
