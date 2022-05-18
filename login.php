@@ -49,7 +49,7 @@
             session_destroy();
         ?>
 
-        <form method="POST" action="manage.php" novalidate>
+        <form method="POST" action="manage.php" novalidate id="login-form" class="enhancement">
             <div class="login-form__wrapper">
                 <div class="login-form">
                     <label for="admin_name" class="login-label__name">Username</label>

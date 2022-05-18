@@ -469,6 +469,36 @@ Specific styles for enhancements.html
     transform: translate(80%, -5%) scale(1.25);
 }
 
+#enhancements-dbnormalize {
+    width: 90%;
+    min-width: 20em;
+    max-width: 35em;
+}
+
+#enhancements-loginDemo {
+    width: 10%;
+    min-width: 20em;
+    max-width: 35em;
+    position: absolute;
+    transform: translate(-30%, -50%);
+}
+
+#enhancements-loginDemo:hover {
+    transform: translate(-30%, -50%) scale(1.25);
+}
+
+#enhancements-adminTableDemo {
+    width: 10%;
+    min-width: 20em;
+    max-width: 35em;
+    position: absolute;
+    transform: translate(30%, 0);
+}
+
+#enhancements-adminTableDemo:hover {
+    transform: translate(30%, 0) scale(1.25);
+}
+
 .enhancements-article__demo > a {
     position: absolute;
     width: 40%;
