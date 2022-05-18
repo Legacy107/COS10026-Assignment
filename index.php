@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Intro page for the HTML Boys' MP3 website."/>
-    <meta name="keywords" content="MP3, Format, Intro"/>
-    <meta name="author" content="Orson Routt, Kien Quoc Mai, Yong Yuan Chong, Keath Kor"/>
+    <meta name="description" content="Intro page for the HTML Boys' MP3 website." />
+    <meta name="keywords" content="MP3, Format, Intro" />
+    <meta name="author" content="Orson Routt, Kien Quoc Mai, Yong Yuan Chong, Keath Kor" />
     <title>MP3 Introduction</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,500;1,500&family=Gravitas+One&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles/style.css"/>
+    <link rel="stylesheet" href="styles/style.css" />
 </head>
+
 <body class="body">
     <?php include('header.inc')
     ?>
@@ -39,4 +41,5 @@
     <?php include('footer.inc')
     ?>
 </body>
+
 </html>

@@ -20,6 +20,7 @@ body {
     --green-300: hsla(91, 94%, 86%, 1);
     --green-400: hsla(127, 67%, 76%, 1);
     --green-500: hsla(171, 52%, 52%, 1);
+    --cyan-100: hsla(198, 55%, 86%, 1);
     --cyan-300: hsla(198, 81%, 36%, 1); /* button hover */
     --cyan-400: hsla(198, 76%, 31%, 1);
     --cyan-400-transparent: hsla(198, 76%, 31%, 0.2);
@@ -28,6 +29,9 @@ body {
     --gray-400: hsla(200, 9%, 72%, 1);
     --red-200: hsla(0, 67%, 76%, 1);
     --lime-300: rgb(172, 220, 127);
+    --red-300: hsla(11, 50%, 52%, 1);
+    --red-400: hsla(11, 50%, 47%, 1);
+    --highlight: hsla(255, 100%, 100%, 0.5);
     background-color: var(--green-100);
 }
 
@@ -77,6 +81,59 @@ main {
     padding-bottom: 5rem;
 }
 
+table {
+    border-collapse: collapse;
+}
+
+table tr th {
+    color: white;
+    padding: 1em; /*give space for items*/
+}
+
+table tr td {
+    padding: 1em; /*give space for items*/
+    text-align: center;
+}
+
+table tr td:first-child {
+    /*all tr's first td*/
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    /*all even tr*/
+    background-color: var(--green-400);
+}
+
+table tr:nth-child(odd) {
+    /*all odd tr*/
+    background-color: var(--green-300);
+}
+
+table tr:first-child {
+    /*first tr*/
+    background-color: var(--cyan-400);
+}
+
+table tr:last-child td:first-child {
+    /*first column, last row*/
+    border-radius: 0 0 0 0.8em; /*top-left, top-right, bottom-right, bottom-left*/
+}
+
+table tr:first-child th:last-child {
+    /*first row, last column*/
+    border-radius: 0 0.8em 0 0; /*top-left, top-right, bottom-right, bottom-left*/
+}
+
+/*Selector Dropdown for students to answer Q5*/
+select {
+    background-color: var(--gray-300);
+    border: none;
+    font: 500 1rem/1.26em "Poppins", sans-serif;
+    padding: 0.4rem 0 0.4rem 0.6rem;
+    border-radius: 0 12.5px 0 12.5px;
+}
+
 /* animation applied on enhancements when being targeted */
 .enhancement:target {
     padding: 1rem;
@@ -115,6 +172,115 @@ main {
 
 .unsplash a:hover {
     color: var(--green-300)
+}
+
+/*
+Specific styles for manage.php
+*/
+.manage-submit {
+    position: relative;
+    border: none;
+    min-width: 10rem;
+    margin: 2rem 0rem;
+    padding: 0.3em 1em;
+    font: 700 1rem "Poppins", sans-serif, bold;
+    border-radius: 0 9px 0 9px;
+    background-color: var(--cyan-400);
+    color: var(--green-300);
+    cursor: pointer;
+    letter-spacing: 0.05em;
+}
+
+.manage-submit:hover {
+    background-color: var(--cyan-300);
+}
+
+.manage-edit {
+    background: none;
+    border: none;
+    text-decoration: underline;
+    color: var(--cyan-400);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.manage-delete {
+    color: var(--red-400);
+}
+
+.manage-edit:hover {
+    color: var(--cyan-300);
+}
+
+.manage-delete:hover {
+    color: var(--red-300);
+}
+
+.manage-score {
+    background-color: var(--highlight);
+    border: none;
+    padding: 0.5em 0.5em;
+    border-radius: 7px 7px 0 7px;
+    font-family: "Poppins", sans-serif;
+    font-size: 1rem;
+    width: 5rem;
+}
+
+.manage-filterarea {
+    margin: 0 1.5rem 1.5rem 0;
+    display: inline-block;
+}
+
+.manage-textinput {
+    font: 500 1rem/1.26em "Poppins", sans-serif;
+    border: 1px solid var(--black-400);
+    background-color: var(--green-100);
+    border-radius: 12.5px 12.5px 0 12.5px;
+    padding: 0.4rem;
+    margin-top: 0.2rem;
+}
+
+.manage-label {
+    margin-left: 0.5rem;
+}
+
+#manage-filters {
+    display: inline-block;
+    border: solid 0.2rem var(--green-500);
+    border-radius: 0 15px 0 15px;
+    padding-left: 1.5rem;
+    padding-top: 1.5rem;
+}
+
+#manage-mainheading {
+    margin: 4rem 0;
+}
+
+.manage-listheading {
+    margin: 2rem 0;
+}
+
+#manage-main {
+    margin-left: 8rem;
+}
+
+#manage-delete {
+    background-color: var(--red-400);
+}
+
+#manage-logout {
+    position: fixed;
+    top: 5em;
+    right: 3em;
+}
+
+@media only screen and (max-width: 850px) {
+    #manage-logout {
+        position: relative;
+        top: 0;
+        right: 0;
+        left: 3em;
+    }
 }
 
 /*
@@ -301,6 +467,36 @@ Specific styles for enhancements.html
 
 #enhancements-mobileLayoutDemo:hover {
     transform: translate(80%, -5%) scale(1.25);
+}
+
+#enhancements-dbnormalize {
+    width: 90%;
+    min-width: 20em;
+    max-width: 35em;
+}
+
+#enhancements-loginDemo {
+    width: 10%;
+    min-width: 20em;
+    max-width: 35em;
+    position: absolute;
+    transform: translate(-30%, -50%);
+}
+
+#enhancements-loginDemo:hover {
+    transform: translate(-30%, -50%) scale(1.25);
+}
+
+#enhancements-adminTableDemo {
+    width: 10%;
+    min-width: 20em;
+    max-width: 35em;
+    position: absolute;
+    transform: translate(30%, 0);
+}
+
+#enhancements-adminTableDemo:hover {
+    transform: translate(30%, 0) scale(1.25);
 }
 
 .enhancements-article__demo > a {
@@ -752,50 +948,6 @@ Styles for topic.html
     overflow: auto; /*when table cant fit into screen, make table scrollable*/
 }
 
-#topic-table table {
-    border-collapse: collapse;
-}
-
-#topic-table table tr th {
-    color: white;
-    padding: 1em; /*give space for items*/
-}
-
-#topic-table table tr td {
-    padding: 1em; /*give space for items*/
-    text-align: center;
-}
-
-#topic-table table tr td:first-child {
-    /*all tr's first td*/
-    font-weight: bold;
-}
-
-#topic-table table tr:nth-child(even) {
-    /*all even tr*/
-    background-color: var(--green-400);
-}
-
-#topic-table table tr:nth-child(odd) {
-    /*all odd tr*/
-    background-color: var(--green-300);
-}
-
-#topic-table table tr:first-child {
-    /*first tr*/
-    background-color: var(--cyan-400);
-}
-
-#topic-table table tr:last-child td:first-child {
-    /*first column, last row*/
-    border-radius: 0 0 0 0.8em; /*top-left, top-right, bottom-right, bottom-left*/
-}
-
-#topic-table table tr:first-child th:last-child {
-    /*first row, last column*/
-    border-radius: 0 0.8em 0 0; /*top-left, top-right, bottom-right, bottom-left*/
-}
-
 #topic-term {
     grid-area: term;
 }
@@ -1148,7 +1300,7 @@ Specific styles for quiz.html
     border: 1px solid var(--black-400);
     background-color: var(--green-100);
     border-radius: 0.5rem 0.5rem 0em 0.5rem;
-    padding: 0.4rem 0rem 0.4rem 0.4rem;
+    padding: 0.4rem;
     top: 2px;
     margin-left: 5%;
 }
@@ -1198,17 +1350,8 @@ Specific styles for quiz.html
     border: 1px solid var(--black-400);
     background-color: var(--green-100);
     border-radius: 12.5px 12.5px 0 12.5px;
-    padding: 0.4rem 0 0.4rem 0.6rem;
+    padding: 0.4rem 0.6rem;
     margin-right: 2%;
-}
-
-/*Selector Dropdown for students to answer Q5*/
-.quiz-selector {
-    background-color: var(--gray-300);
-    border: none;
-    font: 500 1rem/1.26em "Poppins", sans-serif;
-    padding: 0.4rem 0 0.4rem 0.6rem;
-    border-radius: 0 12.5px 0 12.5px;
 }
 
 /*changes the answers for radio/checkbox questions into a column to enable 
@@ -1487,4 +1630,92 @@ Styles for markquiz.html
 }
 
 @media screen and (min-width: 850px) { /*pc*/
+}
+
+/*Following is for login page*/
+
+.login-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.login-h1 {
+    position: relative;
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+}
+
+/*centers form on page*/
+.login-form__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form {
+    background: var(--cyan-400);
+    width: 17rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px 15px 0 15px;
+    block-size: auto;
+    padding-bottom: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.login-form > label {
+    position: relative;
+    display: block;
+    font: 700 1rem "Poppins", serif;
+    font-weight: bold;
+    color: var(--green-300);
+    margin-left: 12%;
+}
+
+/*decreases space between first label and top of .login-form div */
+.login-form > label:first-child {
+    margin-top: 1.5rem;
+}
+
+.login-form > input[type="text"],
+.login-form > input[type="password"]{
+    background: var(--cyan-300);
+    position: relative;
+    padding: 0.5rem 0.5rem;
+    border: 1px var(--green-100) solid;
+    border-radius: 12.5px 12.5px 0 12.5px;
+    font: 400 1rem "Poppins", serif;
+    color: white;
+    width: 85%;
+    cursor: pointer;
+    margin: auto;
+    top: -1rem;
+}
+
+.login-submit {
+    border-radius: 12.5px 12.5px 0 12.5px;
+    border: 2px var(--cyan-400) solid;
+    background-color: var(--cyan-100);
+    color: var(--cyan-400);
+    font: 700 1rem "Poppins", serif;
+    font-weight: bold;
+    width: 17rem;
+    position: relative;
+    display: block;
+    margin: auto;
+    padding: 0.5rem 0;
+    cursor: pointer;
+}
+
+.login-submit:hover {
+    color: white;
+    background-color: var(--cyan-400);
+}
+
+.error-p {
+    color: red;
+    padding-bottom: 2rem;
 }

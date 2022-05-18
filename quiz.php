@@ -17,12 +17,38 @@
     <link rel="stylesheet" href="styles/style.css"/>
 </head>
 <body>
-    <?php include('header.inc')
-    ?>
+    <?php include "header.inc" ?>
 
     <main class="quiz-main">
 
         <h1 class="quiz-h2">MP3 Quiz</h1>
+
+        <?php
+            require_once "data_input.php";
+            require_once "error.php";
+
+            session_start();
+            $action = get_action();
+            if ($action == "error") {
+                $origin = "quiz.php";
+                $errorMsg = get_session("errorMsg");
+                $errorOri = get_session("errorOri");
+                $errors = [];
+                if ($errorMsg == null) {
+                    array_push($errors, "No error message in session.");
+                }
+                if ($errorOri == null) {
+                    array_push($errors, "No error origin in session.");
+                }
+                if (count($errors) == 0) {
+                    $origin = $errorOri;
+                    $errors = $errorMsg;
+                }
+                echo_error($errors, $origin);
+            }
+            session_unset();
+            session_destroy();
+        ?>
 
         <form method="post" action="mark.php" novalidate>
             <fieldset class="quiz-fieldset"><legend class="quiz-fieldset__legend">Student Information</legend>
@@ -37,7 +63,7 @@
                 <input type="text" name="lname" id="lname" class="quiz-input__text--info" pattern="^[a-zA-Z\s-]{1,30}$" placeholder="Johnson" title="Please enter upper or lower case letters only, spaces are allowed. Maximum 30 characters" required />
                 <br />
                 <label for="sid" class="quiz-fieldset__label">Student ID</label>
-                <input type="text" name="sid" id="sid" class="quiz-input__text--info" pattern="^(\d{7}|\d{10})$" placeholder="0102654312" title="Please enter 7 to 10 digits." required />
+                <input type="text" name="sid" id="sid" class="quiz-input__text--info" pattern="^(\d{7}|\d{10})$" placeholder="0102654312" title="Please enter 7 or 10 digits." required />
             </fieldset>
 
             <div class="quiz-graphicContainer enhancement" id="quiz-graphic">
@@ -238,7 +264,6 @@
         
     </main>
 
-    <?php include('footer.inc')
-    ?> 
+    <?php include "footer.inc" ?> 
 </body>
 </html>
