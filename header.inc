@@ -12,6 +12,7 @@
                 <li><a id="topic-page" href="topic.php#topic-page">Topic</a></li>
                 <li><a id="quiz-page" href="quiz.php#quiz-page">Quiz</a></li>
                 <li><a id="enhancement-page" href="enhancements.php#enhancement-page">Enhancements</a></li>
+                <li><a id="manage-page" href="login.php#manage-page">Manage</a></li>
             </ul>
         </div>
     </nav>
