@@ -51,7 +51,7 @@
         }
         return $data;
     }
-    $data = sanatise_input($data)
+    $data = sanatise_input($data);
     //Validate Stuff
     if (!preg_match("/^[a-zA-Z]*$/",$data[0])) {
         $errMsg .= "<p>Only alpha letters allowed in your first name.</p>" ;
