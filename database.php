@@ -17,7 +17,9 @@
         $query = "CREATE TABLE IF NOT EXISTS admins (
             id INT NOT NULL AUTO_INCREMENT,
             username VARCHAR(30) NOT NULL UNIQUE,
-            password VARCHAR(30) NOT NULL,
+            password VARCHAR(90) NOT NULL,
+            failedAttempt TINYINT DEFAULT 0,
+            blockUntil TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             PRIMARY KEY (id)
         )";
         try {
@@ -243,17 +245,117 @@
     function populate_admin_table($conn) {
         $query = "INSERT INTO admins (id, username, password)
             VALUES
-            (NULL, 'orson_routt', 'password1'),
-            (NULL, 'quoc_mai', 'password2'),
-            (NULL, 'peter_farmer', 'password3'),
-            (NULL, 'keath_kor', 'password4'),
-            (NULL, 'yong_yuan', 'password5')";
+            (NULL, 'orson_routt', '" . hash('md5', 'password1') . "'),
+            (NULL, 'quoc_mai', '" . hash('md5', 'password2') . "'),
+            (NULL, 'peter_farmer', '" . hash('md5', 'password3') . "'),
+            (NULL, 'keath_kor', '" . hash('md5', 'password4') . "'),
+            (NULL, 'yong_yuan', '" . hash('md5', 'password5') . "')";
         try {
             mysqli_query($conn, $query);
         } catch (Exception $_ex) {
             return false;
         }
         return true;
+    }
+
+    function update_admin_attempt($conn, $id, $value) {
+        $query = "UPDATE admins
+            SET failedAttempt = $value
+            WHERE id = '$id'
+        ";
+        try {
+            mysqli_query($conn, $query);
+        } catch (Exception $_ex) {
+            return false;
+        }
+        return true;
+    }
+
+    // block an admin account for 15 minutes
+    function block_admin($conn, $id) {
+        $query = "UPDATE admins
+            SET blockUntil = addtime(CURRENT_TIMESTAMP(), 1500)
+            WHERE id = '$id'
+        ";
+        try {
+            mysqli_query($conn, $query);
+        } catch (Exception $_ex) {
+            return false;
+        }
+        return true;
+    }
+
+    function authenticate_admin_user($conn, $username, $password) {
+        # Explicitly set timezone for consistency
+        try {
+            $query = "SET time_zone = 'Australia/Melbourne'";
+            $result = mysqli_query($conn, $query);
+        } catch (Exception $_ex) {
+            return [
+                "errorMsg"  => "Credential query failed.",
+                "adminId"   => null,
+            ];
+        }
+
+        # Try query for username + password.
+        try {
+            $query = "SELECT id, password, failedAttempt, blockUntil FROM admins 
+                WHERE username = '$username';
+            ";
+            $result = mysqli_query($conn, $query);
+        } catch (Exception $_ex) {
+            return [
+                "errorMsg"  => "Credential query failed.",
+                "adminId"   => null,
+            ];
+        }
+        # Detect incorrect username
+        if (mysqli_num_rows($result) <= 0) {
+            return [
+                "errorMsg"  => "Incorrect username or password.",
+                "adminId"   => null,
+            ];
+        }
+
+        $admin = get_sql_array($result)[0];
+
+        # Detect blocked account
+        $now = new DateTime("now", new DateTimeZone('Australia/Melbourne'));
+        $block_until = DateTime::createFromFormat("Y-m-d H:i:s", $admin["blockUntil"]);
+        if ($block_until->getTimestamp() > $now->getTimestamp()) {
+            $remaining_time = round(($block_until->getTimestamp() - $now->getTimestamp()) / 60.0);
+            return [
+                "errorMsg"  => "The account has been temporarily blocked. Try again in " . $remaining_time . " minutes.",
+                "adminId"   => null,
+            ];
+        }
+
+        # Detect incorrect password
+        if (hash('md5', $password) != $admin["password"]) {
+            if ($admin["failedAttempt"] < 2) {
+                update_admin_attempt($conn, $admin["id"], $admin["failedAttempt"] + 1);
+                return [
+                    "errorMsg"  => "Incorrect username or password.",
+                    "adminId"   => null,
+                ];
+            }
+
+            # Block account if there are 3 failed attempts
+            block_admin($conn, $admin["id"]);
+            return [
+                "errorMsg"  => "The account has been temporarily blocked. Try again in 15 minutes.",
+                "adminId"   => null,
+            ];
+        }
+
+        # Reset the number of failed attempts
+        if ($admin["failedAttempt"] != 0)
+            update_admin_attempt($conn, $admin["id"], 0);
+
+        return [
+            "errorMsg"  => null,
+            "adminId"   => $admin["id"],
+        ];
     }
 
     $conn = get_conn();

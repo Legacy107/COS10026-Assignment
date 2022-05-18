@@ -38,17 +38,13 @@
         if (!preg_match("/^\w{9,30}$/", $password)) {
             login_error("Password must be 9-30 alphanumeric/underscore characters.");
         }
-        # Try query for username + password.
-        try {
-            $result = mysqli_query($conn, "SELECT id FROM admins WHERE username = '$username' and password = '$password'");
-        } catch (Exception $_ex) {
-            login_error("Credential query failed.");
+
+        $result = authenticate_admin_user($conn, $username, $password);
+        if ($result["errorMsg"] != null) {
+            login_error($result["errorMsg"]);
         }
-        # Detect incorrect username + password.
-        if (mysqli_num_rows($result) <= 0) {
-            login_error("Incorrect username or password.");
-        }
-        $_SESSION["adminId"] = mysqli_fetch_array($result)[0];
+
+        $_SESSION["adminId"] = $result["adminId"];
     }
 
     $action = get_action();
