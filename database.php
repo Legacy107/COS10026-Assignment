@@ -342,6 +342,7 @@
 
             # Block account if there are 3 failed attempts
             block_admin($conn, $admin["id"]);
+            update_admin_attempt($conn, $admin["id"], 0);
             return [
                 "errorMsg"  => "The account has been temporarily blocked. Try again in 15 minutes.",
                 "adminId"   => null,
