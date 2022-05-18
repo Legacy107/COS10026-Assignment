@@ -41,12 +41,15 @@
 
             <div class="enhancements-article__description">
                 <h2>Admin login</h2>
-                <p>To get access to the manage page, admins must login with their credentials. Then, they will be checked against the database. If the provided credentials are correct, session data will be set and the admin will be able to access the manage page.</p>
+                <p>
+                    To get access to the manage page, admins must login with their credentials. Then, they will be checked against the database. If the provided credentials are correct, session data will be set and the admin will be able to access the manage page.
+                    In addition, a password is stored in the database as a MD5 hash value instead of a raw string so that hackers cannot easily access the admin account even if the database is compromised.
+                    Lastly, a security policy is set up to temporarily block an admin account for fifteen minutes if there are three failed login attempts.
+                </p>
             </div>
         </section>
     </main>
 
- 
     <?php include('footer.inc') ?>
 </body>
 </html>
