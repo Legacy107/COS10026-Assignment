@@ -18,30 +18,47 @@
     <?php include('header.inc');
         require_once "data_input.php";
         require_once "database.php";
+        require_once "error.php";
+
+        function markquiz_error($errorMsg) {
+            session_start();
+            session_unset();
+            $_SESSION["errorMsg"] = $errorMsg;
+            $_SESSION["errorOri"] = "markquiz.php";
+            header("Location: quiz.php?action=error");
+            exit();
+        }
+
+        $errors = []; //errors array
 
         $conn = get_conn();
         if ($conn == null) {
-            echo "Unable to connect database.";
+            array_push($errors, "Unable to connect database.");
         }
 
-        $current_sid = $_GET["sid"]; //passed from mark.php
+        
+        if (isset($_GET["sid"])) { //passed from mark.php
+            $current_sid = $_GET["sid"];
+        } else {
+            array_push($errors, "No Student ID.");
+        }
 
-        $queryAttempts = "SELECT * FROM attempts WHERE userid = $current_sid"; //userId, score, dateCreated, dateUpdated
+        $queryAttempts = "SELECT * FROM attempts WHERE userid = $current_sid ORDER BY dateCreated"; //userId, score, dateCreated, dateUpdated
         $queryUsers = "SELECT * FROM users WHERE id = $current_sid"; //id, firstName, lastName
 
         $resultAttempts = mysqli_query($conn, $queryAttempts);
         $resultUsers = mysqli_query($conn, $queryUsers);
 
-        $rowsAttempts = mysqli_num_rows($resultAttempts); //check for if there is attempt 2
-
-        $data_array = array();
-
         if (!$resultAttempts) {
-            echo "<p>Something is wrong with ", $queryAttempts, "</p>";
+            array_push($errors, "Attempts query error.");
         }
         if (!$resultUsers) {
-            echo "<p>Something is wrong with ", $queryUsers, "</p>";
+            array_push($errors, "Users query error.");
         }
+
+        $rowsAttempts = mysqli_num_rows($resultAttempts); //check for if there is attempt 2
+
+        $data_array = array(); //array for display
 
         $attempts = get_sql_array($resultAttempts);
         $data_array["score1"] = $attempts[0]["score"];
@@ -52,11 +69,15 @@
             $data_array["dateCreate2"] = $attempts[1]["dateCreated"];
         }
 
-
         $users = get_sql_array($resultUsers);
         $data_array["sid"] = $users[0]["id"];
         $data_array["firstname"] = $users[0]["firstName"];
         $data_array["lastname"] = $users[0]["lastName"];
+
+
+        if ($errors != null) { //If there is any error
+            markquiz_error($errors);
+        }
     ?>
 
     <main class="markquiz-main">
