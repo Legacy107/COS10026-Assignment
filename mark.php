@@ -176,10 +176,7 @@
         array_push($errors, "Connection with server was not established, please contact the team to resolve issues. Please try again later");
     }
 
-    session_start();
-    $_SESSION["current_sid"] = $data["sid"]; //for markquiz
-
     mysqli_close($conn);
 
-    header("Location: markquiz.php");
+    header("Location: markquiz.php?sid=" . $data["sid"]);
 ?>

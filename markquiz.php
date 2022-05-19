@@ -19,14 +19,12 @@
         require_once "data_input.php";
         require_once "database.php";
 
-        session_start();
-
         $conn = get_conn();
         if ($conn == null) {
             echo "Unable to connect database.";
         }
 
-        $current_sid = get_session("current_sid");
+        $current_sid = $_GET["sid"]; //passed from mark.php
 
         $queryAttempts = "SELECT * FROM attempts WHERE userid = $current_sid"; //userId, score, dateCreated, dateUpdated
         $queryUsers = "SELECT * FROM users WHERE id = $current_sid"; //id, firstName, lastName
@@ -45,23 +43,20 @@
             echo "<p>Something is wrong with ", $queryUsers, "</p>";
         }
 
-        $i = 0;
-        while ($row = mysqli_fetch_assoc($resultAttempts)) {
-            if ($i == 0) { //attempt 1
-                $data_array["score1"] = $row["score"];
-                $data_array["dateCreate1"] = $row["dateCreated"];
-            } else { //attempt 2
-                $data_array["score2"] = $row["score"];
-                $data_array["dateCreate2"] = $row["dateCreated"];
-            }
-            $i++;
+        $attempts = get_sql_array($resultAttempts);
+        $data_array["score1"] = $attempts[0]["score"];
+        $data_array["dateCreate1"] = $attempts[0]["dateCreated"];
+
+        if ($rowsAttempts >= 2) { //if attempt 2 exist
+            $data_array["score2"] = $attempts[1]["score"];
+            $data_array["dateCreate2"] = $attempts[1]["dateCreated"];
         }
 
-        while ($row = mysqli_fetch_assoc($resultUsers)) {
-            $data_array["sid1"] = $row["id"];
-            $data_array["firstname1"] = $row["firstName"];
-            $data_array["lastname1"] = $row["lastName"];
-        }
+
+        $users = get_sql_array($resultUsers);
+        $data_array["sid"] = $users[0]["id"];
+        $data_array["firstname"] = $users[0]["firstName"];
+        $data_array["lastname"] = $users[0]["lastName"];
     ?>
 
     <main class="markquiz-main">
@@ -70,8 +65,8 @@
         <section class="markquiz-card">
             <h2 class="markquiz-card-heading">Student Results</h2>
 
-            <p>Student ID is: <?php echo $data_array["sid1"]; ?></p>
-            <p>Name: <?php echo $data_array["firstname1"] . " " . $data_array["lastname1"]; ?></p>
+            <p>Student ID is: <?php echo $data_array["sid"]; ?></p>
+            <p>Name: <?php echo $data_array["firstname"] . " " . $data_array["lastname"]; ?></p>
             <p>Total Score: <?php echo $data_array["score1"]; ?></p>
             <p>Maximum Score: 12</p>
             <p>Attempt Number: 1/2</p>
@@ -91,9 +86,9 @@
                 echo "<section class=\"markquiz-card\">";
                     echo "<h2 class=\"markquiz-card-heading\">Student Results</h2>";
 
-                    echo "<p>Student ID is: " . $data_array["sid1"] . "</p>";
+                    echo "<p>Student ID is: " . $data_array["sid"] . "</p>";
 
-                    echo "<p>Name: " . $data_array["firstname1"] . " " . $data_array["lastname1"] . "</p>";
+                    echo "<p>Name: " . $data_array["firstname"] . " " . $data_array["lastname"] . "</p>";
 
                     echo "<p>Total Score: " . $data_array["score2"] . "</p>";
 
