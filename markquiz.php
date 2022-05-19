@@ -15,7 +15,63 @@
     <link rel="stylesheet" href="styles/style.css"/>
 </head>
 <body>
-    <?php include('header.inc')
+    <?php 
+        include('header.inc');
+        require_once "data_input.php";
+        require_once "database.php";
+        require_once "error.php";
+
+        function markquiz_error($errorMsg) {
+            session_start();
+            session_unset();
+            $_SESSION["errorMsg"] = $errorMsg;
+            $_SESSION["errorOri"] = "markquiz.php";
+            header("Location: quiz.php?action=error");
+            exit();
+        }
+
+        $conn = get_conn();
+        if ($conn == null) {
+            markquiz_error(["Unable to connect database."]);
+        }
+
+        
+        if (isset($_GET["sid"])) { //passed from mark.php
+            $current_sid = $_GET["sid"];
+        } else {
+            markquiz_error(["No Student ID."]);
+        }
+
+        $queryAttempts = "SELECT * FROM attempts WHERE userid = $current_sid ORDER BY dateCreated"; //userId, score, dateCreated, dateUpdated
+        $queryUsers = "SELECT * FROM users WHERE id = $current_sid"; //id, firstName, lastName
+
+        $resultAttempts = mysqli_query($conn, $queryAttempts);
+        $resultUsers = mysqli_query($conn, $queryUsers);
+
+        if (!$resultAttempts) {
+            markquiz_error(["Attempts query error."]);
+        }
+        if (!$resultUsers) {
+            markquiz_error(["Users query error."]);
+        }
+
+        $rowsAttempts = mysqli_num_rows($resultAttempts); //check for if there is attempt 2
+
+        $data_array = array(); //array for display
+
+        $attempts = get_sql_array($resultAttempts);
+        $data_array["score1"] = $attempts[0]["score"];
+        $data_array["dateCreate1"] = $attempts[0]["dateCreated"];
+
+        if ($rowsAttempts >= 2) { //if attempt 2 exist
+            $data_array["score2"] = $attempts[1]["score"];
+            $data_array["dateCreate2"] = $attempts[1]["dateCreated"];
+        }
+
+        $users = get_sql_array($resultUsers);
+        $data_array["sid"] = $users[0]["id"];
+        $data_array["firstname"] = $users[0]["firstname"];
+        $data_array["lastname"] = $users[0]["lastname"];
     ?>
 
     <main class="markquiz-main">
@@ -24,35 +80,50 @@
         <section class="markquiz-card">
             <h2 class="markquiz-card-heading">Student Results</h2>
 
-            <p>Student ID is: </p>
-            <p>Name: </p>
-            <p>Total Score: </p>
-            <p>Maximum Score: </p>
+            <p>Student ID is: <?php echo $data_array["sid"]; ?></p>
+            <p>Name: <?php echo $data_array["firstname"] . " " . $data_array["lastname"]; ?></p>
+            <p>Total Score: <?php echo $data_array["score1"]; ?></p>
+            <p>Maximum Score: 12</p>
             <p>Attempt Number: 1/2</p>
-            <p>Date Attempted: </p>
+            <p>Date Attempted: <?php echo $data_array["dateCreate1"]; ?></p>
 
-            <form class="markquiz-form">
-                <button class="markquiz-button" formaction="./quiz.php#quiz-page">Quiz Page</button>
-            </form>
+            <?php
+                if ($rowsAttempts != 2) { //if attempt 2 is not done, make button link to quiz
+                    echo "<form class=\"markquiz-form\">";
+                        echo "<button class=\"markquiz-button\" formaction=\"./quiz.php#quiz-page\">Quiz Page</button>";
+                    echo "</form>";
+                }
+            ?>
         </section>
 
-        <section class="markquiz-card">
-            <h2 class="markquiz-card-heading">Student Results</h2>
+        <?php
+            if ($rowsAttempts >= 2) {
+                echo "<section class=\"markquiz-card\">";
+                    echo "<h2 class=\"markquiz-card-heading\">Student Results</h2>";
 
-            <p>Student ID is: </p>
-            <p>Name: </p>
-            <p>Total Score: </p>
-            <p>Maximum Score: </p>
-            <p>Attempt Number: 2/2</p>
-            <p>Date Attempted: </p>
+                    echo "<p>Student ID is: " . $data_array["sid"] . "</p>";
 
-            <form class="markquiz-form">
-                <button class="markquiz-button" formaction="./topic.php#topic-page">Topic Page</button>
-            </form>
-        </section>
+                    echo "<p>Name: " . $data_array["firstname"] . " " . $data_array["lastname"] . "</p>";
+
+                    echo "<p>Total Score: " . $data_array["score2"] . "</p>";
+
+                    echo "<p>Maximum Score: 12</p>";
+
+                    echo "<p>Attempt Number: 2/2</p>";
+
+                    echo "<p>Date Attempted: " . $data_array["dateCreate2"] . "</p>";
+
+                    echo "<form class=\"markquiz-form\">";
+                        echo "<button class=\"markquiz-button\" formaction=\"./topic.php#topic-page\">Topic Page</button>";
+                    echo "</form>";
+                echo "</section>";
+            }
+        ?>
     </main>
 
-    <?php include('footer.inc')
+    <?php
+        include('footer.inc');
+        mysqli_close($conn);
     ?> 
 </body>
 </html>
