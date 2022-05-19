@@ -33,14 +33,14 @@
 
         $conn = get_conn();
         if ($conn == null) {
-            array_push($errors, "Unable to connect database.");
+            markquiz_error(["Unable to connect database."]);
         }
 
         
         if (isset($_GET["sid"])) { //passed from mark.php
             $current_sid = $_GET["sid"];
         } else {
-            array_push($errors, "No Student ID.");
+            markquiz_error(["No Student ID."]);
         }
 
         $queryAttempts = "SELECT * FROM attempts WHERE userid = $current_sid ORDER BY dateCreated"; //userId, score, dateCreated, dateUpdated
@@ -50,10 +50,10 @@
         $resultUsers = mysqli_query($conn, $queryUsers);
 
         if (!$resultAttempts) {
-            array_push($errors, "Attempts query error.");
+            markquiz_error(["Attempts query error."]);
         }
         if (!$resultUsers) {
-            array_push($errors, "Users query error.");
+            markquiz_error(["Users query error."]);
         }
 
         $rowsAttempts = mysqli_num_rows($resultAttempts); //check for if there is attempt 2
@@ -73,11 +73,6 @@
         $data_array["sid"] = $users[0]["id"];
         $data_array["firstname"] = $users[0]["firstName"];
         $data_array["lastname"] = $users[0]["lastName"];
-
-
-        if ($errors != null) { //If there is any error
-            markquiz_error($errors);
-        }
     ?>
 
     <main class="markquiz-main">
