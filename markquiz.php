@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="styles/style.css"/>
 </head>
 <body>
-    <?php include('header.inc');
+    <?php 
+        include('header.inc');
         require_once "data_input.php";
         require_once "database.php";
         require_once "error.php";
@@ -28,8 +29,6 @@
             header("Location: quiz.php?action=error");
             exit();
         }
-
-        $errors = []; //errors array
 
         $conn = get_conn();
         if ($conn == null) {
@@ -122,7 +121,8 @@
         ?>
     </main>
 
-    <?php include('footer.inc');
+    <?php
+        include('footer.inc');
         mysqli_close($conn);
     ?> 
 </body>
