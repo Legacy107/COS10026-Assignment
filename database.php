@@ -1,3 +1,9 @@
+<!-- 
+    Last edited: 1PM 19/5/2022
+    By: Quoc Mai
+    Details: Hash of passwords for server access
+-->
+
 <?php
     require_once "db_settings.php";
 

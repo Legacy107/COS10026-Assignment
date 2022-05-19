@@ -1,3 +1,9 @@
+<!-- 
+    Last edited: 5PM 13/20/2022
+    By: Orson Routt
+    Details: removal of redundant code
+-->
+
 <?php 
     require_once "data_input.php";
     require_once "database.php";

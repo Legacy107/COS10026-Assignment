@@ -1,3 +1,8 @@
+<!-- 
+    Last edited: 5PM 12/05/2022
+    By: Quoc Mai
+    Details: Format of error responses adjusted
+-->
 <?php
     # Sanitises a string.
     function sanitise_string($str) {
