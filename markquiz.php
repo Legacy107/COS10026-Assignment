@@ -71,8 +71,8 @@
 
         $users = get_sql_array($resultUsers);
         $data_array["sid"] = $users[0]["id"];
-        $data_array["firstname"] = $users[0]["firstName"];
-        $data_array["lastname"] = $users[0]["lastName"];
+        $data_array["firstname"] = $users[0]["firstname"];
+        $data_array["lastname"] = $users[0]["lastname"];
     ?>
 
     <main class="markquiz-main">
