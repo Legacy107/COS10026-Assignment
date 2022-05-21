@@ -287,6 +287,7 @@
 
     function authenticate_admin_user($conn, $username, $password) {
         # Explicitly set timezone for consistency
+        date_default_timezone_set('Australia/Melbourne');
         try {
             $query = "SET time_zone = 'Australia/Melbourne'";
             $result = mysqli_query($conn, $query);
@@ -322,6 +323,8 @@
         # Detect blocked account
         $now = new DateTime("now", new DateTimeZone('Australia/Melbourne'));
         $block_until = DateTime::createFromFormat("Y-m-d H:i:s", $admin["blockUntil"]);
+        error_log($now->format("Y-m-d H:i:s") . " " . $block_until->format("Y-m-d H:i:s"));
+        error_log($block_until->getTimestamp() . " " . $now->getTimestamp());
         if ($block_until->getTimestamp() > $now->getTimestamp()) {
             $remaining_time = round(($block_until->getTimestamp() - $now->getTimestamp()) / 60.0);
             return [
