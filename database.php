@@ -293,6 +293,7 @@
 
     function authenticate_admin_user($conn, $username, $password) {
         # Explicitly set timezone for consistency
+        date_default_timezone_set('Australia/Melbourne');
         try {
             $query = "SET time_zone = 'Australia/Melbourne'";
             $result = mysqli_query($conn, $query);
