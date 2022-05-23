@@ -17,6 +17,10 @@
         header("Location: login.php?action=error");
         exit();
     }
+
+    function echo_manage_error($errors) {
+        echo_error($errors, "manage.php");
+    }
   
     session_start();
     # Try connecting to MySQL database.
@@ -52,33 +56,6 @@
 
         $_SESSION["adminId"] = $result["adminId"];
     }
-
-    $action = get_action();
-
-    switch ($action) {
-        case 'filter':
-            $_SESSION["fname"] = get_post("fname") ?: null;
-            $_SESSION["lname"] = get_post("lname") ?: null;
-            $_SESSION["sid"] = get_post("sid") ?: null;
-            $_SESSION["filter"] = get_post("filter");
-            break;
-        case 'delete':
-            $deleteSid = get_post("user_id");
-            if ($deleteSid != null) {
-                delete_user($conn, $deleteSid);
-            }
-            break;
-        case 'edit':
-            $attemptId = get_post('attempt_id');
-            $attempt_value = get_post('attempt_value');
-            if ($attemptId != null and $attempt_value != null and preg_match("/^(\d|1[0-2])$/", $attempt_value)) {
-                update_attempt($conn, $attemptId, $attempt_value);
-            }
-            break;
-        default:
-            $_SESSION["filter"] = "all";
-            break;
-    }
 ?>
 
 <!DOCTYPE html>
@@ -102,6 +79,50 @@
 
     <main id="manage-main">
         <h1 id="manage-mainheading">Manage Attempts</h1>
+
+<?php
+    $action = get_action();
+
+    switch ($action) {
+        case 'filter':
+            $_SESSION["fname"] = get_post("fname") ?: null;
+            $_SESSION["lname"] = get_post("lname") ?: null;
+            $_SESSION["sid"] = get_post("sid") ?: null;
+            $_SESSION["filter"] = get_post("filter");
+            break;
+        case 'delete':
+            $deleteSid = get_post("user_id");
+            if ($deleteSid != null and preg_match("/^(\d{7}|\d{10})$/", $deleteSid)) {
+                if (!delete_user($conn, $deleteSid)) {
+                    echo_manage_error(["Failed to delete user."]);
+                }
+            } else {
+                echo_manage_error(["Delete: Student ID must be 7 or 10 digits."]);
+            }
+            break;
+        case 'edit':
+            $attemptId = get_post('attempt_id');
+            $attemptValue = get_post('attempt_value');
+            $errors = [];
+            if ($attemptId == null or !preg_match("/^\d+$/", $attemptId)) {
+                array_push($errors, "Edit: Attempt ID must be an integer.");
+            }
+            if ($attemptValue == null or !preg_match("/^(\d|1[0-2])$/", $attemptValue)) {
+                array_push($errors, "Edit: Attempt value must be from 0-12.");
+            }
+            if (count($errors) < 1) {
+                if (!update_attempt($conn, $attemptId, $attemptValue)) {
+                    echo_manage_error(["Failed to edit attempt."]);
+                }
+            } else {
+                echo_manage_error($errors);
+            }
+            break;
+        default:
+            $_SESSION["filter"] = "all";
+            break;
+    }
+?>
         <form method="post" action="manage.php?action=filter">
             <fieldset id="manage-filters">
                 <div class="manage-filterarea">
@@ -266,10 +287,6 @@
                 echo("
                     </table>
                 ");
-            }
-
-            function echo_manage_error($errors) {
-                echo_error($errors, "manage.php");
             }
 
             function make_tables() {
