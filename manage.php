@@ -17,6 +17,10 @@
         header("Location: login.php?action=error");
         exit();
     }
+
+    function echo_manage_error($errors) {
+        echo_error($errors, "manage.php");
+    }
   
     session_start();
     # Try connecting to MySQL database.
@@ -88,19 +92,30 @@
             break;
         case 'delete':
             $deleteSid = get_post("user_id");
-            if ($deleteSid != null) {
+            if ($deleteSid != null and preg_match("/^(\d{7}|\d{10})$/", $deleteSid)) {
                 if (!delete_user($conn, $deleteSid)) {
-                    echo_error(["Failed to delete user."], "manage.php");
+                    echo_manage_error(["Failed to delete user."]);
                 }
+            } else {
+                echo_manage_error(["Delete: Student ID must be 7 or 10 digits."]);
             }
             break;
         case 'edit':
             $attemptId = get_post('attempt_id');
-            $attempt_value = get_post('attempt_value');
-            if ($attemptId != null and $attempt_value != null and preg_match("/^(\d|1[0-2])$/", $attempt_value)) {
-                if (!update_attempt($conn, $attemptId, $attempt_value)) {
-                    echo_error(["Failed to edit attempt."], "manage.php");
+            $attemptValue = get_post('attempt_value');
+            $errors = [];
+            if ($attemptId == null or !preg_match("/^\d+$/", $attemptId)) {
+                array_push($errors, "Edit: Attempt ID must be an integer.");
+            }
+            if ($attemptValue == null or !preg_match("/^(\d|1[0-2])$/", $attemptValue)) {
+                array_push($errors, "Edit: Attempt value must be from 0-12.");
+            }
+            if (count($errors) < 1) {
+                if (!update_attempt($conn, $attemptId, $attemptValue)) {
+                    echo_manage_error(["Failed to edit attempt."]);
                 }
+            } else {
+                echo_manage_error($errors);
             }
             break;
         default:
@@ -272,10 +287,6 @@
                 echo("
                     </table>
                 ");
-            }
-
-            function echo_manage_error($errors) {
-                echo_error($errors, "manage.php");
             }
 
             function make_tables() {
