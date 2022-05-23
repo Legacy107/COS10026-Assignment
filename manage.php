@@ -95,7 +95,7 @@
                 "sid"            => ["fname", "lname"],
                 "100_first"       => ["fname", "lname", "sid"],
                 "less_50_second" => ["fname", "lname", "sid"],
-                "all"            => [],
+                "all"            => ["fname", "lname", "sid"],
             ];
             // Reset redundant fields based on filter option
             foreach ($ignore_fields[$_SESSION["filter"]] as $field_id)
