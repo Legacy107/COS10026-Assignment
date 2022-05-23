@@ -89,6 +89,16 @@
             $_SESSION["lname"] = get_post("lname") ?: null;
             $_SESSION["sid"] = get_post("sid") ?: null;
             $_SESSION["filter"] = get_post("filter");
+
+            $ignore_fields = [
+                "name"           => ["sid"],
+                "sid"            => ["fname", "lname"],
+                "100_first"       => ["fname", "lname", "sid"],
+                "less_50_second" => ["fname", "lname", "sid"],
+            ];
+            // Reset redundant fields based on filter option
+            foreach ($ignore_fields[$_SESSION["filter"]] as $field_id)
+                unset($_SESSION[$field_id]);
             break;
         case 'delete':
             $deleteSid = get_post("user_id");
