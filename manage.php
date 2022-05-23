@@ -52,33 +52,6 @@
 
         $_SESSION["adminId"] = $result["adminId"];
     }
-
-    $action = get_action();
-
-    switch ($action) {
-        case 'filter':
-            $_SESSION["fname"] = get_post("fname") ?: null;
-            $_SESSION["lname"] = get_post("lname") ?: null;
-            $_SESSION["sid"] = get_post("sid") ?: null;
-            $_SESSION["filter"] = get_post("filter");
-            break;
-        case 'delete':
-            $deleteSid = get_post("user_id");
-            if ($deleteSid != null) {
-                delete_user($conn, $deleteSid);
-            }
-            break;
-        case 'edit':
-            $attemptId = get_post('attempt_id');
-            $attempt_value = get_post('attempt_value');
-            if ($attemptId != null and $attempt_value != null and preg_match("/^(\d|1[0-2])$/", $attempt_value)) {
-                update_attempt($conn, $attemptId, $attempt_value);
-            }
-            break;
-        default:
-            $_SESSION["filter"] = "all";
-            break;
-    }
 ?>
 
 <!DOCTYPE html>
@@ -102,6 +75,39 @@
 
     <main id="manage-main">
         <h1 id="manage-mainheading">Manage Attempts</h1>
+
+<?php
+    $action = get_action();
+
+    switch ($action) {
+        case 'filter':
+            $_SESSION["fname"] = get_post("fname") ?: null;
+            $_SESSION["lname"] = get_post("lname") ?: null;
+            $_SESSION["sid"] = get_post("sid") ?: null;
+            $_SESSION["filter"] = get_post("filter");
+            break;
+        case 'delete':
+            $deleteSid = get_post("user_id");
+            if ($deleteSid != null) {
+                if (!delete_user($conn, $deleteSid)) {
+                    echo_error(["Failed to delete user."], "manage.php");
+                }
+            }
+            break;
+        case 'edit':
+            $attemptId = get_post('attempt_id');
+            $attempt_value = get_post('attempt_value');
+            if ($attemptId != null and $attempt_value != null and preg_match("/^(\d|1[0-2])$/", $attempt_value)) {
+                if (!update_attempt($conn, $attemptId, $attempt_value)) {
+                    echo_error(["Failed to edit attempt."], "manage.php");
+                }
+            }
+            break;
+        default:
+            $_SESSION["filter"] = "all";
+            break;
+    }
+?>
         <form method="post" action="manage.php?action=filter">
             <fieldset id="manage-filters">
                 <div class="manage-filterarea">
