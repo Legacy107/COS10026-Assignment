@@ -45,6 +45,14 @@
         return null;
     }
 
+    # Gets a key from a data array, returns null if it doesn't exist.
+    function get_data($data, $key) {
+        if (isset($data[$key])) {
+            return sanitise_data($data[$key]);
+        }
+        return null;
+    }
+
     # Validate fname, lname and sid
     function validate_user_data($data_array) {
         $errors = [];

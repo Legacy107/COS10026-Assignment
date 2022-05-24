@@ -90,16 +90,15 @@
             $_SESSION["sid"] = get_post("sid") ?: null;
             $_SESSION["filter"] = get_post("filter");
 
-            $ignore_fields = [
-                "name"           => ["sid"],
-                "sid"            => ["fname", "lname"],
-                "100_first"       => ["fname", "lname", "sid"],
-                "less_50_second" => ["fname", "lname", "sid"],
-                "all"            => ["fname", "lname", "sid"],
+            $copy_fields = [
+                "name"           => ["fname", "lname"],
+                "sid"            => ["sid"]
             ];
-            // Reset redundant fields based on filter option
-            foreach ($ignore_fields[$_SESSION["filter"]] as $field_id)
-                unset($_SESSION[$field_id]);
+            $filterData = [];
+            // Copy non-redundant fields based on filter option.
+            foreach ($copy_fields[$_SESSION["filter"]] as $field_id) {
+                $filterData[$field_id] = $_SESSION[$field_id];
+            }
             break;
         case 'delete':
             $deleteSid = get_post("user_id");
@@ -300,9 +299,9 @@
                 ");
             }
 
-            function make_tables() {
+            function make_tables($data) {
                 GLOBAL $conn;
-                $errorMsg = validate_user_data($_SESSION);
+                $errorMsg = validate_user_data($data);
                 if ($errorMsg != null) {
                     echo_manage_error($errorMsg);
                     return;
@@ -311,10 +310,10 @@
                 # check filter
                 switch ($_SESSION["filter"]) {
                     case 'name':
-                        $attempts = get_attempts($conn, null, get_session("fname"), get_session("lname"));
+                        $attempts = get_attempts($conn, null, get_data($data, "fname"), get_data($data, "lname"));
                         break;
                     case 'sid':
-                        $attempts = get_attempts($conn, get_session("sid"));
+                        $attempts = get_attempts($conn, get_data($data, "sid"));
                         break;
                     case '100_first':
                         $attempts = get_first_attempts_100($conn);
@@ -343,7 +342,7 @@
                 echo("<h2 class=\"manage-listheading\">List of Users</h2>");
                 echo_users_table($users);
             }
-            make_tables();
+            make_tables($filterData);
         ?>
     </main>
     
