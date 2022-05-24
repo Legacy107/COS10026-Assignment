@@ -83,6 +83,7 @@
 <?php
     $action = get_action();
 
+    $filterData = [];
     switch ($action) {
         case 'filter':
             $_SESSION["fname"] = get_post("fname") ?: null;
@@ -92,9 +93,11 @@
 
             $copy_fields = [
                 "name"           => ["fname", "lname"],
-                "sid"            => ["sid"]
+                "sid"            => ["sid"],
+                "100_first"       => [],
+                "less_50_second" => [],
+                "all"            => [],
             ];
-            $filterData = [];
             // Copy non-redundant fields based on filter option.
             foreach ($copy_fields[$_SESSION["filter"]] as $field_id) {
                 $filterData[$field_id] = $_SESSION[$field_id];
