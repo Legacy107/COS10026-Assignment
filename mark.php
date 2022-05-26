@@ -30,7 +30,7 @@
         return $data_array;
     }
 
-    function get_data() {
+    function get_quiz_data() {
         $data_array = array();
         if (isset($_POST["fname"])) { //text alpha
             $data_array["fname"] = $_POST["fname"];
@@ -154,7 +154,7 @@
         save_attempt($conn, $data["sid"], $score);
     }
 
-    $data = get_data();
+    $data = get_quiz_data();
 
     $data = sanitise_data_array($data);
 
