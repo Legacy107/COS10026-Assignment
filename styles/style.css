@@ -1119,6 +1119,10 @@ Styles for topic.html
 /*
 Specific styles for quiz.html
 */
+.quiz-error {
+    margin-left: 5%;
+}
+
 .quiz-h2 {
     padding-bottom: 3.5rem;
     margin-left: 5%;
