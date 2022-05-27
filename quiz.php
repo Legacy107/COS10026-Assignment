@@ -50,7 +50,7 @@
                     $origin = $errorOri;
                     $errors = $errorMsg;
                 }
-                echo_error($errors, $origin);
+                echo_error($errors, $origin, "quiz-error");
             }
             session_unset();
             session_destroy();

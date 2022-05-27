@@ -5,9 +5,9 @@
 -->
 
 <?php
-  function echo_error($errors, $origin) {
+  function echo_error($errors, $origin, $class = '') {
     echo("
-      <p class='error-p'>ERRORS &lt;$origin&gt;:
+      <p class='error-p $class'>ERRORS &lt;$origin&gt;:
     ");
     foreach ($errors as $error) {
       echo("
